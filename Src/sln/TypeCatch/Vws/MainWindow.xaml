@@ -1,6 +1,7 @@
 ﻿<lnk:WindowBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=System"
         xmlns:xui="clr-namespace:AAV.Common.UI.UsrCtrls;assembly=AAV.Common.UI" 
         xmlns:lnk="clr-namespace:AsLink"
+        xmlns:ln2="clr-namespace:AsLink;assembly=AAV.Common.UI" 
         xmlns:msc="clr-namespace:TypingWpf.Misc"
         xmlns:Vws="clr-namespace:TypingWpf.Vws" 
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
@@ -12,7 +13,7 @@
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
   </WindowChrome.WindowChrome>
   <lnk:WindowBase.Resources>
-    <ResourceDictionary Source="/TypingWpf;component/Themes/Common.xaml" />
+    <ResourceDictionary Source="/AAV.Common.UI;component/Themes/Common.xaml" />
   </lnk:WindowBase.Resources>
   <lnk:WindowBase.InputBindings>
     <KeyBinding Command="{Binding F1Cmd}" CommandParameter="{Binding ElementName=w}" Key="{Binding F1Cmd.GestureKey}" Modifiers="{Binding F1Cmd.GestureModifier}" />
@@ -96,7 +97,7 @@
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="4" Opacity="{Binding ProLvl, FallbackValue=.7}" >
 
-      <StackPanel Orientation="Horizontal" Margin="3" IsEnabled="{Binding IsInSsn, Converter={lnk:Bool InvertValue=True}}" Visibility="{Binding IsInSsn, Converter={lnk:VisibilityConverter InvertValue=True}}" >
+      <StackPanel Orientation="Horizontal" Margin="3" IsEnabled="{Binding IsInSsn, Converter={ln2:Bool InvertValue=True}}" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
         <StackPanel.Resources>
           <Style TargetType="{x:Type MenuItem}" >
             <Setter Property="Foreground" Value="#04c" />
@@ -183,7 +184,7 @@
         <Button Command="{Binding F5Cmd}" msc:FocusExtension.IsFocused="{Binding IsFocusedSB}"  x:Name="btnStart" IsDefault="True" Opacity="0" ToolTip="F5 works too!!!" />
 
       </StackPanel>
-      <StackPanel Orientation="Horizontal" Margin="3" Visibility="{Binding IsInSsn, Converter={lnk:VisibilityConverter InvertValue=False}}">
+      <StackPanel Orientation="Horizontal" Margin="3" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=False}}">
         <!-- Player is off:         <Label Margin="10,8,0,4" Content="  Player:" Foreground="#ddd" />  <TextBlock  Text="{Binding SelectUser, FallbackValue=Abc}"     Foreground="#ffe" FontSize="26" Margin="4" />
         -->
         <Label Margin="10,8,0,4" Content="  Lesson:" Foreground="#ddd" />
@@ -244,7 +245,7 @@
                  BorderThickness="0" AcceptsReturn="True" IsEnabled="{Binding IsInSsn}" Background="Transparent" Foreground="{Binding IsCorrect, Converter={lnk:BoolToColorConverter}}" 
                  msc:FocusExtension.IsFocused="{Binding IsFocusedPI}" />
 
-      <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Margin="-5 -5 -5 -5" Visibility="{Binding IsInSsn, Converter={lnk:VisibilityConverter InvertValue=True}}"
+      <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Margin="-5 -5 -5 -5" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}"
               BorderThickness="2" CornerRadius="15" d:IsHidden="True" >
         <Border.Background>
           <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -284,7 +285,7 @@
             <DataGrid.Columns>
               <!--
                                SelectionChanged="sc" IsVisibleChanged="ivc" 
-                     RowBackground="{Binding Note, Converter={lnk:PcNameToForeColorConverter}}"
+                     RowBackground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}"
                      RowBackground="Red"
      <DataGridCheckBoxColumn Binding="{Binding Exclude}"                    Header="Skip"      IsReadOnly="False" />
      <DataGridTemplateColumn SortMemberPath="Progres"                 Header="Progress"    Width="Auto" CanUserSort="True" >
@@ -298,7 +299,7 @@
      </DataGridTemplateColumn>
 
           <DataGridTextColumn Binding="{Binding  UserId         }"                 Header="Usr"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
-              <DataGridTextColumn Binding="{Binding Note}"                                   Header="Note"    Width="*"         Foreground="{Binding Note, Converter={lnk:PcNameToForeColorConverter}}" />
+              <DataGridTextColumn Binding="{Binding Note}"                                   Header="Note"    Width="*"         Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" />
      -->
               <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ce"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
               <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="In"       IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
@@ -306,8 +307,8 @@
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:MMM-dd HH:mm}'}" 
-                                 Foreground="{Binding DoneAt, Converter={lnk:WeekDayToForeColorConverter}}" 
-                                 Background="{Binding DoneAt, Converter={lnk:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
+                                 Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
+                                 Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
@@ -316,7 +317,7 @@
               <DataGridTemplateColumn SortMemberPath="Note" CanUserSort="True" Width="*"     Header="Note"    >
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
-                    <TextBlock Text="{Binding Note}"  Foreground="{Binding Note, Converter={lnk:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
+                    <TextBlock Text="{Binding Note}"  Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
@@ -333,7 +334,7 @@
             <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Delete this run"  Command="{Binding DeleteSR}" Foreground="#f00" Visibility="{Binding IsAdmin, Converter={lnk:VisibilityConverter}}" />
+            <Button Content="Delete this run"  Command="{Binding DeleteSR}" Foreground="#f00" Visibility="{Binding IsAdmin, Converter={ln2:VisibilityConverter}}" />
           </StackPanel>
         </Grid>
       </Border>

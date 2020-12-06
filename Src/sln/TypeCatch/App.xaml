@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TypingWpf"
 						 >
-    <Application.Resources>
+  <Application.Resources>
 
-        <ResourceDictionary Source="/TypingWpf;component/Themes/Common.xaml" />
+    <ResourceDictionary Source="/AAV.Common.UI;component/Themes/Common.xaml" />
 
-    </Application.Resources>
+  </Application.Resources>
 </Application>

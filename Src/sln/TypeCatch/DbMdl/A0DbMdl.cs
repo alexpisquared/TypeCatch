@@ -11,6 +11,7 @@ namespace TypingWpf.DbMdl
     using AAV.Sys.Helpers;
     using AsLink;
   using TypingWpf.DbExt;
+  using TypingWpf.Properties;
 
   public partial class A0DbMdl : DbContext
   {
@@ -54,7 +55,7 @@ LocalDB instance "MSSQLLocalDB" started.
       //..Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   cTor {sw.ElapsedMilliseconds:N0} ms.");
     }
 
-    public static A0DbMdl GetA0DbMdlAzureDb => new A0DbMdl("data source=sqs.database.windows.net;initial catalog=OneBase;persist security info=True;user id=azuresqluser;password=\";lkj;lkj99\";MultipleActiveResultSets=True;App=EntityFramework");
+    public static A0DbMdl GetA0DbMdlAzureDb => new A0DbMdl($"data source=sqs.database.windows.net;initial catalog=OneBase;persist security info=True;user id={Settings.Default.ReadOnlyUsr};password=\"{Settings.Default.ReadOnlyKey}\";MultipleActiveResultSets=True;App=EntityFramework");
     public static A0DbMdl GetA0DbMdlExpress => new A0DbMdl(@"Data Source=.\SQLEXPRESS;initial catalog=TypeCatchDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
     public static A0DbMdl GetA0DbMdlLocalDb => new A0DbMdl($@"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename={App.Dbfn};Integrated Security=True;Connect Timeout=15;");
 

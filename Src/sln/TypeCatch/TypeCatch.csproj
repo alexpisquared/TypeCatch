@@ -145,39 +145,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\..\..\AavCore\AAV.WPF\Helpers\UnhandledExceptionHndlr.cs">
-      <Link>AsLink\UnhandledExceptionHndlr.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\OneDrive\OneDriveHelper.cs">
-      <Link>AsLink\OneDriveHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\UniSerializer.cs">
-      <Link>AsLink\UniSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\ConverterEx.cs">
-      <Link>Converters\ConverterEx.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\Converters.cs">
-      <Link>Converters\Converters.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\CsProj\AAV.Common.UI\Converters\MathConverters.cs">
-      <Link>Converters\MathConverters.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\IsoStorage.cs">
-      <Link>AsLink\IsoStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\ObservableCollectionEx.cs">
-      <Link>AsLink\ObservableCollectionEx.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\UI\WindowExt.cs">
-      <Link>AsLink\WindowExt.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\Win32\Ext.DbContext.cs">
-      <Link>AsLink\Ext.DbContext.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\Win32\WindowBase.cs">
-      <Link>AsLink\WindowBase.cs</Link>
-    </Compile>
+    <Compile Include="AsLink\BindableBaseViewModel.cs" />
+    <Compile Include="AsLink\Ext.DbContext.cs" />
+    <Compile Include="AsLink\ObservableCollectionEx.cs" />
+    <Compile Include="AsLink\UnhandledExceptionHndlr.cs" />
+    <Compile Include="AsLink\UniSerializer.cs" />
+    <Compile Include="AsLink\WindowBase.cs" />
     <Compile Include="Converters\ProjSpecific.cs" />
     <Compile Include="DbDataTran\DataTransfer.cs" />
     <Compile Include="DbExt\DbInitializer.cs" />
@@ -217,11 +190,6 @@
     <Compile Include="Vws\xChartPoc.xaml.cs">
       <DependentUpon>xChartPoc.xaml</DependentUpon>
     </Compile>
-    <Page Include="..\..\..\AsLink\Themes\Common.xaml">
-      <Link>Themes\Common.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Vws\DbExplorer2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,15 +256,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AavCore\AAV.Sys\AAV.Sys.csproj">
-      <Project>{adf72741-5013-4895-8f12-a7b429442fe1}</Project>
+    <ProjectReference Include="..\..\..\..\ScSv\Src\AlexPi.Scr\AAV.Sys\AAV.Sys.csproj">
+      <Project>{a4555ec5-8b16-4eb3-b646-d2d0ecbf2150}</Project>
       <Name>AAV.Sys</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\AsLink\CsProj\AAV.Common.MVVM\AAV.Common.MVVM.csproj">
+    <ProjectReference Include="..\AAV.Common.MVVM\AAV.Common.MVVM.csproj">
       <Project>{175d8a5c-519d-4a1f-8b6e-d822a0717680}</Project>
       <Name>AAV.Common.MVVM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\AsLink\CsProj\AAV.Common.UI\AAV.Common.UI.csproj">
+    <ProjectReference Include="..\AAV.Common.UI\AAV.Common.UI.csproj">
       <Project>{62e489f8-ccae-4984-a19d-03abb8eb1854}</Project>
       <Name>AAV.Common.UI</Name>
     </ProjectReference>
@@ -561,7 +529,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
