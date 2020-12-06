@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AudioQue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AudioQue.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bad___B_B_suxx2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bad - B&amp;B suxx.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bad___Cry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bad - Cry.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bad___Noseblow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bad - Noseblow.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bad___Police" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bad - Police.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye_Bye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye-Bye.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye___Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye - Apple.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye___Good_Bye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye - Good Bye.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye___Good_Bye__Arnold_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye - Good Bye (Arnold).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye___Hasta_La_Vista_Baby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye - Hasta La Vista Baby.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bye___I_ll_be_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Bye - I'll be back.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Darude___Touche_me_feel_me" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Darude - Touche me feel me.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___All_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - All right.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Applause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Applause.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Applause_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Applause 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Applause_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Applause 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Excellent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Excellent.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Fanfare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Fanfare.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Pleasure" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Pleasure.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Wine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Wine.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Yea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Yea.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Yeah" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Yeah.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Yes_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Yes 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Yes_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Yes 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Good___Yes_B_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Good - Yes B&amp;B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Hello_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Hello 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Hello___Computer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Hello - Computer.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Hello___Knocking_on_Door" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Hello - Knocking on Door.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Hello___Typewriter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Hello - Typewriter.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 04.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 05.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 06.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 07.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh 08.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Baby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Baby.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___B_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - B&amp;B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Evil_giggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Evil giggle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Female_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Female 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Female_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Female 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Group.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Haha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Haha.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Hahaha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Hahaha.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Hilari1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Hilari1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Hilari2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Hilari2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Hohooouu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Hohooouu.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Male_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Male 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Male_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Male 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Male_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Male 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Male_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Male 04.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Male_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Male 05.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Snicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Snicker.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Laugh___Witch_Cackle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Laugh - Witch Cackle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow 04.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Aaahh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Aaahh.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Burp_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Burp 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Burp_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Burp 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B 1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B 2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B 3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B 4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_fart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B fart1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___B_B_fart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - B&amp;B fart2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Car.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Car_Horn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Car Horn.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Cough_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Cough 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Cough_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Cough 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Cough_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Cough 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Cow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Cow.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Crush_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Crush 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Crush_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Crush 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Cuckoo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Cuckoo.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Dog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Dog.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Fart_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Fart 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Fart_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Fart 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Fast_fart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Fast fart.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Female_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Female 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Female_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Female 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Female_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Female 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Gargle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Gargle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Goat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Goat.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Male_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Male 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Male_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Male 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Male_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Male 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Male_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Male 04.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Male_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Male 05.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___No" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - No.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Noo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Noo.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Ooff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Ooff.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Ouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Ouch.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Pig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Pig.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Sheep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Sheep.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Sneeze" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Sneeze.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Throat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Throat.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Uh_oh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Uh-oh.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ow___Vinni_Pooh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Ow - Vinni-Pooh.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 04.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 05.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start 06.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Ambient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Ambient.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Arcade_Alarm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Arcade Alarm.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Arcade_Chirp_Descend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Arcade Chirp Descend.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Arcade_Power_Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Arcade Power Up.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Bjaz" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Bjaz.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Bulp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Bulp.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Engine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Engine.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Gong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Gong.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Headshk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Headshk.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Horse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Horse.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Let_s_Do_It" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Let's Do It.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Oops" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Oops.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Oracle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Oracle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Sad_Guitar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Sad Guitar.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Spring" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Spring.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start___Upper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\wav\Start - Upper.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

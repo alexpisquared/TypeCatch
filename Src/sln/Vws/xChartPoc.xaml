@@ -1,0 +1,25 @@
+﻿<Window x:Class="TypingWpf.xChartPoc" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:TypingWpf"
+        xmlns:wfuc="clr-namespace:TypingWpf.Vws"
+        mc:Ignorable="d" Title="xChartPoc" Height="300" Width="300"
+        Loaded="Window_Loaded"
+        WindowStyle="None"
+        Background="#eee"
+        ResizeMode="CanResize"
+        >
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="19*"/>
+      <RowDefinition Height="127*"/>
+      <RowDefinition Height="111*"/>
+      <RowDefinition Height="12*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="137*"/>
+      <ColumnDefinition Width="155*"/>
+    </Grid.ColumnDefinitions>
+    <WindowsFormsHost Margin="11" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+      <wfuc:WinFormChartUsrCtrl x:Name="wfuc2" />
+    </WindowsFormsHost>
+  </Grid>
+</Window>

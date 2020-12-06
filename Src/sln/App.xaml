@@ -1,0 +1,11 @@
+﻿<Application x:Class="TypingWpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TypingWpf"
+						 >
+    <Application.Resources>
+
+        <ResourceDictionary Source="/TypingWpf;component/Themes/Common.xaml" />
+
+    </Application.Resources>
+</Application>
