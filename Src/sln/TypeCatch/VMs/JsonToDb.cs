@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AAV.Sys.Ext;
 using AsLink;
 using TypingWpf.DbMdl;
+using TypingWpf.Properties;
 using db = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs
@@ -18,6 +19,12 @@ namespace TypingWpf.VMs
     {
       LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading \r\n\n\t\t\t from DB Async ... ";
       //synth.SpeakAsyncCancelAll(); synth.SpeakAsync("Loading from DB.");
+
+      if (Settings.Default.ReadOnlyUsr=="haha")
+      {
+        synth.SpeakAsync("Change the credentials in CFG, search for haha.");
+        return;
+      }
 
       IsBusy = true;
       try
