@@ -256,8 +256,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ScSv\Src\AlexPi.Scr\AAV.Sys\AAV.Sys.csproj">
-      <Project>{a4555ec5-8b16-4eb3-b646-d2d0ecbf2150}</Project>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
+      <Project>{e4c629cb-4c74-4c0f-ae0f-75118cf2fb68}</Project>
       <Name>AAV.Sys</Name>
     </ProjectReference>
     <ProjectReference Include="..\AAV.Common.MVVM\AAV.Common.MVVM.csproj">
