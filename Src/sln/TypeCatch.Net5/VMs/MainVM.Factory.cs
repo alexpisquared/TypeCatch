@@ -19,7 +19,7 @@ namespace TypingWpf.VMs
 #if ISO
     static string _fnm => typeof(MainVM).Name + _ext;
 #else
-        static string _fnm2 => OneDrive.Folder($@"Public\AppData\TypeCatch\{Properties.Settings.Default.LastUser}{_ext}");
+        static string _fnm2 => OneDrive.Folder($@"Public\AppData\TypeCatch\{TypeCatch.Net5.Properties.Settings.Default.LastUser}{_ext}");
         public static string MainVmJsonFile { get => OneDrive.Folder($@"Public\AppData\TypeCatch\{typeof(MainVM).Name}{_ext}"); }
 #endif
         public static MainVM Create(CartesianChart cChart1)

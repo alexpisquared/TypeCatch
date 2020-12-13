@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using TypingWpf.VMs;
+using TypingWpf;
 
 namespace TypeCatch.Net5
 {

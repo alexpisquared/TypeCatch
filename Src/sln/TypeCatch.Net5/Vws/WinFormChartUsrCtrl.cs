@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+//using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.ObjectModel;
 using TypingWpf.Mdl;
 using AsLink;
 using AAV.Sys.Ext;
+using LiveCharts.Wpf.Charts.Base;
 
 namespace TypingWpf.Vws
 {

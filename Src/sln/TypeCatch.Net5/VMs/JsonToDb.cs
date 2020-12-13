@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AAV.Sys.Ext;
 using AsLink;
+using TypeCatch.Net5.Properties;
 using TypingWpf.DbMdl;
-using TypingWpf.Properties;
 using db = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs

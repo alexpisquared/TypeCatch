@@ -1,17 +1,14 @@
 namespace TypingWpf.DbMdl
 {
+  using AAV.Sys.Ext;
+  using AAV.Sys.Helpers;
   using System;
   using System.Data.Entity;
-  using System.Data.Entity.Infrastructure;
-  using System.Data.Entity.Validation;
   using System.Diagnostics;
   using System.Runtime.CompilerServices;
-  using System.Text;
-    using AAV.Sys.Ext;
-    using AAV.Sys.Helpers;
-    using AsLink;
+  using TypeCatch.Net5;
+  using TypeCatch.Net5.Properties;
   using TypingWpf.DbExt;
-  using TypingWpf.Properties;
 
   public partial class A0DbMdl : DbContext
   {

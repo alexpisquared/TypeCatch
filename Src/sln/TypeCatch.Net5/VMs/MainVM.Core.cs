@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using AsLink;
+using TypeCatch.Net5;
 using TypingWpf.Mdl;
 using dbMdl = TypingWpf.DbMdl;
 

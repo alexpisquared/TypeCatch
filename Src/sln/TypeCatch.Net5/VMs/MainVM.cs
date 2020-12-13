@@ -1,6 +1,7 @@
 ﻿using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using MVVM.Common;
+//using SpeechSynthLib.Adapter;
 using System;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using TypeCatch.Net5;
 using TypingWpf.DbMdl;
 using xMvvmMin;
 using db = TypingWpf.DbMdl;
@@ -24,7 +26,7 @@ namespace TypingWpf.VMs
     readonly Stopwatch _swMain = new Stopwatch();
     ResourcePlayer _soundPlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
-    readonly SpeechSynthesizer synth = new SpeechSynthesizer();
+    readonly System.Speech.Synthesis.SpeechSynthesizer synth = new SpeechSynthesizer();
     //Brush _errorBrush = new SolidColorBrush(Colors.Red);
     //Brush _greenBrush = new SolidColorBrush(Colors.Green);
 
@@ -46,7 +48,7 @@ namespace TypingWpf.VMs
           IsInSsn = true;
           IsAdmin = VerHelper.IsVIP;
 
-          var gnd = (VoiceGender)((AppRunCount++) % 3 + 1);
+          //var gnd = (VoiceGender)((AppRunCount++) % 3 + 1);
           synth.Rate = 3;
           //Feb 2020: seems to hang on this one: synth.SelectVoiceByHints(gnd, VoiceAge.Senior);
 
@@ -96,8 +98,8 @@ namespace TypingWpf.VMs
       if (!SelectUser.Equals(selectUser))
         SelectUser = selectUser;
 
-      Properties.Settings.Default.LastUser = SelectUser;
-      Properties.Settings.Default.Save();
+      TypeCatch.Net5.Properties.Settings.Default.LastUser = SelectUser;
+      TypeCatch.Net5.Properties.Settings.Default.Save();
 
       try
       {
