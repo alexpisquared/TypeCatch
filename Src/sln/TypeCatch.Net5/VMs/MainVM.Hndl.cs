@@ -8,7 +8,7 @@ using System.Globalization;
 using TypingWpf.DbDataTran;
 using TypingWpf.DbMdl;
 using AAV.Sys.Helpers;
-using System.Speech.Synthesis;
+using SpeechSynthLib.Adapter;
 
 namespace TypingWpf.VMs
 {

@@ -1,12 +1,11 @@
 ﻿using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using MVVM.Common;
-//using SpeechSynthLib.Adapter;
+using SpeechSynthLib.Adapter;
 using System;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -26,7 +25,7 @@ namespace TypingWpf.VMs
     readonly Stopwatch _swMain = new Stopwatch();
     ResourcePlayer _soundPlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
-    readonly System.Speech.Synthesis.SpeechSynthesizer synth = new SpeechSynthesizer();
+    readonly SpeechSynthesizer synth = new SpeechSynthesizer();
     //Brush _errorBrush = new SolidColorBrush(Colors.Red);
     //Brush _greenBrush = new SolidColorBrush(Colors.Green);
 
@@ -159,6 +158,7 @@ namespace TypingWpf.VMs
     }
     void promptSample()
     {
+      /*
       var ps = new PromptStyle
       {
         Emphasis = PromptEmphasis.Strong,
@@ -200,6 +200,7 @@ namespace TypingWpf.VMs
       pb.EndParagraph();
       pb.EndStyle();
       synth.SpeakAsyncCancelAll(); synth.SpeakAsync(pb);
+      */
     }
     async void prepLessonType(string x, bool doF1 = true)
     {

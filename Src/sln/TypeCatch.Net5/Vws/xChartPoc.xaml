@@ -19,7 +19,7 @@
       <ColumnDefinition Width="155*"/>
     </Grid.ColumnDefinitions>
     <WindowsFormsHost Margin="11" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" >
-      <wfuc:WinFormChartUsrCtrl x:Name="wfuc2" />
+      <!--<wfuc:WinFormChartUsrCtrl x:Name="wfuc2" />-->
     </WindowsFormsHost>
   </Grid>
 </Window>

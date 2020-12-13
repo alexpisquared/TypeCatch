@@ -531,12 +531,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Speech">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Speech.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Assets\wav\Bye - I'll be back.wav" />
     <Resource Include="Keyboard - Aha-Soft-Security-Login.ico" />
     <Resource Include="Resources\AudioQue.wav" />
@@ -564,12 +558,6 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Vws\WinFormChartUsrCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Vws\WinFormChartUsrCtrl.Designer.cs">
-      <DependentUpon>WinFormChartUsrCtrl.cs</DependentUpon>
-    </Compile>
     <Compile Update="Vws\xChartPoc.xaml.cs">
       <DependentUpon>xChartPoc.xaml</DependentUpon>
     </Compile>
@@ -579,9 +567,6 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Vws\WinFormChartUsrCtrl.resx">
-      <DependentUpon>WinFormChartUsrCtrl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 

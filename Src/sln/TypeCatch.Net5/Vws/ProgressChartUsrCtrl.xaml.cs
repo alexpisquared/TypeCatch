@@ -26,13 +26,13 @@ namespace TypingWpf.Vws
     {
       var now = DateTime.Now;
 
-      chartuc.Chartuc.Series.Clear();
-      var s = chartuc.Chartuc.Series.Add("New Series");
-      s.Points.Clear();
-      for (int i = 0; i < 20; i++)
-      {
-        s.Points.AddXY(now.AddDays(i).ToOADate(), Math.Sin(i * Math.PI / 20));
-      }
+      //chartuc.Chartuc.Series.Clear();
+      //var s = chartuc.Chartuc.Series.Add("New Series");
+      //s.Points.Clear();
+      //for (int i = 0; i < 20; i++)
+      //{
+      //  s.Points.AddXY(now.AddDays(i).ToOADate(), Math.Sin(i * Math.PI / 20));
+      //}
     }
 
     private void UserControl_Loaded(object sender, RoutedEventArgs e)
