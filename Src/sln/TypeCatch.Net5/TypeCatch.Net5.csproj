@@ -1,0 +1,580 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\mp3\Bad - B&amp;B suxx.mp3" />
+    <None Remove="Assets\mp3\Bad - Cry.mp3" />
+    <None Remove="Assets\mp3\Bad - Noseblow.mp3" />
+    <None Remove="Assets\mp3\Bad - Police.mp3" />
+    <None Remove="Assets\mp3\Bye - Apple.mp3" />
+    <None Remove="Assets\mp3\Bye - Good Bye (Arnold).mp3" />
+    <None Remove="Assets\mp3\Bye - Good Bye.mp3" />
+    <None Remove="Assets\mp3\Bye - Hasta La Vista Baby.mp3" />
+    <None Remove="Assets\mp3\Bye - I'll be back.mp3" />
+    <None Remove="Assets\mp3\Bye-Bye.mp3" />
+    <None Remove="Assets\mp3\Darude - Touche me feel me.mp3" />
+    <None Remove="Assets\mp3\Good - All right.mp3" />
+    <None Remove="Assets\mp3\Good - Applause 01.mp3" />
+    <None Remove="Assets\mp3\Good - Applause 02.mp3" />
+    <None Remove="Assets\mp3\Good - Applause.mp3" />
+    <None Remove="Assets\mp3\Good - Excellent.mp3" />
+    <None Remove="Assets\mp3\Good - Fanfare.mp3" />
+    <None Remove="Assets\mp3\Good - Pleasure.mp3" />
+    <None Remove="Assets\mp3\Good - Wine.mp3" />
+    <None Remove="Assets\mp3\Good - Yea.mp3" />
+    <None Remove="Assets\mp3\Good - Yeah.mp3" />
+    <None Remove="Assets\mp3\Good - Yes 01.mp3" />
+    <None Remove="Assets\mp3\Good - Yes 02.mp3" />
+    <None Remove="Assets\mp3\Good - Yes B&amp;B.mp3" />
+    <None Remove="Assets\mp3\Good 01.mp3" />
+    <None Remove="Assets\mp3\Good 02.mp3" />
+    <None Remove="Assets\mp3\Hello - Computer.mp3" />
+    <None Remove="Assets\mp3\Hello - Knocking on Door.mp3" />
+    <None Remove="Assets\mp3\Hello - Typewriter.mp3" />
+    <None Remove="Assets\mp3\Hello 01.mp3" />
+    <None Remove="Assets\mp3\Laugh - B&amp;B.mp3" />
+    <None Remove="Assets\mp3\Laugh - Baby.mp3" />
+    <None Remove="Assets\mp3\Laugh - Evil giggle.mp3" />
+    <None Remove="Assets\mp3\Laugh - Female 01.mp3" />
+    <None Remove="Assets\mp3\Laugh - Female 02.mp3" />
+    <None Remove="Assets\mp3\Laugh - Group.mp3" />
+    <None Remove="Assets\mp3\Laugh - Haha.mp3" />
+    <None Remove="Assets\mp3\Laugh - Hahaha.mp3" />
+    <None Remove="Assets\mp3\Laugh - Hilari1.mp3" />
+    <None Remove="Assets\mp3\Laugh - Hilari2.mp3" />
+    <None Remove="Assets\mp3\Laugh - Hohooouu.mp3" />
+    <None Remove="Assets\mp3\Laugh - Male 01.mp3" />
+    <None Remove="Assets\mp3\Laugh - Male 02.mp3" />
+    <None Remove="Assets\mp3\Laugh - Male 03.mp3" />
+    <None Remove="Assets\mp3\Laugh - Male 04.mp3" />
+    <None Remove="Assets\mp3\Laugh - Male 05.mp3" />
+    <None Remove="Assets\mp3\Laugh - Snicker.mp3" />
+    <None Remove="Assets\mp3\Laugh - Witch Cackle.mp3" />
+    <None Remove="Assets\mp3\Laugh 01.mp3" />
+    <None Remove="Assets\mp3\Laugh 02.mp3" />
+    <None Remove="Assets\mp3\Laugh 03.mp3" />
+    <None Remove="Assets\mp3\Laugh 04.mp3" />
+    <None Remove="Assets\mp3\Laugh 05.mp3" />
+    <None Remove="Assets\mp3\Laugh 06.mp3" />
+    <None Remove="Assets\mp3\Laugh 07.mp3" />
+    <None Remove="Assets\mp3\Laugh 08.mp3" />
+    <None Remove="Assets\mp3\Ow - Aaahh.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B 1.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B 2.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B 3.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B 4.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B fart1.mp3" />
+    <None Remove="Assets\mp3\Ow - B&amp;B fart2.mp3" />
+    <None Remove="Assets\mp3\Ow - Burp 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Burp 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Car Horn.mp3" />
+    <None Remove="Assets\mp3\Ow - Car.mp3" />
+    <None Remove="Assets\mp3\Ow - Cough 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Cough 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Cough 03.mp3" />
+    <None Remove="Assets\mp3\Ow - Cow.mp3" />
+    <None Remove="Assets\mp3\Ow - Crush 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Crush 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Cuckoo.mp3" />
+    <None Remove="Assets\mp3\Ow - Dog.mp3" />
+    <None Remove="Assets\mp3\Ow - Fart 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Fart 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Fast fart.mp3" />
+    <None Remove="Assets\mp3\Ow - Female 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Female 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Female 03.mp3" />
+    <None Remove="Assets\mp3\Ow - Gargle.mp3" />
+    <None Remove="Assets\mp3\Ow - Goat.mp3" />
+    <None Remove="Assets\mp3\Ow - Male 01.mp3" />
+    <None Remove="Assets\mp3\Ow - Male 02.mp3" />
+    <None Remove="Assets\mp3\Ow - Male 03.mp3" />
+    <None Remove="Assets\mp3\Ow - Male 04.mp3" />
+    <None Remove="Assets\mp3\Ow - Male 05.mp3" />
+    <None Remove="Assets\mp3\Ow - No.mp3" />
+    <None Remove="Assets\mp3\Ow - Noo.mp3" />
+    <None Remove="Assets\mp3\Ow - Ooff.mp3" />
+    <None Remove="Assets\mp3\Ow - Ouch.mp3" />
+    <None Remove="Assets\mp3\Ow - Pig.mp3" />
+    <None Remove="Assets\mp3\Ow - Sheep.mp3" />
+    <None Remove="Assets\mp3\Ow - Sneeze.mp3" />
+    <None Remove="Assets\mp3\Ow - Throat.mp3" />
+    <None Remove="Assets\mp3\Ow - Uh-oh.mp3" />
+    <None Remove="Assets\mp3\Ow - Vinni-Pooh.mp3" />
+    <None Remove="Assets\mp3\Ow 01.mp3" />
+    <None Remove="Assets\mp3\Ow 02.mp3" />
+    <None Remove="Assets\mp3\Ow 03.mp3" />
+    <None Remove="Assets\mp3\Ow 04.mp3" />
+    <None Remove="Assets\mp3\Start - Ambient.mp3" />
+    <None Remove="Assets\mp3\Start - Arcade Alarm.mp3" />
+    <None Remove="Assets\mp3\Start - Arcade Chirp Descend.mp3" />
+    <None Remove="Assets\mp3\Start - Arcade Power Up.mp3" />
+    <None Remove="Assets\mp3\Start - Bjaz.mp3" />
+    <None Remove="Assets\mp3\Start - Bulp.mp3" />
+    <None Remove="Assets\mp3\Start - Engine.mp3" />
+    <None Remove="Assets\mp3\Start - Gong.mp3" />
+    <None Remove="Assets\mp3\Start - Headshk.mp3" />
+    <None Remove="Assets\mp3\Start - Horse.mp3" />
+    <None Remove="Assets\mp3\Start - Let's Do It.mp3" />
+    <None Remove="Assets\mp3\Start - Oops.mp3" />
+    <None Remove="Assets\mp3\Start - Oracle.mp3" />
+    <None Remove="Assets\mp3\Start - Sad Guitar.mp3" />
+    <None Remove="Assets\mp3\Start - Spring.mp3" />
+    <None Remove="Assets\mp3\Start - Upper.mp3" />
+    <None Remove="Assets\mp3\Start 01.mp3" />
+    <None Remove="Assets\mp3\Start 02.mp3" />
+    <None Remove="Assets\mp3\Start 03.mp3" />
+    <None Remove="Assets\mp3\Start 04.mp3" />
+    <None Remove="Assets\mp3\Start 05.mp3" />
+    <None Remove="Assets\mp3\Start 06.mp3" />
+    <None Remove="Assets\wav\Bad - B&amp;B suxx.wav" />
+    <None Remove="Assets\wav\Bad - Cry.wav" />
+    <None Remove="Assets\wav\Bad - Noseblow.wav" />
+    <None Remove="Assets\wav\Bad - Police.wav" />
+    <None Remove="Assets\wav\Bye - Apple.wav" />
+    <None Remove="Assets\wav\Bye - Good Bye (Arnold).wav" />
+    <None Remove="Assets\wav\Bye - Good Bye.wav" />
+    <None Remove="Assets\wav\Bye - Hasta La Vista Baby.wav" />
+    <None Remove="Assets\wav\Bye - I'll be back.wav" />
+    <None Remove="Assets\wav\Bye-Bye.wav" />
+    <None Remove="Assets\wav\Darude - Touche me feel me.wav" />
+    <None Remove="Assets\wav\Good - All right.wav" />
+    <None Remove="Assets\wav\Good - Applause 01.wav" />
+    <None Remove="Assets\wav\Good - Applause 02.wav" />
+    <None Remove="Assets\wav\Good - Applause.wav" />
+    <None Remove="Assets\wav\Good - Excellent.wav" />
+    <None Remove="Assets\wav\Good - Fanfare.wav" />
+    <None Remove="Assets\wav\Good - Pleasure.wav" />
+    <None Remove="Assets\wav\Good - Wine.wav" />
+    <None Remove="Assets\wav\Good - Yea.wav" />
+    <None Remove="Assets\wav\Good - Yeah.wav" />
+    <None Remove="Assets\wav\Good - Yes 01.wav" />
+    <None Remove="Assets\wav\Good - Yes 02.wav" />
+    <None Remove="Assets\wav\Good - Yes B&amp;B.wav" />
+    <None Remove="Assets\wav\Good 01.wav" />
+    <None Remove="Assets\wav\Good 02.wav" />
+    <None Remove="Assets\wav\Hello - Computer.wav" />
+    <None Remove="Assets\wav\Hello - Knocking on Door.wav" />
+    <None Remove="Assets\wav\Hello - Typewriter.wav" />
+    <None Remove="Assets\wav\Hello 01.wav" />
+    <None Remove="Assets\wav\Laugh - B&amp;B.wav" />
+    <None Remove="Assets\wav\Laugh - Baby.wav" />
+    <None Remove="Assets\wav\Laugh - Evil giggle.wav" />
+    <None Remove="Assets\wav\Laugh - Female 01.wav" />
+    <None Remove="Assets\wav\Laugh - Female 02.wav" />
+    <None Remove="Assets\wav\Laugh - Group.wav" />
+    <None Remove="Assets\wav\Laugh - Haha.wav" />
+    <None Remove="Assets\wav\Laugh - Hahaha.wav" />
+    <None Remove="Assets\wav\Laugh - Hilari1.wav" />
+    <None Remove="Assets\wav\Laugh - Hilari2.wav" />
+    <None Remove="Assets\wav\Laugh - Hohooouu.wav" />
+    <None Remove="Assets\wav\Laugh - Male 01.wav" />
+    <None Remove="Assets\wav\Laugh - Male 02.wav" />
+    <None Remove="Assets\wav\Laugh - Male 03.wav" />
+    <None Remove="Assets\wav\Laugh - Male 04.wav" />
+    <None Remove="Assets\wav\Laugh - Male 05.wav" />
+    <None Remove="Assets\wav\Laugh - Snicker.wav" />
+    <None Remove="Assets\wav\Laugh - Witch Cackle.wav" />
+    <None Remove="Assets\wav\Laugh 01.wav" />
+    <None Remove="Assets\wav\Laugh 02.wav" />
+    <None Remove="Assets\wav\Laugh 03.wav" />
+    <None Remove="Assets\wav\Laugh 04.wav" />
+    <None Remove="Assets\wav\Laugh 05.wav" />
+    <None Remove="Assets\wav\Laugh 06.wav" />
+    <None Remove="Assets\wav\Laugh 07.wav" />
+    <None Remove="Assets\wav\Laugh 08.wav" />
+    <None Remove="Assets\wav\Ow - Aaahh.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B 1.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B 2.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B 3.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B 4.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B fart1.wav" />
+    <None Remove="Assets\wav\Ow - B&amp;B fart2.wav" />
+    <None Remove="Assets\wav\Ow - Burp 01.wav" />
+    <None Remove="Assets\wav\Ow - Burp 02.wav" />
+    <None Remove="Assets\wav\Ow - Car Horn.wav" />
+    <None Remove="Assets\wav\Ow - Car.wav" />
+    <None Remove="Assets\wav\Ow - Cough 01.wav" />
+    <None Remove="Assets\wav\Ow - Cough 02.wav" />
+    <None Remove="Assets\wav\Ow - Cough 03.wav" />
+    <None Remove="Assets\wav\Ow - Cow.wav" />
+    <None Remove="Assets\wav\Ow - Crush 01.wav" />
+    <None Remove="Assets\wav\Ow - Crush 02.wav" />
+    <None Remove="Assets\wav\Ow - Cuckoo.wav" />
+    <None Remove="Assets\wav\Ow - Dog.wav" />
+    <None Remove="Assets\wav\Ow - Fart 01.wav" />
+    <None Remove="Assets\wav\Ow - Fart 02.wav" />
+    <None Remove="Assets\wav\Ow - Fast fart.wav" />
+    <None Remove="Assets\wav\Ow - Female 01.wav" />
+    <None Remove="Assets\wav\Ow - Female 02.wav" />
+    <None Remove="Assets\wav\Ow - Female 03.wav" />
+    <None Remove="Assets\wav\Ow - Gargle.wav" />
+    <None Remove="Assets\wav\Ow - Goat.wav" />
+    <None Remove="Assets\wav\Ow - Male 01.wav" />
+    <None Remove="Assets\wav\Ow - Male 02.wav" />
+    <None Remove="Assets\wav\Ow - Male 03.wav" />
+    <None Remove="Assets\wav\Ow - Male 04.wav" />
+    <None Remove="Assets\wav\Ow - Male 05.wav" />
+    <None Remove="Assets\wav\Ow - No.wav" />
+    <None Remove="Assets\wav\Ow - Noo.wav" />
+    <None Remove="Assets\wav\Ow - Ooff.wav" />
+    <None Remove="Assets\wav\Ow - Ouch.wav" />
+    <None Remove="Assets\wav\Ow - Pig.wav" />
+    <None Remove="Assets\wav\Ow - Sheep.wav" />
+    <None Remove="Assets\wav\Ow - Sneeze.wav" />
+    <None Remove="Assets\wav\Ow - Throat.wav" />
+    <None Remove="Assets\wav\Ow - Uh-oh.wav" />
+    <None Remove="Assets\wav\Ow - Vinni-Pooh.wav" />
+    <None Remove="Assets\wav\Ow 01.wav" />
+    <None Remove="Assets\wav\Ow 02.wav" />
+    <None Remove="Assets\wav\Ow 03.wav" />
+    <None Remove="Assets\wav\Ow 04.wav" />
+    <None Remove="Assets\wav\Start - Ambient.wav" />
+    <None Remove="Assets\wav\Start - Arcade Alarm.wav" />
+    <None Remove="Assets\wav\Start - Arcade Chirp Descend.wav" />
+    <None Remove="Assets\wav\Start - Arcade Power Up.wav" />
+    <None Remove="Assets\wav\Start - Bjaz.wav" />
+    <None Remove="Assets\wav\Start - Bulp.wav" />
+    <None Remove="Assets\wav\Start - Engine.wav" />
+    <None Remove="Assets\wav\Start - Gong.wav" />
+    <None Remove="Assets\wav\Start - Headshk.wav" />
+    <None Remove="Assets\wav\Start - Horse.wav" />
+    <None Remove="Assets\wav\Start - Let's Do It.wav" />
+    <None Remove="Assets\wav\Start - Oops.wav" />
+    <None Remove="Assets\wav\Start - Oracle.wav" />
+    <None Remove="Assets\wav\Start - Sad Guitar.wav" />
+    <None Remove="Assets\wav\Start - Spring.wav" />
+    <None Remove="Assets\wav\Start - Upper.wav" />
+    <None Remove="Assets\wav\Start 01.wav" />
+    <None Remove="Assets\wav\Start 02.wav" />
+    <None Remove="Assets\wav\Start 03.wav" />
+    <None Remove="Assets\wav\Start 04.wav" />
+    <None Remove="Assets\wav\Start 05.wav" />
+    <None Remove="Assets\wav\Start 06.wav" />
+    <None Remove="Keyboard - Aha-Soft-Security-Login.ico" />
+    <None Remove="Resources\AudioQue.wav" />
+    <None Remove="shapes.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\mp3\Bad - B&amp;B suxx.mp3" />
+    <Content Include="Assets\mp3\Bad - Cry.mp3" />
+    <Content Include="Assets\mp3\Bad - Noseblow.mp3" />
+    <Content Include="Assets\mp3\Bad - Police.mp3" />
+    <Content Include="Assets\mp3\Bye - Apple.mp3" />
+    <Content Include="Assets\mp3\Bye - Good Bye (Arnold).mp3" />
+    <Content Include="Assets\mp3\Bye - Good Bye.mp3" />
+    <Content Include="Assets\mp3\Bye - Hasta La Vista Baby.mp3" />
+    <Content Include="Assets\mp3\Bye - I'll be back.mp3" />
+    <Content Include="Assets\mp3\Bye-Bye.mp3" />
+    <Content Include="Assets\mp3\Darude - Touche me feel me.mp3" />
+    <Content Include="Assets\mp3\Good - All right.mp3" />
+    <Content Include="Assets\mp3\Good - Applause 01.mp3" />
+    <Content Include="Assets\mp3\Good - Applause 02.mp3" />
+    <Content Include="Assets\mp3\Good - Applause.mp3" />
+    <Content Include="Assets\mp3\Good - Excellent.mp3" />
+    <Content Include="Assets\mp3\Good - Fanfare.mp3" />
+    <Content Include="Assets\mp3\Good - Pleasure.mp3" />
+    <Content Include="Assets\mp3\Good - Wine.mp3" />
+    <Content Include="Assets\mp3\Good - Yea.mp3" />
+    <Content Include="Assets\mp3\Good - Yeah.mp3" />
+    <Content Include="Assets\mp3\Good - Yes 01.mp3" />
+    <Content Include="Assets\mp3\Good - Yes 02.mp3" />
+    <Content Include="Assets\mp3\Good - Yes B&amp;B.mp3" />
+    <Content Include="Assets\mp3\Good 01.mp3" />
+    <Content Include="Assets\mp3\Good 02.mp3" />
+    <Content Include="Assets\mp3\Hello - Computer.mp3" />
+    <Content Include="Assets\mp3\Hello - Knocking on Door.mp3" />
+    <Content Include="Assets\mp3\Hello - Typewriter.mp3" />
+    <Content Include="Assets\mp3\Hello 01.mp3" />
+    <Content Include="Assets\mp3\Laugh - B&amp;B.mp3" />
+    <Content Include="Assets\mp3\Laugh - Baby.mp3" />
+    <Content Include="Assets\mp3\Laugh - Evil giggle.mp3" />
+    <Content Include="Assets\mp3\Laugh - Female 01.mp3" />
+    <Content Include="Assets\mp3\Laugh - Female 02.mp3" />
+    <Content Include="Assets\mp3\Laugh - Group.mp3" />
+    <Content Include="Assets\mp3\Laugh - Haha.mp3" />
+    <Content Include="Assets\mp3\Laugh - Hahaha.mp3" />
+    <Content Include="Assets\mp3\Laugh - Hilari1.mp3" />
+    <Content Include="Assets\mp3\Laugh - Hilari2.mp3" />
+    <Content Include="Assets\mp3\Laugh - Hohooouu.mp3" />
+    <Content Include="Assets\mp3\Laugh - Male 01.mp3" />
+    <Content Include="Assets\mp3\Laugh - Male 02.mp3" />
+    <Content Include="Assets\mp3\Laugh - Male 03.mp3" />
+    <Content Include="Assets\mp3\Laugh - Male 04.mp3" />
+    <Content Include="Assets\mp3\Laugh - Male 05.mp3" />
+    <Content Include="Assets\mp3\Laugh - Snicker.mp3" />
+    <Content Include="Assets\mp3\Laugh - Witch Cackle.mp3" />
+    <Content Include="Assets\mp3\Laugh 01.mp3" />
+    <Content Include="Assets\mp3\Laugh 02.mp3" />
+    <Content Include="Assets\mp3\Laugh 03.mp3" />
+    <Content Include="Assets\mp3\Laugh 04.mp3" />
+    <Content Include="Assets\mp3\Laugh 05.mp3" />
+    <Content Include="Assets\mp3\Laugh 06.mp3" />
+    <Content Include="Assets\mp3\Laugh 07.mp3" />
+    <Content Include="Assets\mp3\Laugh 08.mp3" />
+    <Content Include="Assets\mp3\Ow - Aaahh.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B 1.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B 2.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B 3.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B 4.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B fart1.mp3" />
+    <Content Include="Assets\mp3\Ow - B&amp;B fart2.mp3" />
+    <Content Include="Assets\mp3\Ow - Burp 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Burp 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Car Horn.mp3" />
+    <Content Include="Assets\mp3\Ow - Car.mp3" />
+    <Content Include="Assets\mp3\Ow - Cough 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Cough 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Cough 03.mp3" />
+    <Content Include="Assets\mp3\Ow - Cow.mp3" />
+    <Content Include="Assets\mp3\Ow - Crush 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Crush 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Cuckoo.mp3" />
+    <Content Include="Assets\mp3\Ow - Dog.mp3" />
+    <Content Include="Assets\mp3\Ow - Fart 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Fart 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Fast fart.mp3" />
+    <Content Include="Assets\mp3\Ow - Female 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Female 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Female 03.mp3" />
+    <Content Include="Assets\mp3\Ow - Gargle.mp3" />
+    <Content Include="Assets\mp3\Ow - Goat.mp3" />
+    <Content Include="Assets\mp3\Ow - Male 01.mp3" />
+    <Content Include="Assets\mp3\Ow - Male 02.mp3" />
+    <Content Include="Assets\mp3\Ow - Male 03.mp3" />
+    <Content Include="Assets\mp3\Ow - Male 04.mp3" />
+    <Content Include="Assets\mp3\Ow - Male 05.mp3" />
+    <Content Include="Assets\mp3\Ow - No.mp3" />
+    <Content Include="Assets\mp3\Ow - Noo.mp3" />
+    <Content Include="Assets\mp3\Ow - Ooff.mp3" />
+    <Content Include="Assets\mp3\Ow - Ouch.mp3" />
+    <Content Include="Assets\mp3\Ow - Pig.mp3" />
+    <Content Include="Assets\mp3\Ow - Sheep.mp3" />
+    <Content Include="Assets\mp3\Ow - Sneeze.mp3" />
+    <Content Include="Assets\mp3\Ow - Throat.mp3" />
+    <Content Include="Assets\mp3\Ow - Uh-oh.mp3" />
+    <Content Include="Assets\mp3\Ow - Vinni-Pooh.mp3" />
+    <Content Include="Assets\mp3\Ow 01.mp3" />
+    <Content Include="Assets\mp3\Ow 02.mp3" />
+    <Content Include="Assets\mp3\Ow 03.mp3" />
+    <Content Include="Assets\mp3\Ow 04.mp3" />
+    <Content Include="Assets\mp3\Start - Ambient.mp3" />
+    <Content Include="Assets\mp3\Start - Arcade Alarm.mp3" />
+    <Content Include="Assets\mp3\Start - Arcade Chirp Descend.mp3" />
+    <Content Include="Assets\mp3\Start - Arcade Power Up.mp3" />
+    <Content Include="Assets\mp3\Start - Bjaz.mp3" />
+    <Content Include="Assets\mp3\Start - Bulp.mp3" />
+    <Content Include="Assets\mp3\Start - Engine.mp3" />
+    <Content Include="Assets\mp3\Start - Gong.mp3" />
+    <Content Include="Assets\mp3\Start - Headshk.mp3" />
+    <Content Include="Assets\mp3\Start - Horse.mp3" />
+    <Content Include="Assets\mp3\Start - Let's Do It.mp3" />
+    <Content Include="Assets\mp3\Start - Oops.mp3" />
+    <Content Include="Assets\mp3\Start - Oracle.mp3" />
+    <Content Include="Assets\mp3\Start - Sad Guitar.mp3" />
+    <Content Include="Assets\mp3\Start - Spring.mp3" />
+    <Content Include="Assets\mp3\Start - Upper.mp3" />
+    <Content Include="Assets\mp3\Start 01.mp3" />
+    <Content Include="Assets\mp3\Start 02.mp3" />
+    <Content Include="Assets\mp3\Start 03.mp3" />
+    <Content Include="Assets\mp3\Start 04.mp3" />
+    <Content Include="Assets\mp3\Start 05.mp3" />
+    <Content Include="Assets\mp3\Start 06.mp3" />
+    <Content Include="Assets\wav\Bad - B&amp;B suxx.wav" />
+    <Content Include="Assets\wav\Bad - Cry.wav" />
+    <Content Include="Assets\wav\Bad - Noseblow.wav" />
+    <Content Include="Assets\wav\Bad - Police.wav" />
+    <Content Include="Assets\wav\Bye - Apple.wav" />
+    <Content Include="Assets\wav\Bye - Good Bye (Arnold).wav" />
+    <Content Include="Assets\wav\Bye - Good Bye.wav" />
+    <Content Include="Assets\wav\Bye - Hasta La Vista Baby.wav" />
+    <Content Include="Assets\wav\Bye-Bye.wav" />
+    <Content Include="Assets\wav\Darude - Touche me feel me.wav" />
+    <Content Include="Assets\wav\Good - All right.wav" />
+    <Content Include="Assets\wav\Good - Applause 01.wav" />
+    <Content Include="Assets\wav\Good - Applause 02.wav" />
+    <Content Include="Assets\wav\Good - Applause.wav" />
+    <Content Include="Assets\wav\Good - Excellent.wav" />
+    <Content Include="Assets\wav\Good - Fanfare.wav" />
+    <Content Include="Assets\wav\Good - Pleasure.wav" />
+    <Content Include="Assets\wav\Good - Wine.wav" />
+    <Content Include="Assets\wav\Good - Yea.wav" />
+    <Content Include="Assets\wav\Good - Yeah.wav" />
+    <Content Include="Assets\wav\Good - Yes 01.wav" />
+    <Content Include="Assets\wav\Good - Yes 02.wav" />
+    <Content Include="Assets\wav\Good - Yes B&amp;B.wav" />
+    <Content Include="Assets\wav\Good 01.wav" />
+    <Content Include="Assets\wav\Good 02.wav" />
+    <Content Include="Assets\wav\Hello - Computer.wav" />
+    <Content Include="Assets\wav\Hello - Knocking on Door.wav" />
+    <Content Include="Assets\wav\Hello - Typewriter.wav" />
+    <Content Include="Assets\wav\Hello 01.wav" />
+    <Content Include="Assets\wav\Laugh - B&amp;B.wav" />
+    <Content Include="Assets\wav\Laugh - Baby.wav" />
+    <Content Include="Assets\wav\Laugh - Evil giggle.wav" />
+    <Content Include="Assets\wav\Laugh - Female 01.wav" />
+    <Content Include="Assets\wav\Laugh - Female 02.wav" />
+    <Content Include="Assets\wav\Laugh - Group.wav" />
+    <Content Include="Assets\wav\Laugh - Haha.wav" />
+    <Content Include="Assets\wav\Laugh - Hahaha.wav" />
+    <Content Include="Assets\wav\Laugh - Hilari1.wav" />
+    <Content Include="Assets\wav\Laugh - Hilari2.wav" />
+    <Content Include="Assets\wav\Laugh - Hohooouu.wav" />
+    <Content Include="Assets\wav\Laugh - Male 01.wav" />
+    <Content Include="Assets\wav\Laugh - Male 02.wav" />
+    <Content Include="Assets\wav\Laugh - Male 03.wav" />
+    <Content Include="Assets\wav\Laugh - Male 04.wav" />
+    <Content Include="Assets\wav\Laugh - Male 05.wav" />
+    <Content Include="Assets\wav\Laugh - Snicker.wav" />
+    <Content Include="Assets\wav\Laugh - Witch Cackle.wav" />
+    <Content Include="Assets\wav\Laugh 01.wav" />
+    <Content Include="Assets\wav\Laugh 02.wav" />
+    <Content Include="Assets\wav\Laugh 03.wav" />
+    <Content Include="Assets\wav\Laugh 04.wav" />
+    <Content Include="Assets\wav\Laugh 05.wav" />
+    <Content Include="Assets\wav\Laugh 06.wav" />
+    <Content Include="Assets\wav\Laugh 07.wav" />
+    <Content Include="Assets\wav\Laugh 08.wav" />
+    <Content Include="Assets\wav\Ow - Aaahh.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B 1.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B 2.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B 3.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B 4.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B fart1.wav" />
+    <Content Include="Assets\wav\Ow - B&amp;B fart2.wav" />
+    <Content Include="Assets\wav\Ow - Burp 01.wav" />
+    <Content Include="Assets\wav\Ow - Burp 02.wav" />
+    <Content Include="Assets\wav\Ow - Car Horn.wav" />
+    <Content Include="Assets\wav\Ow - Car.wav" />
+    <Content Include="Assets\wav\Ow - Cough 01.wav" />
+    <Content Include="Assets\wav\Ow - Cough 02.wav" />
+    <Content Include="Assets\wav\Ow - Cough 03.wav" />
+    <Content Include="Assets\wav\Ow - Cow.wav" />
+    <Content Include="Assets\wav\Ow - Crush 01.wav" />
+    <Content Include="Assets\wav\Ow - Crush 02.wav" />
+    <Content Include="Assets\wav\Ow - Cuckoo.wav" />
+    <Content Include="Assets\wav\Ow - Dog.wav" />
+    <Content Include="Assets\wav\Ow - Fart 01.wav" />
+    <Content Include="Assets\wav\Ow - Fart 02.wav" />
+    <Content Include="Assets\wav\Ow - Fast fart.wav" />
+    <Content Include="Assets\wav\Ow - Female 01.wav" />
+    <Content Include="Assets\wav\Ow - Female 02.wav" />
+    <Content Include="Assets\wav\Ow - Female 03.wav" />
+    <Content Include="Assets\wav\Ow - Gargle.wav" />
+    <Content Include="Assets\wav\Ow - Goat.wav" />
+    <Content Include="Assets\wav\Ow - Male 01.wav" />
+    <Content Include="Assets\wav\Ow - Male 02.wav" />
+    <Content Include="Assets\wav\Ow - Male 03.wav" />
+    <Content Include="Assets\wav\Ow - Male 04.wav" />
+    <Content Include="Assets\wav\Ow - Male 05.wav" />
+    <Content Include="Assets\wav\Ow - No.wav" />
+    <Content Include="Assets\wav\Ow - Noo.wav" />
+    <Content Include="Assets\wav\Ow - Ooff.wav" />
+    <Content Include="Assets\wav\Ow - Ouch.wav" />
+    <Content Include="Assets\wav\Ow - Pig.wav" />
+    <Content Include="Assets\wav\Ow - Sheep.wav" />
+    <Content Include="Assets\wav\Ow - Sneeze.wav" />
+    <Content Include="Assets\wav\Ow - Throat.wav" />
+    <Content Include="Assets\wav\Ow - Uh-oh.wav" />
+    <Content Include="Assets\wav\Ow - Vinni-Pooh.wav" />
+    <Content Include="Assets\wav\Ow 01.wav" />
+    <Content Include="Assets\wav\Ow 02.wav" />
+    <Content Include="Assets\wav\Ow 03.wav" />
+    <Content Include="Assets\wav\Ow 04.wav" />
+    <Content Include="Assets\wav\Start - Ambient.wav" />
+    <Content Include="Assets\wav\Start - Arcade Alarm.wav" />
+    <Content Include="Assets\wav\Start - Arcade Chirp Descend.wav" />
+    <Content Include="Assets\wav\Start - Arcade Power Up.wav" />
+    <Content Include="Assets\wav\Start - Bjaz.wav" />
+    <Content Include="Assets\wav\Start - Bulp.wav" />
+    <Content Include="Assets\wav\Start - Engine.wav" />
+    <Content Include="Assets\wav\Start - Gong.wav" />
+    <Content Include="Assets\wav\Start - Headshk.wav" />
+    <Content Include="Assets\wav\Start - Horse.wav" />
+    <Content Include="Assets\wav\Start - Let's Do It.wav" />
+    <Content Include="Assets\wav\Start - Oops.wav" />
+    <Content Include="Assets\wav\Start - Oracle.wav" />
+    <Content Include="Assets\wav\Start - Sad Guitar.wav" />
+    <Content Include="Assets\wav\Start - Spring.wav" />
+    <Content Include="Assets\wav\Start - Upper.wav" />
+    <Content Include="Assets\wav\Start 01.wav" />
+    <Content Include="Assets\wav\Start 02.wav" />
+    <Content Include="Assets\wav\Start 03.wav" />
+    <Content Include="Assets\wav\Start 04.wav" />
+    <Content Include="Assets\wav\Start 05.wav" />
+    <Content Include="Assets\wav\Start 06.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="NAudio" Version="1.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
+    <ProjectReference Include="..\AAV.Common.MVVM\AAV.Common.MVVM.csproj" />
+    <ProjectReference Include="..\AAV.Common.UI\AAV.Common.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\wav\Bye - I'll be back.wav" />
+    <Resource Include="Keyboard - Aha-Soft-Security-Login.ico" />
+    <Resource Include="Resources\AudioQue.wav" />
+    <Resource Include="shapes.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Vws\DbExplorer2.xaml.cs">
+      <DependentUpon>DbExplorer2.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Vws\JsonToSqlMigrator.xaml.cs">
+      <DependentUpon>JsonToSqlMigrator.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Vws\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Vws\WinFormChartUsrCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vws\WinFormChartUsrCtrl.Designer.cs">
+      <DependentUpon>WinFormChartUsrCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Vws\xChartPoc.xaml.cs">
+      <DependentUpon>xChartPoc.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Vws\WinFormChartUsrCtrl.resx">
+      <DependentUpon>WinFormChartUsrCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Vws\DbExplorer2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vws\JsonToSqlMigrator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vws\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vws\xChartPoc.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

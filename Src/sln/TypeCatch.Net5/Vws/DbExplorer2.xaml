@@ -1,0 +1,155 @@
+﻿<lnk:WindowBase 
+  x:Class="TypingWpf.Vws.DbExplorer2" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        mc:Ignorable="d"
+  xmlns:lnk="clr-namespace:AsLink" 
+  xmlns:ln2="clr-namespace:AsLink;assembly=AAV.Common.UI" 
+  xmlns:local="clr-namespace:TypingWpf.Vws"
+  xmlns:DbMdl="clr-namespace:TypingWpf.DbMdl" 
+  xmlns:xui="clr-namespace:AAV.Common.UI.UsrCtrls;assembly=AAV.Common.UI"         
+  xmlns:msc="clr-namespace:TypingWpf.Misc"
+  xmlns:Vws="clr-namespace:TypingWpf.Vws" 
+  xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+  Title="DbExplorer2" Height="800" Width="1300" Loaded="Window_Loaded" Style="{DynamicResource WindowStyle_Aav0}"         >
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
+  </WindowChrome.WindowChrome>
+  <lnk:WindowBase.Resources>
+    <!--<ResourceDictionary Source="/TypingWpf;component/Themes/Common.xaml" />-->
+    <CollectionViewSource x:Key="sessionResultViewSource"     d:DesignSource="{d:DesignInstance {x:Type DbMdl:SessionResult}, CreateList=True}"/>
+    <CollectionViewSource x:Key="appStngViewSource"           d:DesignSource="{d:DesignInstance {x:Type DbMdl:AppStng},       CreateList=True}"/>
+    <CollectionViewSource x:Key="userViewSource"              d:DesignSource="{d:DesignInstance {x:Type DbMdl:User},          CreateList=True}"/>
+    <CollectionViewSource x:Key="userSessionResultsViewSource" Source="{Binding SessionResults, Source={StaticResource userViewSource}}"/>
+  </lnk:WindowBase.Resources>
+  <Border CornerRadius="5" BorderBrush="#48f" BorderThickness="2" Background="#ccc" >
+    <Grid DataContext="{StaticResource userViewSource}" Margin="0,1,0,-1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="32"/>
+        <ColumnDefinition Width="5"/>
+        <ColumnDefinition Width="1*"/>
+        <ColumnDefinition Width="5"/>
+        <ColumnDefinition Width="3*"/>
+        <ColumnDefinition Width="5"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="10*"/>
+        <RowDefinition Height="5"/>
+        <RowDefinition Height="3*"/>
+        <RowDefinition Height="5"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.Resources>
+        <Style TargetType="GridSplitter">
+          <Setter Property="Background" Value="Transparent" />
+          <Setter Property="Margin"     Value="-4" />
+          <Setter Property="HorizontalAlignment" Value="Stretch" />
+          <Setter Property="VerticalAlignment"   Value="Stretch" />
+        </Style>
+      </Grid.Resources>
+
+      <GridSplitter Grid.Row="2" Grid.ColumnSpan="5" />
+      <GridSplitter Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" />
+
+      <DataGrid Grid.Row="1" Grid.Column="2" x:Name="ExzeFilter" SelectionChanged="ExzeFilter_SelectionChanged" AutoGenerateColumns="True" />
+      <DataGrid Grid.Row="1" Grid.Column="4" ItemsSource="{Binding Source={StaticResource sessionResultViewSource}}" IsReadOnly="False">
+        <DataGrid.Columns>
+          <DataGridTextColumn Binding="{Binding Id}"                                      Header="Id"/>
+          <DataGridTextColumn Binding="{Binding TotalRunCount}"                           Header="Total"/>
+          <DataGridTextColumn Binding="{Binding IsRecord}"                                Header="Is Record"/>
+          <DataGridTemplateColumn SortMemberPath="DoneAt"                                 Header="Date">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" 
+                           Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
+                           Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+
+          <DataGridTextColumn Binding="{Binding User.FullName}"                           Header="Player "/>
+          <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ze "   IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+          <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="Typed "   IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+          <DataGridTextColumn Binding="{Binding Duration, StringFormat='{}{0:mm\\:ss}'}"  Header="Time "  />
+          <DataGridTextColumn Binding="{Binding CpM, StringFormat=\{0:N0\}}"              Header="CpM "     IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+
+          <!--<DataGridTextColumn Binding="{Binding Note, UpdateSourceTrigger=PropertyChanged}"                     Width="*"      Header="Note" IsReadOnly="False" />-->
+          <DataGridTemplateColumn SortMemberPath="Note" CanUserSort="True" Width="*"      Header="Note"   >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <TextBox Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}"  Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+
+        </DataGrid.Columns>
+      </DataGrid>
+
+
+
+      <DataGrid x:Name="userDataGrid" Grid.Row="3" ItemsSource="{Binding}" Grid.Column="2" 
+                  CanUserAddRows="True" IsReadOnly="False" >
+        <DataGrid.Columns>
+          <DataGridTextColumn Binding="{Binding UserId}"      Header="Nickname " />
+          <DataGridTextColumn Binding="{Binding FullName}"    Header="Full Name" />
+          <DataGridTextColumn Binding="{Binding Note}"        Header="Note" Width="*" />
+          <!--
+                <DataGridTextColumn Binding="{Binding CreatedAt,  StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" Header="CreatedAt" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding ModifiedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" Header="ModifiedAt" IsReadOnly="True"/>
+                -->
+        </DataGrid.Columns>
+      </DataGrid>
+      <DataGrid Grid.Column="4" ItemsSource="{Binding Source={StaticResource userSessionResultsViewSource}}" Grid.Row="3" >
+        <DataGrid.Columns>
+          <DataGridTemplateColumn Header="Date">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" 
+                                 Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
+                                 Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+
+          <DataGridTextColumn Binding="{Binding User.FullName}"                           Header="Player "/>
+          <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ze "    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+          <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="Typed "       IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+          <DataGridTextColumn Binding="{Binding Duration, StringFormat='{}{0:mm\\:ss}'}"  Header="Time " />
+          <DataGridTextColumn Binding="{Binding CpM, StringFormat=\{0:N0\}}"              Header="CpM "      IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+          <DataGridTemplateColumn SortMemberPath="Note" CanUserSort="True" Width="*"      Header="Note"    >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Note}"  Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+
+        </DataGrid.Columns>
+      </DataGrid>
+
+      <DataGrid x:Name="appStngDataGrid"  Grid.Column="2" ItemsSource="{Binding Source={StaticResource appStngViewSource}}" Grid.Row="5" Grid.ColumnSpan="3">
+        <DataGrid.Columns>
+          <DataGridTextColumn     Header="Id"          Binding="{Binding Id}"                                                                       />
+          <DataGridTextColumn     Header="User Id"     Binding="{Binding UserId}"                                                                   />
+          <DataGridTextColumn     Header="Full Name"   Binding="{Binding FullName}"                                                                 />
+          <DataGridTextColumn     Header="Lesn Typ"    Binding="{Binding LesnTyp}"                                                                  />
+          <DataGridTextColumn     Header="Sub Lesn Id" Binding="{Binding SubLesnId}"                                                                />
+          <DataGridCheckBoxColumn Header="Audible"     Binding="{Binding Audible}"                                                                  />
+          <DataGridCheckBoxColumn Header="Pro LTgl"    Binding="{Binding ProLTgl}"                                                                  />
+          <DataGridTextColumn     Header="Note"        Binding="{Binding Note}"                                                  Width="*"          />
+          <DataGridTextColumn     Header="Created"     Binding="{Binding CreatedAt,  StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"     IsReadOnly="True"  />
+          <DataGridTextColumn     Header="Modified"    Binding="{Binding ModifiedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"     IsReadOnly="True"  />
+        </DataGrid.Columns>
+      </DataGrid>
+
+      <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="6" HorizontalAlignment="Right" Margin="5" >
+        <Button x:Name="un" Content="_Update Notes" Click="onUpdateSsnRsltNotes"    />
+        <Button x:Name="sv" Content="_Save"         Click="onDbSave"    />
+        <Button x:Name="cl" Content="_Close"        Click="onClose" IsCancel="True"   />
+      </StackPanel>
+
+      <TextBlock x:Name="tbInfo" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="#00f" />
+      <TextBlock x:Name="tbEror" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#f00" />
+
+    </Grid>
+  </Border>
+</lnk:WindowBase>
