@@ -13,18 +13,14 @@ namespace TypingWpf.VMs
 {
   public partial class MainVM //: BindableBaseViewModel
   {
-    internal void onJsonToDb_Suspended() => synth.SpeakAsync("Migrating JSON to local DB is suspended till further notice.");
+    internal void onJsonToDb_Suspended() => synth.SpeakFaF("Migrating JSON to local DB is suspended till further notice.");
 
     async internal Task LoadFromDbAsync(A0DbMdl db)
     {
       LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading \r\n\n\t\t\t from DB Async ... ";
-      //synth.SpeakAsyncCancelAll(); synth.SpeakAsync("Loading from DB.");
+      //synth.SpeakAsyncCancelAll(); synth.SpeakFaF("Loading from DB.");
 
-      if (Settings.Default.ReadOnlyUsr=="haha")
-      {
-        synth.SpeakAsync("Change the credentials in CFG, search for haha.");
-        return;
-      }
+      //if (Settings.Default.ReadOnlyUsr=="haha")      {        synth.SpeakFaF("Change the credentials in CFG, search for haha.");        return;      }
 
       IsBusy = true;
       try
@@ -56,7 +52,7 @@ namespace TypingWpf.VMs
         }
       }
       catch (Exception ex) { InfoMsg = ex.Log(); }
-      finally { IsBusy = false; synth.SpeakAsyncCancelAll(); synth.SpeakAsync("Ready, player one."); }
+      finally { IsBusy = false; synth.SpeakAsyncCancelAll(); synth.SpeakFaF("Ready, player one."); }
     }
 
     async Task<AppStng> getCurUserSettings(A0DbMdl db)

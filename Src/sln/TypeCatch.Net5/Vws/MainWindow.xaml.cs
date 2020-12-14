@@ -12,7 +12,7 @@ namespace TypingWpf
 
       _ignoreEscape = true;
 
-      VersioInfo.Text = $"{VerHelper.CurVerStr(".NET 4.8")}\n{DbMdl.A0DbMdl.GetA0DbMdlAzureDb.ServerDatabase()}";
+      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{DbMdl.A0DbMdl.GetA0DbMdlAzureDb.ServerDatabase()}";
     }
 
     void onWindowMinimize(object s, RoutedEventArgs e) => WindowState = System.Windows.WindowState.Minimized;

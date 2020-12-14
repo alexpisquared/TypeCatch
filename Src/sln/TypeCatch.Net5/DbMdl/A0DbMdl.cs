@@ -13,10 +13,8 @@ namespace TypingWpf.DbMdl
   public partial class A0DbMdl : DbContext
   {
     #region Ext
-    A0DbMdl(string cs )
+    A0DbMdl(string cs)
     {
-      var sw = Stopwatch.StartNew();
-
       Database.Connection.ConnectionString = cs;
 
       /// according to SqlLocalDb.exe:
@@ -28,18 +26,10 @@ namespace TypingWpf.DbMdl
       /// 
       /// 
       /*
-       C:\>sqllocaldb stop MSSQLLocalDB
-LocalDB instance "MSSQLLocalDB" stopped.
-
-C:\>sqllocaldb delete MSSQLLocalDB
-LocalDB instance "MSSQLLocalDB" deleted.
-
-C:\>sqllocaldb create MSSQLLocalDB
-LocalDB instance "MSSQLLocalDB" created with version 13.0.1601.5.
-
-C:\>sqllocaldb start MSSQLLocalDB
-LocalDB instance "MSSQLLocalDB" started.
-       */
+      C:\>sqllocaldb stop   MSSQLLocalDB   ...   LocalDB instance "MSSQLLocalDB" stopped.
+      C:\>sqllocaldb delete MSSQLLocalDB   ...   LocalDB instance "MSSQLLocalDB" deleted.
+      C:\>sqllocaldb create MSSQLLocalDB   ...   LocalDB instance "MSSQLLocalDB" created with version 13.0.1601.5.
+      C:\>sqllocaldb start  MSSQLLocalDB   ...   LocalDB instance "MSSQLLocalDB" started.                */
 
       /// this works too but SQLEXPRESS is misleading:
       /// $@"Data Source=.\SQLEXPRESS;AttachDbFilename={dbfn};Integrated Security=True;Connect Timeout=10;User Instance=True;";
@@ -49,10 +39,30 @@ LocalDB instance "MSSQLLocalDB" started.
       ///     run a setup program for TypeCatch with the prerequisite kicking in and installing sql db 2014.
 
       Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"::>{Database.Connection.ConnectionString}");
-      //..Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   cTor {sw.ElapsedMilliseconds:N0} ms.");
+      //..Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   cTor {swUnitTest.ElapsedMilliseconds:N0} ms.");
     }
 
-    public static A0DbMdl GetA0DbMdlAzureDb => new A0DbMdl($"data source=sqs.database.windows.net;initial catalog=OneBase;persist security info=True;user id={Settings.Default.ReadOnlyUsr};password=\"{Settings.Default.ReadOnlyKey}\";MultipleActiveResultSets=True;App=EntityFramework");
+
+    const string _rgn = "azuresqluser", _key = "use proper key here";
+    static readonly AzureSqlCredentials _asc;
+
+    static A0DbMdl()
+    {
+      try
+      {
+        _asc = JsonIsoFileSerializer.Load<AzureSqlCredentials>();
+
+#if StillInitializing
+        if (_asc?.Usr == _rgn)
+          return;
+        JsonIsoFileSerializer.Save<AzureSqlCredentials>(new AzureSqlCredentials { Key = _key, Usr = _rgn });
+        _asc = JsonIsoFileSerializer.Load<AzureSqlCredentials>();
+#endif
+      }
+      catch (Exception ex) { ex.Log(); }
+    }
+
+    public static A0DbMdl GetA0DbMdlAzureDb => new A0DbMdl($"data source=sqs.database.windows.net;initial catalog=OneBase;persist security info=True;user id={_asc.Usr};password=\"{_asc.Key}\";MultipleActiveResultSets=True;App=EntityFramework");
     public static A0DbMdl GetA0DbMdlExpress => new A0DbMdl(@"Data Source=.\SQLEXPRESS;initial catalog=TypeCatchDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
     public static A0DbMdl GetA0DbMdlLocalDb => new A0DbMdl($@"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename={App.Dbfn};Integrated Security=True;Connect Timeout=15;");
 
@@ -97,9 +107,7 @@ LocalDB instance "MSSQLLocalDB" started.
       Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   took {sw.ElapsedMilliseconds:N0} ms.");
       return db;
     }
-
     #endregion
-
 
     public virtual DbSet<AppStng> AppStngs { get; set; }
     public virtual DbSet<SessionResult> SessionResults { get; set; }
@@ -126,3 +134,8 @@ LocalDB instance "MSSQLLocalDB" started.
     }
   }
 }
+/*
+;lkj 
+;lkj that is odd 
+;lkj that is odd 88. Like i said`~
+*/

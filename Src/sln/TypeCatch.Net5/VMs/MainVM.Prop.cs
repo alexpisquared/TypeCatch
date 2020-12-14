@@ -53,7 +53,7 @@ namespace TypingWpf.VMs
     bool _IsCorrect = true;         /**/ public bool IsCorrect { get => _IsCorrect; set { if (Set(ref _IsCorrect, value)) {; } } }
     bool _IsRecord = false;         /**/ public bool IsRecord { get => _IsRecord; set { if (Set(ref _IsRecord, value)) {; } } }
     bool _IsAdmin = false;          /**/ public bool IsAdmin { get => _IsAdmin; set { if (Set(ref _IsAdmin, value)) {; } } }
-    bool _IsBusy = false;           /**/ public bool IsBusy { get => _IsBusy; set { if (Set(ref _IsBusy, value) && value) { /*InfoMsg = "Started ..."; */ ; } } }
+    bool _IsBusy = false;           /**/ public bool IsBusy { get => _IsBusy; set { if (Set(ref _IsBusy, value) && value) { /*InfoMsg = "StartedAt ..."; */ ; } } }
     LessonType _LesnTyp;            /**/ public LessonType LesnTyp { get => _LesnTyp; set { if (Set(ref _LesnTyp, value) && SubLesnId != null) { sessionLoad_Start_lazy(); } } }
     Visibility _vis = Visibility.Visible; public Visibility MainVis { get => _vis; set { if (Set(ref _vis, value)) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, ""); ; } } }
 

@@ -185,8 +185,11 @@
 
       </StackPanel>
       <StackPanel Orientation="Horizontal" Margin="3" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=False}}">
-        <!-- Player is off:         <Label Margin="10,8,0,4" Content="  Player:" Foreground="#ddd" />  <TextBlock  Text="{Binding SelectUser, FallbackValue=Abc}"     Foreground="#ffe" FontSize="26" Margin="4" />
+        <!-- Player is off:         
         -->
+        <Label Margin="10,8,0,4" Content="  Player:" Foreground="#ddd" />
+        <TextBlock  Text="{Binding SelectUser, FallbackValue=Abc}"     Foreground="#ffe" FontSize="26" Margin="4" />
+        
         <Label Margin="10,8,0,4" Content="  Lesson:" Foreground="#ddd" />
         <TextBlock  Text="{Binding CurInfo, FallbackValue=Type Catch}" Foreground="#ffe" FontSize="26" Margin="4 4 40 4" />
       </StackPanel>

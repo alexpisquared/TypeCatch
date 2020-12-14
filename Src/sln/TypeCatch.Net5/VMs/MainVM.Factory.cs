@@ -1,28 +1,24 @@
 ﻿#define MyOneDrive //  ISO
+using AAV.Sys.Helpers;
+using LiveCharts.Wpf;
+using MVVM.Common;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using AAV.Sys.Helpers;
-using AsLink;
-using LiveCharts.Wpf;
-using MVVM.Common;
-using TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs
 {
-    public partial class MainVM : BindableBaseViewModel
+  public partial class MainVM : BindableBaseViewModel
     {
         const string _ext = ".json";
 #if ISO
     static string _fnm => typeof(MainVM).Name + _ext;
 #else
         static string _fnm2 => OneDrive.Folder($@"Public\AppData\TypeCatch\{TypeCatch.Net5.Properties.Settings.Default.LastUser}{_ext}");
-        public static string MainVmJsonFile { get => OneDrive.Folder($@"Public\AppData\TypeCatch\{typeof(MainVM).Name}{_ext}"); }
+    public static string MainVmJsonFile => OneDrive.Folder($@"Public\AppData\TypeCatch\{typeof(MainVM).Name}{_ext}");
 #endif
-        public static MainVM Create(CartesianChart cChart1)
+    public static MainVM Create(CartesianChart cChart1)
         {
             MainVM vm;
 
@@ -56,7 +52,7 @@ namespace TypingWpf.VMs
         {
             return;
 #if DEBUG
-            int keepCnt = 64;
+            var keepCnt = 64;
 #else
             int keepCnt = 32;
 #endif

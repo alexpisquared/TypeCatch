@@ -27,7 +27,7 @@ namespace TypingWpf.VMs
       {
         _swMain.Start();
         _nextMeasureTime = DateTime.Now.Add(_measurePeriod);
-        Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $">>> {_swMain.ElapsedMilliseconds,9:N0} - Started!    <<< onUserInput");
+        Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $">>> {_swMain.ElapsedMilliseconds,9:N0} - StartedAt!    <<< onUserInput");
       }
 
       if (!IsCorrect)
@@ -44,7 +44,7 @@ namespace TypingWpf.VMs
         {
           Debug.Write($" ^^ Stopping ---------------- ... ");
           _swMain.Stop();
-          synth.SpeakAsync("Stopped.");
+          synth.SpeakFaF("Stopped.");
         }
       }
       else
@@ -54,7 +54,7 @@ namespace TypingWpf.VMs
         {
           Debug.Write($" vv Starting +++++++++++++++++ ... ");
           _swMain.Start();
-          synth.SpeakAsync("Started.");
+          synth.SpeakFaF("StartedAt.");
         }
       }
       Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" - {_swMain.IsRunning,9}");
@@ -124,22 +124,22 @@ namespace TypingWpf.VMs
         if (PupilInput.Trim().Length < LessonLen - 3)
         {
 #if !DEBUG
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Does not count: Too short!");
+          synth.SpeakAsyncCancelAll(); await synth.Speak($"Does not count: Too short!");
 #endif
           return;
         }
 
-        if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Does not count: Mistyped! Always finish typing till the last letter. Pressing Escape button ruins/discards the lesson."); return; }
+        if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Does not count: Mistyped! Always finish typing till the last letter. Pressing Escape button ruins/discards the lesson."); return; }
 
         var prevRcrdCpm = RcrdCpm;
         var thisResult = new dbMdl.SessionResult { Duration = _swMain.Elapsed, ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName.Substring(0, 2).ToLower()}{Environment.MachineName.Substring(Environment.MachineName.Length - 1)}", DoneAt = DateTime.Now };
         if (thisResult.CpM < .333 * prevRcrdCpm)
         {
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Does not count: Very-very-very- V. E. R. Y. slow!");
+          synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Does not count: Very-very-very- V. E. R. Y. slow!");
           return;
         }
 
-        //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakAsync(pb); // synth.SpeakAsync("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
+        //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakFaF(pb); // synth.SpeakFaF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
         
         var swStoring = Stopwatch.StartNew();
         
@@ -151,15 +151,15 @@ namespace TypingWpf.VMs
           //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
           //2019-12/           await Task.Delay(50);
 
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("adding");    /**/ db.SessionResults.Add(SelectSnRt = thisResult);                                                           /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("added");
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("seting");    /**/ await updateSettings(db);                                                                                 /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("setingsed");
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("saving");    /**/ await db.TrySaveReportAsync();                                                                            /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("saved");
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("loading");   /**/ loadListsFromDB(DashName, SelectUser, db);                                                                /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("loaded");
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("todoing");   /**/ await updateDoneTodo(SelectUser, synth, db);                                                              /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("todoed");
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync("charting");  /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      /**/       //      synth.SpeakAsyncCancelAll(); synth.SpeakAsync("charted");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("adding");    /**/ db.SessionResults.Add(SelectSnRt = thisResult);                                                           /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("added");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("seting");    /**/ await updateSettings(db);                                                                                 /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("setingsed");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("saving");    /**/ await db.TrySaveReportAsync();                                                                            /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("saved");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("loading");   /**/ loadListsFromDB(DashName, SelectUser, db);                                                                /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("loaded");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("todoing");   /**/ await updateDoneTodo(SelectUser, synth, db);                                                              /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("todoed");
+          synth.SpeakAsyncCancelAll(); await synth.Speak("charting");  /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("charted");
         }
 
-        synth.SpeakAsyncCancelAll(); synth.Speak($"took {swStoring.Elapsed.TotalSeconds:N0} seconds.");
+        synth.SpeakAsyncCancelAll(); await synth.Speak($"took {swStoring.Elapsed.TotalSeconds:N0} seconds.");
 
         IsFocusedPI = false;
         IsFocusedSB = true;
@@ -171,13 +171,13 @@ namespace TypingWpf.VMs
           if (thisResult.CpM > prevRcrdCpm)
           {
             SoundPlayer.PlaySessionFinish_Good();
-            synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
+            synth.SpeakAsyncCancelAll(); await synth.Speak($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
           }
           else
           {
             //Jun 2019: too old: SoundPlayer.PlaySessionFinish_Baad();
 
-            synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"{thisResult.CpM}");
+            synth.SpeakAsyncCancelAll(); await synth.Speak($"{thisResult.CpM}");
 
             if (TodoToday > 0)
             {
@@ -238,13 +238,13 @@ namespace TypingWpf.VMs
                         thisResult.CpM > .33 * prevRcrdCpm ? $"OK, monkey, I will count in this disgracefully slow run this time, but you'd better do not repeat such a horrible performance. " :
                         $"This message never played, right? Are you kidding me! This is too slow and is not counted.");
 
-              synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"{t1} {DoneToday} down; {TodoToday} to go.");
+              synth.SpeakAsyncCancelAll(); await synth.Speak($"{t1} {DoneToday} down; {TodoToday} to go.");
               return;
             }
           }
 
           runTreatIfAny();
-          Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.f} +{(DateTime.Now - App.Started):mm\\:ss\\.ff}    *** finishTheSession() done in {sw.Elapsed.TotalSeconds:N1} sec.");
+          Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.f} +{(DateTime.Now - App.StartedAt):mm\\:ss\\.ff}    *** finishTheSession() done in {sw.Elapsed.TotalSeconds:N1} sec.");
 
         }//);//.ContinueWith(_ => onF1_UpdateCpmRecord(), TaskScheduler.FromCurrentSynchronizationContext());
       }
@@ -257,7 +257,7 @@ namespace TypingWpf.VMs
     {
       if (string.IsNullOrEmpty(PreSelect))
       {
-        return; //synth.SpeakAsyncCancelAll(); synth.SpeakAsync("Nothing in the treat section!");
+        return; //synth.SpeakAsyncCancelAll(); await synth.Speak("Nothing in the treat section!");
       }
       try
       {
@@ -268,10 +268,10 @@ namespace TypingWpf.VMs
           process = Process.Start(PreSelect);
 
         double minToWatch = 30;
-        if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
-        else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
-        else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
-        else                                               /**/ { minToWatch = 05; synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
+        if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
+        else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
+        else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
+        else                                               /**/ { minToWatch = 05; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
 
         // System.Threading.Thread.Sleep(TimeSpan.FromMinutes(minToWatch));
         await Task.Delay(TimeSpan.FromMinutes(minToWatch));
@@ -282,10 +282,10 @@ namespace TypingWpf.VMs
         }
 
         System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
-        synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
+        synth.SpeakAsyncCancelAll(); await synth.Speak($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
 
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); await synth.Speak($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
     }
   }
 }

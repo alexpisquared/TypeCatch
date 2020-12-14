@@ -32,7 +32,7 @@ namespace TypingWpf
       }
 
       var random = _seed.Next(AllLines.Length - lessonLen - PaddingLen);
-      var nextCr = AllLines.IndexOf("\n", random) + 1;
+      var nextCr = AllLines.IndexOf("\r", random) + 2;
       if (nextCr + lessonLen + PaddingLen < AllLines.Length)
         random = nextCr;
 

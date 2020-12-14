@@ -74,10 +74,10 @@ namespace TypingWpf.VMs
     {
       //runTreatIfAny();
       await updateDoneTodo(SelectUser, synth, A0DbMdl.GetA0DbMdlAzureDb);
-      synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
+      synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
     }
     void onF5(object o) { sessionLoad_Start_lazy(); }
-    void onF6(object o) { synth.SpeakAsyncCancelAll(); synth.SpeakAsync(string.IsNullOrEmpty(PreSelect) ? "Nothing is preselected" : $"I see there is something to play: {PreSelect}."); }
+    void onF6(object o) { synth.SpeakAsyncCancelAll(); synth.SpeakFaF(string.IsNullOrEmpty(PreSelect) ? "Nothing is preselected" : $"I see there is something to play: {PreSelect}."); }
     void onF7(object o) { Process.Start("Explorer.exe", IsoHelper.GetIsoFolder()); }
     void onF8(object o)
     {
@@ -87,24 +87,24 @@ namespace TypingWpf.VMs
         var ff = Clipboard.GetFileDropList();
         if (ff.Count > 0)
         {
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"looks like an {(File.Exists(ff[0]) ? "" : "non-")}existing file with extension {Path.GetExtension(ff[0])}.");
+          synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"looks like an {(File.Exists(ff[0]) ? "" : "non-")}existing file with extension {Path.GetExtension(ff[0])}.");
 
           PreSelect = (ff[0]);
         }
         else
         {
-          synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Nothing found here.");
+          synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Nothing found here.");
         }
       }
       else if (Clipboard.ContainsText())
       {
         PreSelect = Clipboard.GetText();
-        synth.SpeakAsyncCancelAll(); synth.SpeakAsync(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
+        synth.SpeakAsyncCancelAll(); synth.SpeakFaF(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
       }
     }
     void onF9(object o) { var rv = new DataTransfer().CopyChunkyAzureSynch(A0DbMdl.GetA0DbMdlLocalDb, A0DbMdl.GetA0DbMdlAzureDb); InfoMsg = $"{rv.report}"; }
     void onFA(object o) { ProLTgl = !ProLTgl; }
     void onFB(object o) { /*Process.Start("Explorer.exe", Tracing.RemoteLogFolder);*/ }
-    void onFC(object o) { Process.Start("Explorer.exe", AAV.Sys.Helpers.OneDrive.Folder(LessonHelper.ExercizeDir)); }
+    void onFC(object o) { Process.Start("Explorer.exe", OneDrive.Folder(LessonHelper.ExercizeDir)); }
   }
 }

@@ -35,7 +35,7 @@ namespace TypingWpf.VMs
       try
       {
         base.AutoExec();
-        VersioInfo = VerHelper.CurVerStr(".NET 4.8");
+        VersioInfo = VerHelper.CurVerStr(".Net5");
 
         using (var db = A0DbMdl.GetA0DbMdlAzureDb)
         {
@@ -61,7 +61,7 @@ namespace TypingWpf.VMs
 
         CurInfo = $"{(LesnTyp)} - {SubLesnId:N0}  ";// ({DashName})";
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
 
       Trace.TraceInformation($"{DateTime.Now:HH:mm:ss.fff} AutoExec: \t.");
     }
@@ -114,7 +114,7 @@ namespace TypingWpf.VMs
 
         Debug.WriteLine($"~~~ D: {db.SessionResults.Count()} - {CurUserCurExcrsRsltLst.Count}");
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
     }
     string getTheLatestLessonTypeTheUserWorksOn(A0DbMdl db)
     {
@@ -150,7 +150,7 @@ namespace TypingWpf.VMs
     {
       if (SelectSnRt == null) return;
 
-      synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Are you sure?");
+      synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Are you sure?");
       if (MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
       {
         DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdlAzureDb);
@@ -199,7 +199,7 @@ namespace TypingWpf.VMs
 
       pb.EndParagraph();
       pb.EndStyle();
-      synth.SpeakAsyncCancelAll(); synth.SpeakAsync(pb);
+      synth.SpeakAsyncCancelAll(); synth.SpeakFaF(pb);
       */
     }
     async void prepLessonType(string x, bool doF1 = true)
@@ -257,7 +257,7 @@ namespace TypingWpf.VMs
         if (todoToday < 0)
           todoToday = _planPerDay - doneToday;
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakAsync($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
 
       DoneToday = doneToday;
       ExrzeRuns = sinceRcrd;
@@ -292,7 +292,7 @@ namespace TypingWpf.VMs
 
       Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"  ... => latestGlobalRecord: {latestGlobalRecord}");
 
-      Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.f} +{(DateTime.Now - App.Started):mm\\:ss\\.ff}    *** getLatestGlobalRecordDate() done in {sw.Elapsed.TotalSeconds:N2} sec");
+      Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.f} +{(DateTime.Now - App.StartedAt):mm\\:ss\\.ff}    *** getLatestGlobalRecordDate() done in {sw.Elapsed.TotalSeconds:N2} sec");
 
       return latestGlobalRecord;
     }
