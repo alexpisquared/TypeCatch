@@ -7,4 +7,4 @@
 5. Motivational prompts (TTS)
 
 ![Lesson in progress](https://github.com/alexpisquared/TypeCatch/blob/main/TypeCatch%20-%20in%20progress.png)
-![Lesson in progress](https://github.com/alexpisquared/TypeCatch/blob/main/TypeCatch0.png)
+![Lesson in progress](https://github.com/alexpisquared/TypeCatch/blob/main/TypeCatch0.gif)
