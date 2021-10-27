@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -50,7 +51,7 @@ namespace AsLink
       {
         try
         {
-          var wpc = XmlIsoFileSerializer.Load<WPContainer>(FilenameONLY);
+          var wpc = JsonFileSerializer.Load<WPContainer>(FilenameONLY);
           ZV = wpc.Zb == 0 ? 1 : wpc.Zb;
           wp = wpc.WindowPlacement;
         }
@@ -58,7 +59,7 @@ namespace AsLink
         {
           Debug.WriteLine(ex.Message);
           ZV = 1d;
-          wp = XmlIsoFileSerializer.Load<WindowPlacement>(FilenameONLY);
+          wp = JsonFileSerializer.Load<WindowPlacement>(FilenameONLY);
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); throw; }
 
@@ -92,7 +93,7 @@ namespace AsLink
       base.OnClosing(e);
 
       GetWindowPlacement(new WindowInteropHelper(this).Handle, out var wp);
-      XmlIsoFileSerializer.Save(new WPContainer { WindowPlacement = wp, Zb = ZV }, FilenameONLY);
+      JsonFileSerializer.Save(new WPContainer { WindowPlacement = wp, Zb = ZV }, FilenameONLY);
     }
 
     #region Win32 API declarations to set and get window placement
@@ -100,7 +101,7 @@ namespace AsLink
     [DllImport("user32.dll")] static extern bool GetWindowPlacement(IntPtr hWnd, out WindowPlacement lpwndpl);
     const int SwShownormal = 1, SwShowminimized = 2;
 
-    string FilenameONLY => $"{GetType().Name}.xml";
+    string FilenameONLY => /*$"{GetType().Name}.xml";*/ Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @$"AppSettings\{AppDomain.CurrentDomain.FriendlyName}\{GetType().Name}.json");
     #endregion
 
     [Serializable]
