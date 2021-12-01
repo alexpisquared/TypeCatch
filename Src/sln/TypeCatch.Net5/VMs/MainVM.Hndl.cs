@@ -30,12 +30,12 @@ namespace TypingWpf.VMs
           foreach (InstalledVoice iv in synth.GetInstalledVoices())
           {
             synth.SelectVoice(iv.VoiceInfo.Name);
-            synth.Speak($"{iv.VoiceInfo.Description} {gnd}. {ci.Name}.  voice Alternate = {va}.");
+            synth.SpeakAsync($"{iv.VoiceInfo.Description} {gnd}. {ci.Name}.  voice Alternate = {va}.");
 
-            synth.SelectVoiceByHints(gnd, VoiceAge.Child,   /**/ va, ci); synth.Speak($"{VoiceAge.Child } {va}");
-            synth.SelectVoiceByHints(gnd, VoiceAge.Teen,    /**/ va, ci); synth.Speak($"{VoiceAge.Teen  } {va}");
-            synth.SelectVoiceByHints(gnd, VoiceAge.Adult,   /**/ va, ci); synth.Speak($"{VoiceAge.Adult } {va}");
-            synth.SelectVoiceByHints(gnd, VoiceAge.Senior,  /**/ va, ci); synth.Speak($"{VoiceAge.Senior} {va}");
+            synth.SelectVoiceByHints(gnd, VoiceAge.Child,   /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Child } {va}");
+            synth.SelectVoiceByHints(gnd, VoiceAge.Teen,    /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Teen  } {va}");
+            synth.SelectVoiceByHints(gnd, VoiceAge.Adult,   /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Adult } {va}");
+            synth.SelectVoiceByHints(gnd, VoiceAge.Senior,  /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Senior} {va}");
 
             var pr = synth.GetCurrentlySpokenPrompt();
             Trace.WriteLine($"{pr}");
@@ -46,26 +46,26 @@ namespace TypingWpf.VMs
 
         if (Debugger.IsAttached)
         {
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 1, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 1, ci); synth.Speak($"{VoiceAge.Teen  }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 1, ci); synth.Speak($"{VoiceAge.Adult }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 1, ci); synth.Speak($"{VoiceAge.Senior}");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 2, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 2, ci); synth.Speak($"{VoiceAge.Teen  }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 2, ci); synth.Speak($"{VoiceAge.Adult }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 2, ci); synth.Speak($"{VoiceAge.Senior}");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 3, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 3, ci); synth.Speak($"{VoiceAge.Teen  }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 3, ci); synth.Speak($"{VoiceAge.Adult }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 3, ci); synth.Speak($"{VoiceAge.Senior}");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 4, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 4, ci); synth.Speak($"{VoiceAge.Teen  }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 4, ci); synth.Speak($"{VoiceAge.Adult }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 4, ci); synth.Speak($"{VoiceAge.Senior}");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 5, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 6, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 7, ci); synth.Speak($"{VoiceAge.Child }");
-          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 8, ci); synth.Speak($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 1, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 1, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 1, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 1, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 2, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 2, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 2, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 2, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 3, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 3, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 3, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 3, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 4, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 4, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 4, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 4, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 5, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 6, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 7, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+          synth.SelectVoiceByHints(gnd, VoiceAge.Child, 8, ci); synth.SpeakAsync($"{VoiceAge.Child }");
         }
       }
     }

@@ -124,7 +124,7 @@ namespace TypingWpf.VMs
         if (PupilInput.Trim().Length < LessonLen - 3)
         {
 #if !DEBUG
-          synth.SpeakAsyncCancelAll(); await synth.Speak($"Does not count: Too short!");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Does not count: Too short!");
 #endif
           return;
         }
@@ -151,15 +151,15 @@ namespace TypingWpf.VMs
           //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
           //2019-12/           await Task.Delay(50);
 
-          synth.SpeakAsyncCancelAll(); await synth.Speak("adding");    /**/ db.SessionResults.Add(SelectSnRt = thisResult);                                                           /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("added");
-          synth.SpeakAsyncCancelAll(); await synth.Speak("seting");    /**/ await updateSettings(db);                                                                                 /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("setingsed");
-          synth.SpeakAsyncCancelAll(); await synth.Speak("saving");    /**/ await db.TrySaveReportAsync();                                                                            /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("saved");
-          synth.SpeakAsyncCancelAll(); await synth.Speak("loading");   /**/ loadListsFromDB(DashName, SelectUser, db);                                                                /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("loaded");
-          synth.SpeakAsyncCancelAll(); await synth.Speak("todoing");   /**/ await updateDoneTodo(SelectUser, synth, db);                                                              /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("todoed");
-          synth.SpeakAsyncCancelAll(); await synth.Speak("charting");  /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("charted");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("adding");    /**/ db.SessionResults.Add(SelectSnRt = thisResult);                                                           /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("added");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("seting");    /**/ await updateSettings(db);                                                                                 /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("setingsed");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("saving");    /**/ await db.TrySaveReportAsync();                                                                            /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("saved");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("loading");   /**/ loadListsFromDB(DashName, SelectUser, db);                                                                /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("loaded");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("todoing");   /**/ await updateDoneTodo(SelectUser, synth, db);                                                              /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("todoed");
+          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("charting");  /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("charted");
         }
 
-        synth.SpeakAsyncCancelAll(); await synth.Speak($"took {swStoring.Elapsed.TotalSeconds:N0} seconds.");
+        synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"took {swStoring.Elapsed.TotalSeconds:N0} seconds.");
 
         IsFocusedPI = false;
         IsFocusedSB = true;
@@ -171,13 +171,13 @@ namespace TypingWpf.VMs
           if (thisResult.CpM > prevRcrdCpm)
           {
             SoundPlayer.PlaySessionFinish_Good();
-            synth.SpeakAsyncCancelAll(); await synth.Speak($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
+            synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
           }
           else
           {
             //Jun 2019: too old: SoundPlayer.PlaySessionFinish_Baad();
 
-            synth.SpeakAsyncCancelAll(); await synth.Speak($"{thisResult.CpM}");
+            synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"{thisResult.CpM}");
 
             if (TodoToday > 0)
             {
@@ -238,7 +238,7 @@ namespace TypingWpf.VMs
                         thisResult.CpM > .33 * prevRcrdCpm ? $"OK, monkey, I will count in this disgracefully slow run this time, but you'd better do not repeat such a horrible performance. " :
                         $"This message never played, right? Are you kidding me! This is too slow and is not counted.");
 
-              synth.SpeakAsyncCancelAll(); await synth.Speak($"{t1} {DoneToday} down; {TodoToday} to go.");
+              synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"{t1} {DoneToday} down; {TodoToday} to go.");
               return;
             }
           }
@@ -268,10 +268,10 @@ namespace TypingWpf.VMs
           process = Process.Start(PreSelect);
 
         double minToWatch = 30;
-        if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
-        else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
-        else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
-        else                                               /**/ { minToWatch = 05; synth.SpeakAsyncCancelAll(); await synth.Speak($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
+        if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
+        else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
+        else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
+        else                                               /**/ { minToWatch = 05; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
 
         // System.Threading.Thread.Sleep(TimeSpan.FromMinutes(minToWatch));
         await Task.Delay(TimeSpan.FromMinutes(minToWatch));
@@ -282,10 +282,10 @@ namespace TypingWpf.VMs
         }
 
         System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
-        synth.SpeakAsyncCancelAll(); await synth.Speak($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
+        synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
 
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); await synth.Speak($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
     }
   }
 }
