@@ -1,17 +1,16 @@
-﻿using AAV.Sys.Helpers;
-using AsLink;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using AAV.Sys.Helpers;
 
 namespace TypingWpf
 {
   public static class LessonHelper
   {
-    static Random _seed = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
+    static readonly Random _seed = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
     public const int PaddingLen = 250;
 
     static string GetLesson_Phrases(string lessonLenStr)
@@ -108,7 +107,7 @@ namespace TypingWpf
               (sublesson.Equals("nymi")) ? string.Format(_nym, Environment.UserName.ToLower()) :
               typeof(LessonHelper).GetField($"_{sublesson}", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null).ToString();
 
-          using (var fs = File.Create(file))
+          using (FileStream fs = File.Create(file))
           {
             var info = new UTF8Encoding(true).GetBytes(dflt ?? $"Feel free to replace this with whatever excercise you deem fit...\r\n...preferably matching the topic of '{sublesson}'.");
             fs.Write(info, 0, info.Length);
@@ -296,9 +295,20 @@ $$$((( $$($(($$(( $($($ (($($ $84 $0 $($$(($($( $74 $2.94 $8.49 £££((( ££(�
 7/8/9¶5/6/4¶3/1/2¶9/5/1¶87/46/32¶8*7*9¶5*6*4¶2*1*3¶7*5*3¶89*46*12¶7-9-8¶5-6-4¶3-1-2¶8-4-3¶79-65-20¶9+7+8¶5+4+6¶2+1+3¶7+6+2¶98+54+30¶7.98¶5.64¶3.12¶0.951¶3.14¶7/5*3-1+3.08¶76+84-943+80+215-30-51¶286/14*9*372/84*50/306¶.315*.486+1.509-.75/6.02¶45+5.18+862-.75-13/.94/26*3.14*80+1.27*50-6.52/9
 
 ";
-    #endregion
-    #region
 
+    public enum LessonType
+    {
+      BasicLessons,
+      Combinations,
+      DigitSymbols,
+      SpecialDrill,
+      PhrasesRandm,
+      Experimental,
+      EditableFile
+    }
+    #endregion
+
+    #region Core texts:
     const string AllLines = @"
 You can't shine like a diamond, if you not willing to get cut like a diamond!
 A smile is an inexpensive way to change your looks.
@@ -363,7 +373,8 @@ Too bad that all the people who know how to run the country are busy driving tax
 You need to be comfortable with you. Stop worrying about the couple in the corner who may or may not be looking at you funny.
 Tension is a habit. Relaxing is a habit. Bad habits can be broken, good habits formed.
 How can they say my life is not a success? Have I not for more than sixty years gotten enough to eat and escaped being eaten?
-Chasing success is like trying to squeeze a handful of water. The tighter you squeeze, the less water you get. When you chase it, your life becomes the chase, and you become a victim of always wanting more.
+Chasing success is like trying to squeeze a handful of water. The tighter you squeeze, the less water you get. 
+When you chase it, your life becomes the chase, and you become a victim of always wanting more.
 Going to church doesn't make you a Christian any more than going to a garage makes you an automobile.
 Isn't it interesting that the same people who laugh at science fiction listen to weather forecasts and economists?
 People never lie so much as after a hunt, during a war or before an election.
@@ -385,7 +396,8 @@ Nothing in the world is ever completely wrong. Even a stopped clock is right twi
 Wrinkles should merely indicate where smiles have been.
 Be nice to nerds. Chances are you'll end up working for one.
 You can tell a lot about a person by the way they handle three things: a rainy day, lost luggage and tangled Christmas tree lights.
- ... I ask people if an elephant has ever bitten them. Most of the time people say no. But everyone has been bitten by a mosquito. It's the little things that get us.
+I ask people if an elephant has ever bitten them. Most of the time people say no. But everyone has been bitten by a mosquito. 
+It's the little things that get us.
 Money is like manure, of very little use except it be spread.
 Enthusiasm is the leaping lightning, not to be measured by the horse-power of the understanding.
 Asking is the beginning of receiving. Make sure you don't go to the ocean with a teaspoon. At least take a bucket so the kids won't laugh at you.
@@ -393,7 +405,8 @@ An appeaser is one who feeds a crocodile, hoping it will eat him last.
 Aerodynamically the bumblebee shouldn't be able to fly, but the bumblebee doesn't know that so it goes on flying anyway.
 No one has ever become poor by giving.
 I am not funny. My writers were funny. My direction was funny. The situations were funny. But I am not funny. I am not funny. What I am is brave.
-Do not hold to what you have. It is like a ferry boat for people who want to get across waters. Once you have got across, never bear it on your back. You should head forward.
+Do not hold to what you have. It is like a ferry boat for people who want to get across waters. 
+Once you have got across, never bear it on your back. You should head forward.
 Life is the movie you see through your own eyes. It makes little difference what's happening out there. It's how you take it that counts.
 Here is the test to find whether your mission on earth is finished. If you're alive, it isn't.
 Remember that the most beautiful things in the world are the most useless: peacocks and lilies for instance.
@@ -404,7 +417,9 @@ To die laughing must be the most glorious of all glorious deaths!
 He knows nothing; he thinks he knows everything - that clearly points to a political career.
 If a cluttered desk is a sign of a cluttered mind, of what, then, is an empty desk a sign?
 Did you ever notice how difficult it is to argue with someone who is not obsessed with being right?
-Years ago there was belief that the world was flat. People were born into that belief and they took it on faith that if they went too far from the shoreline in a boat they would fall off the earth. Columbus sailed on.
+Years ago there was belief that the world was flat. 
+People were born into that belief and they took it on faith that if they went too far from the shoreline in a boat they would fall off the earth. 
+Columbus sailed on.
 Happen to things, don't let things happen to you.
 Life is a hurdle race, the winner has to cross all the hurdles and still maintain enthusiasm.
 Give me six hours to chop down a tree and I will spend the first four sharpening the axe.
@@ -424,12 +439,14 @@ Quality is more than important than quantity. One home run is much better than t
 Why hoard your troubles? They have no market value, so just throw them away.
 Procrastination is an art form that is less desirable than painting a detailed landscape using a three inch wide brush.
 Without a plan of action to put how a dream is envisioned to play out is like pouring out of picture of water on the ground and expecting it to stay in on the surface of the ground.
-Negative people aren't concentrating their bad energy to be shared with only you. ... Mosquitos aren't going to bite just you; they are going to go after the easiest available blood.
+Negative people aren't concentrating their bad energy to be shared with only you. 
+Mosquitos aren't going to bite just you; they are going to go after the easiest available blood.
 Don't sweat the petty things and don't pet the sweaty things.
 The really frightening thing about middle age is the knowledge that you'll grow out of it.
 I was thinking about how people seem to read the Bible a whole lot more as they get older; then it dawned on me - they're cramming for their final exam.
 Turning our abilities from stagnate puddles to rushing rivers can happen when we apply ourselves to the task.
-Our minds are like monkeys, swinging from one thought to another like monkeys on a tree. As a result, we always feel as if a sense of order, balance, awareness and concentration elude us, because we are always doing, always acting.
+Our minds are like monkeys, swinging from one thought to another like monkeys on a tree. 
+As a result, we always feel as if a sense of order, balance, awareness and concentration elude us, because we are always doing, always acting.
 An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today.
 Remember that sometimes people laugh when something is actually funny, but often they laugh when they lack the imagination to understand the situation.
 One of the most successful ways companies get the consumer's attention is by presenting the product in a funny or emotional way.
@@ -442,8 +459,10 @@ The trouble with not having a goal is that you can spend your life running up an
 If you had to identify, in one word, the reason why the human race has not achieved, and never will achieve, its full potential, that word would be meetings.
 A funny thing happens when we start keeping promises to ourselves - we become unstoppable.
 Visualize something totally funny or crazy! This will instantly change how you feel because you can't visualize two things at the same time.
-I am not an advocate of pity parties. They allow you to wallow in misery and drag yourself even further into the depths of woe. But sometimes having a good cry is like changing the oil in your car. You got 3000 miles out of that batch, now you have 3000 miles to go before another.
-To be taught to read -what is the use of that, if you know not whether what you read is false or true?
+I am not an advocate of pity parties. They allow you to wallow in misery and drag yourself even further into the depths of woe. 
+But sometimes having a good cry is like changing the oil in your car. 
+You got 3000 miles out of that batch, now you have 3000 miles to go before another.
+To be taught to read - what is the use of that, if you know not whether what you read is false or true?
 If everything is coming your way, then you're in the wrong lane.
 A lie travels round the world while truth is putting her boots on.
 Growing old is mandatory. Growing up? Definitely optional.
@@ -1608,16 +1627,5 @@ Andy looks at it a long time.
 And then he unfolds to me an instantaneous idea that has occurred to him.
 Right there was organized a trust; and we walked back into town and put it on the market.";
     #endregion
-  }
-
-  public enum LessonType
-  {
-    BasicLessons,
-    Combinations,
-    DigitSymbols,
-    SpecialDrill,
-    PhrasesRandm,
-    Experimental,
-    EditableFile
   }
 }
