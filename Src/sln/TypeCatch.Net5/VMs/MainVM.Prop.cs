@@ -30,7 +30,7 @@ namespace TypingWpf.VMs
     int _TodoToday = 300;           /**/ public int TodoToday { get => _TodoToday; set { if (Set(ref _TodoToday, value)) {; } } }
 
     int _MaxCpm = 300;              /**/ public int MaxCpm { get => _MaxCpm; set { if (Set(ref _MaxCpm, value)) {; } } }
-    int _CurentCpm = 00;            /**/ public int CrntCpm { get => _CurentCpm; set => Set(ref _CurentCpm, value); }
+    double _cc = 00;                /**/ public double CrntCpm { get => _cc; set => Set(ref _cc, value); }
     string _SubLesnId = "1";        /**/ public string SubLesnId { get => _SubLesnId; set => Set(ref _SubLesnId, value); }
     int _AppRunCount = 00;          /**/ public int AppRunCount { get => _AppRunCount; set => Set(ref _AppRunCount, value); }
     int _recordCpm = 100;           /**/ public int RcrdCpm { get => _recordCpm; set { if (Set(ref _recordCpm, value)) { if (_recordCpm > _MaxCpm) MaxCpm = 2 * RcrdCpm; } } }

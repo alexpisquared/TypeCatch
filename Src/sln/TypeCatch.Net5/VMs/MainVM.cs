@@ -18,7 +18,7 @@ namespace TypingWpf.VMs
 {
   public partial class MainVM : BindableBaseViewModel
   {
-    const int _t333 = 333;
+    const int _t333ms = 333;
     DateTime _nextMeasureTime;
     TimeSpan _measurePeriod = TimeSpan.FromSeconds(2.5);
     public static readonly TimeSpan _shortView = TimeSpan.FromDays(28);
@@ -51,7 +51,7 @@ namespace TypingWpf.VMs
           synth.Rate = 3;
           //Feb 2020: seems to hang on this one: synth.SelectVoiceByHints(gnd, VoiceAge.Senior);
 
-          _dt = new DispatcherTimer(TimeSpan.FromMilliseconds(_t333), DispatcherPriority.Background, new EventHandler(async (s, e) => await tick333ms()), Dispatcher.CurrentDispatcher); //tu: one-line timer
+          _dt = new DispatcherTimer(TimeSpan.FromMilliseconds(_t333ms), DispatcherPriority.Background, new EventHandler(async (s, e) => await tick333ms()), Dispatcher.CurrentDispatcher); //tu: one-line timer
           _dt.Start();
           MainVis = Visibility.Visible;
           Opcty = 1;

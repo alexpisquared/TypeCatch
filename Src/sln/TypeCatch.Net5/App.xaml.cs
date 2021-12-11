@@ -52,7 +52,6 @@ namespace TypeCatch.Net5
       var mw = new MainWindow();
       var vm = MainVM.Create(mw.cChart1);
       if (vm != null)
-        /*await*/
         BindableBaseViewModel.ShowModalMvvmAsync(vm, mw);
       else
 #endif

@@ -370,7 +370,9 @@
       
       <Border Grid.Row="2" CornerRadius="3" BorderBrush="#888" BorderThickness="2" Grid.ColumnSpan="2" Margin="14 10" Padding="0" Background="#aaa">
         <Grid>
-          <ProgressBar Grid.Row="2" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" x:Name="pC" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm, FallbackValue=33}" BorderThickness="0" Background="Transparent" VerticalAlignment="Stretch" />
+          <ProgressBar Grid.Row="2" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm, FallbackValue=33}" BorderThickness="0" Background="#999" VerticalAlignment="Top"    Height="17" />
+          <ProgressBar Grid.Row="2" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Maximum="{Binding MaxCpm}" Value="{Binding CCpmAnm, FallbackValue=33}" BorderThickness="0" Background="#999" VerticalAlignment="Bottom" Height="17" />
+          
           <TextBlock   Grid.Row="2" Foreground="#00f" Text="{Binding CrntCpm, FallbackValue=123, StringFormat=\{0\}}" FontSize="20" HorizontalAlignment="Center" Margin="0 0 50 0" ToolTip="Your current typing speed" />
           <TextBlock   Grid.Row="2" Foreground="#f0f" Text="{Binding RcrdCpm, FallbackValue=123, StringFormat=\{0\}}" FontSize="20" HorizontalAlignment="Center" Margin="50 0 0 0" ToolTip="Your record typing speed for this lesson in cpm (characters per minute)" />
           <Rectangle   Grid.Row="2"       Fill="#f0f" Width="1" StrokeThickness="0"  Height="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" />

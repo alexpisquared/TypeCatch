@@ -68,7 +68,7 @@ namespace TypingWpf.VMs
 
       //autoPause();
 
-      CrntCpm = (int)(PupilInput.Length / _swMain.Elapsed.TotalMinutes); //CurInfo = $" Typed {(PupilInput.Length),3:N0}\t Elapsed {_sw.Elapsed:mm\\:ss}\t Speed {CrntCpm:N0}";
+      CrntCpm = PupilInput.Length / _swMain.Elapsed.TotalMinutes; //CurInfo = $" Typed {(PupilInput.Length),3:N0}\t Elapsed {_sw.Elapsed:mm\\:ss}\t Speed {CrntCpm:N0}";
       IsRecord = CrntCpm > _recordCpm;
 
       var now = DateTime.Now;
