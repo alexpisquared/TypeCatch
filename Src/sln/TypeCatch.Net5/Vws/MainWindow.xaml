@@ -370,27 +370,6 @@
 
       <Border Grid.Row="2" CornerRadius="3" BorderBrush="#888" BorderThickness="2" Grid.ColumnSpan="2" Margin="14 10" Padding="0" Background="#aaa">
         <Border.Resources>
-          <Style TargetType="{x:Type ProgressBar}" x:Key="pbAnm">
-            <Style.Triggers>
-              <EventTrigger RoutedEvent="Control.MouseEnter">
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:.3" To="1" Storyboard.TargetProperty="Opacity"/>
-                    <DoubleAnimation Duration="0:0:.3" From="33" To="{Binding CrntCpm, Mode=OneWay, FallbackValue=100}" Storyboard.TargetProperty="Value"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </EventTrigger>
-              <EventTrigger RoutedEvent="Control.MouseLeave">
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:.3" To="0.2" Storyboard.TargetProperty="Opacity"/>
-                    <DoubleAnimation Duration="0:0:.3" From="100" To="{Binding CrntCpm, Mode=OneWay, FallbackValue=33}" Storyboard.TargetProperty="Value"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </EventTrigger>
-            </Style.Triggers>
-          </Style>
-
           <Storyboard x:Key="myAnim">
             <ParallelTimeline>
               <DoubleAnimation Name="myAnimHeight" Storyboard.TargetName="pbAnim" Storyboard.TargetProperty="Value"  To="{Binding CrntCpm}" Duration="0:0:.333" >
@@ -403,8 +382,8 @@
           </Storyboard>
         </Border.Resources>
         <Grid>
-          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" x:Name="pbAnim" Background="#999" VerticalAlignment="Stretch" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
-          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm}"           VerticalAlignment="Center" Height="2" Background="Transparent" Visibility="Collapsed">
+          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" x:Name="pbAnim"            VerticalAlignment="Stretch" Background="#999" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
+          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm}"  VerticalAlignment="Center"  Background="Transparent" Height="2" Visibility="Visible">
             <ProgressBar.Triggers>
               <EventTrigger RoutedEvent="ProgressBar.ValueChanged">
                 <EventTrigger.Actions>

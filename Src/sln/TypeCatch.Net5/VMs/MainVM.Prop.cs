@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Windows;
 using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
-using AsLink;
 using MVVM.Common;
 using TypingWpf.DbMdl;
 using db = TypingWpf.DbMdl;
@@ -19,9 +18,7 @@ namespace TypingWpf.VMs
     public ObservableCollection<db.SessionResult> CurUserCurExcrsRsltLst { get; set; } = new ObservableCollection<db.SessionResult>();
     public ObservableCollection<js.VeloMeasure> PrgsChart { get; set; } = new ObservableCollection<js.VeloMeasure>();
 
-
     public int LessonLen;// => (LessonText.Length - LessonHelper.PaddingLen) > 8 ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
-
 
     public string DashName => $"{LesnTyp.ToString()[0]}-{SubLesnId}";
 
@@ -40,8 +37,8 @@ namespace TypingWpf.VMs
     string _LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading ... "; public string LessonText { get => _LessonText; set { if (Set(ref _LessonText, value)) {; } } }
     string _PupilInput;             /**/ public string PupilInput { get => _PupilInput; set { if (Set(ref _PupilInput, value)) { onUserInput(null); } } }
     string _VersioInfo;             /**/ public string VersioInfo { get => _VersioInfo; set { if (Set(ref _VersioInfo, value)) {; } } }
-    db.SessionResult _SelectSnRt;   /**/ public db.SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
-    db.User _SlctUser;              /**/ public db.User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
+    db.SessionResult _SelectSnRt;   /**/ public SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
+    db.User _SlctUser;              /**/ public User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
     string _SelectUser;             /**/ public string SelectUser { get => _SelectUser; set { if (Set(ref _SelectUser, value) /*&& _isLoaded*/) { using (var db = A0DbMdl.GetA0DbMdlAzureDb) { loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(db), value, db); } } } }
     bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { Bpr.BeepClk(); ProLvl = value ? 1 : .7; } } }
     double _ProLvl = .7;            /**/ public double ProLvl { get => _ProLvl; set => Set(ref _ProLvl, value); }

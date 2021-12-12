@@ -19,9 +19,9 @@ namespace AsLink
   {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-      if (!(values[0] is int && values[1] is int)) return new SolidColorBrush(Colors.White);
+      if (!(values[0] is double && values[1] is int)) return new SolidColorBrush(Colors.Yellow);
 
-      var crntCpm = (int)values[0];
+      var crntCpm = (double)values[0];
       var rcrdCpm = (int)values[1];
       if (crntCpm > rcrdCpm && crntCpm != 0)
       {
