@@ -244,11 +244,11 @@
                  msc:FocusExtension.IsFocused="{Binding IsFocusedPI}" />
 
         <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Margin="-5 -5 -5 -5" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}"
-              BorderThickness="2" CornerRadius="15" d:IsHidden="True" >
+              BorderThickness="2" CornerRadius="15"  >
           <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-              <GradientStop Color="#f0f0f0" Offset="0"/>
-              <GradientStop Color="#f8f8f8" Offset="1"/>
+              <GradientStop Color="#777" Offset="0"/>
+              <GradientStop Color="#555" Offset="1"/>
             </LinearGradientBrush>
           </Border.Background>
           <Grid >
@@ -274,11 +274,17 @@
               <lvc:CartesianChart.AxisX>
                 <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
               </lvc:CartesianChart.AxisX>
+              <lvc:CartesianChart.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                  <GradientStop Color="#666" Offset="0"/>
+                  <GradientStop Color="#444" Offset="1"/>
+                </LinearGradientBrush>
+              </lvc:CartesianChart.Background>
             </lvc:CartesianChart>
 
             <TextBlock Grid.Column="1" FontSize="24" Margin="2 0" VerticalAlignment="Top"  HorizontalAlignment="Center" Text="Scoreboard"   Foreground="#08f" />
             <DataGrid  Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}"  AutoGenerateColumns="False" EnableRowVirtualization="True"                   
-                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" MaxWidth="250" 
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" 
                      >
               <DataGrid.Columns>
                 <!--
@@ -324,12 +330,13 @@
             </DataGrid>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-              <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Day  " Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#00f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
               <Button Content="Delete this run"  Command="{Binding DeleteSR}" Foreground="#f00" Visibility="{Binding IsAdmin, Converter={ln2:VisibilityConverter}}" />

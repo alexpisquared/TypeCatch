@@ -43,7 +43,7 @@ namespace TypingWpf.VMs
 
           SelectSnRt = null;
 
-          sessionLoad_Start_lazy();
+          //sessionLoad_Start_lazy();
           IsInSsn = true;
           IsAdmin = VerHelper.IsVIP;
 
@@ -135,10 +135,11 @@ namespace TypingWpf.VMs
       {
         case "Full": f = "y-M-d";   /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt)); break;
         case "Mont": f = "ddd d";   /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); break;
-        case "1Day": f = "ddd d H"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-1)).OrderByDescending(r => r.DoneAt)); break;
         case "Week": f = "ddd d H"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-7)).OrderByDescending(r => r.DoneAt)); break;
+        case "24hr": f = "ddd d H"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-1)).OrderByDescending(r => r.DoneAt)); break;
         case "PreX": f = "ddd d H"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10)); break;
         case "Pre5": f = "H:mm";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(05)); break;
+        case "1Day": f = "H:mm";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); break;
         case null:
         default: f = "MMM-dd"; break;
       }
@@ -218,8 +219,9 @@ namespace TypingWpf.VMs
         default: break;
       }
 
-      LessonText = LessonHelper.GetLesson(LesnTyp, SubLesnId);
-      LessonLen = LesnTyp == LessonType.PhrasesRandm ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
+      var (lessonTxt, lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
+      LessonText = lessonTxt;
+      LessonLen = lessonLen;
 
       if (doF1)
       {

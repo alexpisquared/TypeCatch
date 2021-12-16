@@ -90,8 +90,9 @@ namespace TypingWpf.VMs
 
     async void sessionLoad_Start_lazy() // timing will start on the first keystroke.
     {
-      LessonText = LessonHelper.GetLesson(LesnTyp, SubLesnId);
-      LessonLen = LesnTyp == LessonType.PhrasesRandm ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
+      var (lessonTxt, lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
+      LessonText = lessonTxt;
+      LessonLen = lessonLen;
 
       PupilInput = "";
       _swMain.Reset();
@@ -140,9 +141,9 @@ namespace TypingWpf.VMs
         }
 
         //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakFaF(pb); // synth.SpeakFaF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
-        
+
         var swStoring = Stopwatch.StartNew();
-        
+
         if (thisResult.CpM > prevRcrdCpm)
           thisResult.IsRecord = true;
 

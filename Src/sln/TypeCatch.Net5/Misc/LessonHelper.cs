@@ -10,10 +10,10 @@ namespace TypingWpf
 {
   public static class LessonHelper
   {
-    static readonly Random _seed = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
+    static readonly Random _random = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
     public const int PaddingLen = 250;
 
-    static string GetLesson_Phrases(string lessonLenStr)
+    static (string lessonTxt, int lessonLen) GetLesson_Phrases(string lessonLenStr)
     {
       if (!int.TryParse(lessonLenStr, out var lessonLen))
         lessonLen = 100;
@@ -30,12 +30,28 @@ namespace TypingWpf
           100;
       }
 
-      var random = _seed.Next(AllLines.Length - lessonLen - PaddingLen);
-      var nextCr = AllLines.IndexOf("\r", random) + 2;
+#if !true
+      var random = _random.Next(AllLines.Length - lessonLen - PaddingLen);
+      var nextCr = AllLines.IndexOf("\n", random) + 1;
       if (nextCr + lessonLen + PaddingLen < AllLines.Length)
         random = nextCr;
 
       return AllLines.Substring(random, lessonLen + PaddingLen); // .Trim(); LessonLen = LessonText.Length;
+#else
+      var allLines = AllLines.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; sb.Length < lessonLen && i < allLines.Length; i++)
+      {
+        sb.Append(allLines[_random.Next(allLines.Length)]).Append(Environment.NewLine);
+      }
+
+      var txt = sb.ToString();
+
+      Trace.WriteLine($"sb:{sb.Length} chars,  rv:{txt.Length} chars,  rv:{txt.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length} lines.");
+
+      return (txt, lessonLen);
+#endif
     }
     public static void CodeGen()
     {
@@ -47,7 +63,7 @@ namespace TypingWpf
         Trace.TraceInformation(ln);
       }
     }
-    public static string GetLesson(LessonType _0to3, string sublesson)
+    public static (string lessonTxt, int lessonLen) GetLesson(LessonType _0to3, string sublesson)
     {
       string s;
       switch (_0to3)
@@ -56,9 +72,9 @@ namespace TypingWpf
         case LessonType.Combinations: s = _combinations; break;
         case LessonType.DigitSymbols: s = _digitSymbols; break;
         case LessonType.SpecialDrill: s = _specialDrill; break;
-        case LessonType.Experimental: s = getFromOneDrive(sublesson); return s;
-        case LessonType.PhrasesRandm: s = GetLesson_Phrases(sublesson); return s;
-        case LessonType.EditableFile: s = getCreateFromOneDrive(sublesson); return s;
+        case LessonType.Experimental: s = getFromOneDrive(sublesson); return (s, s.Length);
+        case LessonType.PhrasesRandm: return GetLesson_Phrases(sublesson);
+        case LessonType.EditableFile: s = getCreateFromOneDrive(sublesson); return (s, s.Length);
         default: s = $"Nothing for {_0to3}"; break;
       }
 
@@ -69,10 +85,13 @@ namespace TypingWpf
         {
           var sss = ss[sublessonInt].Split(new[] { '\n' });
           if (sss.Length > 1)
-            return sss[1].Trim(new char[] { ' ', '\r', '\n', '\t' });
+          {
+            s = sss[1].Trim(new char[] { ' ', '\r', '\n', '\t' });
+            return (s, s.Length);
+          }
         }
 
-      return "????????";
+      return ("????????", 9);
     }
 
     public static Dictionary<string, string> EditableFiles
