@@ -5,7 +5,8 @@
         xmlns:msc="clr-namespace:TypingWpf.Misc"
         xmlns:Vws="clr-namespace:TypingWpf.Vws" 
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-        x:Class="TypingWpf.MainWindow" x:Name="w" mc:Ignorable="d"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
+                x:Class="TypingWpf.MainWindow" x:Name="w" mc:Ignorable="d"
         Title="Type Catch"  Height="500"  Width="1250" 
         Style="{DynamicResource WindowStyle_Aav0}" 
         Opacity="{Binding ProLvl, FallbackValue=.7}" >
@@ -266,6 +267,79 @@
                 <Setter Property="BorderThickness"  Value="0" />
                 <Setter Property="Margin"           Value="10 0" />
               </Style>
+
+              <lvc:ColorsCollection x:Key="ColorsCollection">
+                <Color A="255" R="33" G="149" B="242" />
+                <Color A="255" R="243" G="67" B="54" />
+                <Color A="255" R="254" G="192" B="7" />
+                <Color A="255" R="96" G="125" B="138" />
+                <Color A="255" R="232" G="30" B="99" />
+                <Color A="255" R="76" G="174" B="80" />
+                <Color A="255" R="63" G="81" B="180" />
+                <Color A="255" R="204" G="219" B="57" />
+              </lvc:ColorsCollection>
+
+              <system:Double x:Key="Size">14</system:Double>
+
+              <system:Double x:Key="SeparatorStrokeThickness">
+                0.8
+              </system:Double>
+              <DoubleCollection x:Key="SeparatorStrokeDashArray">
+                3
+              </DoubleCollection>
+              <system:Double x:Key="SeriesStrokeThickness">
+                3.0
+              </system:Double>
+
+              <Style TargetType="lvc:CartesianChart">
+                <Setter Property="AnimationsSpeed" Value="0:0:0.420"></Setter>
+                <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection}"/>
+              </Style>
+
+              <Style TargetType="lvc:Axis">
+                <Setter Property="FontSize" Value="{StaticResource Size}" />
+                <Setter Property="FontFamily" Value="Calibri" />
+                <Setter Property="Foreground" Value="#ddd" />
+              </Style>
+
+              <Style TargetType="lvc:Separator">
+                <!--<Setter Property="StrokeThickness" Value="{StaticResource SeparatorStrokeThickness}" />
+                <Setter Property="StrokeDashArray" Value="{StaticResource SeparatorStrokeDashArray}" />
+                -->
+                <Setter Property="Stroke" Value="#888" />
+                <Style.Triggers>
+                  <Trigger Property="AxisOrientation" Value="X">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+
+              <Style TargetType="lvc:Series" x:Key="SeriesStyle">
+                <Setter Property="FontFamily" Value="Calibri" />
+                <Setter Property="FontSize" Value="{StaticResource Size}" />
+                <Setter Property="StrokeThickness" Value="{StaticResource SeriesStrokeThickness}" />
+              </Style>
+
+              <Style TargetType="lvc:CandleSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:ColumnSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:HeatSeries"                            BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:LineSeries"                            BasedOn="{StaticResource SeriesStyle}">
+                <Setter Property="PointGeometrySize"                              Value="{StaticResource Size}" />
+              </Style>
+              <Style TargetType="lvc:StepLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
+                <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
+              </Style>
+              <Style TargetType="lvc:VerticalLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
+                <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
+              </Style>
+              <Style TargetType="lvc:OhlcSeries"                BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:RowSeries"                 BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:ScatterSeries"             BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:StackedAreaSeries"         BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:StackedColumnSeries"       BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:StackedRowSeries"          BasedOn="{StaticResource SeriesStyle}"/>
+              <Style TargetType="lvc:VerticalStackedAreaSeries" BasedOn="{StaticResource SeriesStyle}"/>
+
             </Grid.Resources>
             <!--<WindowsFormsHost Margin="10" >
                         <Vws:WinFormChartUsrCtrl x:Name="cChart1"  />
@@ -274,12 +348,6 @@
               <lvc:CartesianChart.AxisX>
                 <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
               </lvc:CartesianChart.AxisX>
-              <lvc:CartesianChart.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                  <GradientStop Color="#666" Offset="0"/>
-                  <GradientStop Color="#444" Offset="1"/>
-                </LinearGradientBrush>
-              </lvc:CartesianChart.Background>
             </lvc:CartesianChart>
 
             <TextBlock Grid.Column="1" FontSize="24" Margin="2 0" VerticalAlignment="Top"  HorizontalAlignment="Center" Text="Scoreboard"   Foreground="#08f" />
@@ -333,10 +401,10 @@
               <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
               <Button Content="Delete this run"  Command="{Binding DeleteSR}" Foreground="#f00" Visibility="{Binding IsAdmin, Converter={ln2:VisibilityConverter}}" />
