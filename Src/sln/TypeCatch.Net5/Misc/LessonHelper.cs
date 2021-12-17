@@ -11,7 +11,7 @@ namespace TypingWpf
   public static partial class LessonHelper
   {
     static readonly Random _random = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
-    public const int PaddingLen = 250;
+    public const int PaddingLen = 2;
 
     static (string lessonTxt, int lessonLen) GetLesson_Phrases(string lessonLenStr)
     {
@@ -34,12 +34,7 @@ namespace TypingWpf
 
       if (_random.Next(10) % 2 == 0)
       {
-        var random = _random.Next(AllPhrases.Length - lessonLen - PaddingLen);
-        var nextCr = AllPhrases.IndexOf("\n", random) + 1;
-        if (nextCr + lessonLen + PaddingLen < AllPhrases.Length)
-          random = nextCr;
-
-        txt = AllPhrases.Substring(random, lessonLen + PaddingLen); // .Trim(); LessonLen = LessonText.Length;
+        txt = AllPhrases.Substring(_random.Next(AllPhrases.Length - lessonLen - PaddingLen), lessonLen + PaddingLen); 
       }
       else
       {
@@ -51,7 +46,7 @@ namespace TypingWpf
           sb.Append(allLines[_random.Next(allLines.Length)]).Append(Environment.NewLine);
         }
 
-        txt = sb.ToString();
+        txt = sb.Length > lessonLen + PaddingLen ? sb.ToString().Substring(0, lessonLen + PaddingLen) : sb.ToString();
 
         Trace.WriteLine($"sb:{sb.Length} chars,  rv:{txt.Length} chars,  rv:{txt.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length} lines.");
       }
