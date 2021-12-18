@@ -82,14 +82,7 @@ namespace TypingWpf
 
       if (int.TryParse(sublesson, out var sublessonInt))
         if (sublessonInt < ss.Length)
-        {
-          var sss = ss[sublessonInt].Split(new[] { '\n' });
-          if (sss.Length > 1)
-          {
-            s = sss[1].Trim(new char[] { ' ', '\r', '\n', '\t' });
-            return (s, s.Length);
-          }
-        }
+          return (ss[sublessonInt], ss[sublessonInt].Length);
 
       return ("????????", 9);
     }
