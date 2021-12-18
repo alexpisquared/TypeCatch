@@ -1477,7 +1477,7 @@ Dark spruce forest frowned on either side the frozen waterway.
 The trees had been stripped by a recent wind of their white covering of frost, and they seemed to lean towards each other, black and ominous, in the fading light.
 A vast silence reigned over the land.
 The land itself was a desolation, lifeless, without movement, so lone and cold that the spirit of it was not even that of sadness.
-There was a hint in it of laughter, but of a laughter more terrible than any sadness—a laughter that was mirthless as
+There was a hint in it of laughter, but of a laughter more terrible than any sadness-a laughter that was mirthless as
 the smile of the sphinx, a laughter cold as the frost and partaking of the grimness of infallibility.
 It was the masterful and incommunicable wisdom of eternity laughing at the futility of life and the effort of life.
 It was the Wild, the savage, frozen-hearted Northland Wild.
@@ -1491,15 +1491,15 @@ The sled was without runners.
 It was made of stout birch-bark, and its full surface rested on the snow.
 The front end of the sled was turned up, like a scroll, in order to force down and under the bore of soft snow that surged like a wave before it.
 On the sled, securely lashed, was a long and narrow oblong box.
-There were other things on the sled—blankets, an axe, and a coffee-pot and frying-pan; but prominent,
+There were other things on the sled-blankets, an axe, and a coffee-pot and frying-pan; but prominent,
 occupying most of the space, was the long and narrow oblong box.
 In advance of the dogs, on wide snowshoes, toiled a man.
 At the rear of the sled toiled a second man.
-On the sled, in the box, lay a third man whose toil was over,—a man whom the Wild had conquered and beaten down until he would never move nor struggle again.
+On the sled, in the box, lay a third man whose toil was over,-a man whom the Wild had conquered and beaten down until he would never move nor struggle again.
 It is not the way of the Wild to like movement.
 Life is an offence to it, for life is movement; and the Wild aims always to destroy movement.
 It freezes the water to prevent it running to the sea; it drives the sap out of the trees till they are frozen to their mighty hearts;
-and most ferociously and terribly of all does the Wild harry and crush into submission man—man who is the most restless of life,
+and most ferociously and terribly of all does the Wild harry and crush into submission man-man who is the most restless of life,
 ever in revolt against the dictum that all movement must in the end come to the cessation of movement.
 But at front and rear, unawed and indomitable, toiled the two men who were not yet dead.
 Their bodies were covered with fur and soft-tanned leather.
@@ -1539,12 +1539,12 @@ The exchange of such things as a dainty menu for rough fare, of the stiff leathe
 shapeless moccasin, of the feather bed for a couch in the snow, is after all a very easy matter.
 But his pinch will come in learning properly to shape his mind's attitude toward all things, and especially toward his fellow man.
 For the courtesies of ordinary life, he must substitute unselfishness, forbearance, and tolerance.
-Thus, and thus only, can he gain that pearl of great price—true comradeship.
+Thus, and thus only, can he gain that pearl of great price-true comradeship.
 He must not say 'thank you'; he must mean it without opening his mouth, and prove it by responding in kind.
 In short, he must substitute the deed for the word, the spirit for the letter.
 When the world rang with the tale of Arctic gold, and the lure of the North gripped the heartstrings of men,
 Carter Weatherbee threw up his snug clerkship, turned the half of his savings over to his wife, and with the remainder bought an outfit.
-There was no romance in his nature—the bondage of commerce had crushed all that; he was simply tired of the ceaseless grind,
+There was no romance in his nature-the bondage of commerce had crushed all that; he was simply tired of the ceaseless grind,
 and wished to risk great hazards in view of corresponding returns.
 Like many another fool, disdaining the old trails used by the Northland pioneers for a score of years,
 he hurried to Edmonton in the spring of the year; and there, unluckily for his soul's welfare, he allied himself with a party of men.
@@ -1557,7 +1557,7 @@ and had the same hushed by blissful sucks of raw tallow), was surprised.
 Though he sold his services to them and agreed to travel even to the never-opening ice, he shook his head ominously whenever his advice was asked.
 Percy Cuthfert's evil star must have been in the ascendant, for he, too, joined this company of argonauts.
 He was an ordinary man, with a bank account as deep as his culture, which is saying a good deal.
-He had no reason to embark on such a venture—no reason in the world save that he suffered from an abnormal development of sentimentality.
+He had no reason to embark on such a venture-no reason in the world save that he suffered from an abnormal development of sentimentality.
 He mistook this for the true spirit of romance and adventure.
 Many another man has done the like, and made as fatal a mistake.
 The first break-up of spring found the party following the ice-run of Elk River.
@@ -1570,7 +1570,7 @@ The two shirks and chronic grumblers were Carter Weatherbee and Percy Cuthfert.
 The whole party complained less of its aches and pains than did either of them.
 Not once did they volunteer for the thousand and one petty duties of the camp.
 A bucket of water to be brought, an extra armful of wood to be chopped, the dishes to be washed and wiped,
-a search to be made through the outfit for some suddenly indispensable article—and these two effete scions of civilization discovered sprains or blisters requiring instant attention.
+a search to be made through the outfit for some suddenly indispensable article-and these two effete scions of civilization discovered sprains or blisters requiring instant attention.
 They were the first to turn in at night, with score of tasks yet undone; the last to turn out in the morning,
 when the start should be in readiness before the breakfast was begun.
 They were the first to fall to at mealtime, the last to have a hand in the cooking; the first to dive for a slim delicacy,
@@ -1589,7 +1589,7 @@ Had he not sworn to travel even to the never-opening ice? The lying charts, comp
 And they felt the need of hurry, for the sun had already passed its northern solstice and was leading the winter south again.
 Skirting the shores of the bay, where the Mackenzie disembogues into the Arctic Ocean, they entered the mouth of the Little Peel River.
 Then began the arduous up-stream toil, and the two Incapables fared worse than ever.
-Towline and pole, paddle and tumpline, rapids and portages—such tortures served to give the one a deep disgust for great hazards,
+Towline and pole, paddle and tumpline, rapids and portages-such tortures served to give the one a deep disgust for great hazards,
 and printed for the other a fiery text on the true romance of adventure.
 One day they waxed mutinous, and being vilely cursed by Jacques Baptiste, turned, as worms sometimes will.
 But the half-breed thrashed the twain, and sent them, bruised and bleeding, about their work.
@@ -1609,7 +1609,7 @@ Sufferin' cracky!' cried another of the party.
 'No whites?' 'Nary white,' Sloper sententiously affirmed; 'but it's only five hundred more up the Yukon to Dawson.
 Call it a rough thousand from here.' Weatherbee and Cuthfert groaned in chorus.
 'How long'll that take, Baptiste?' The half-breed figured for a moment.
-'Workum like hell, no man play out, ten—twenty—forty—fifty days.
+'Workum like hell, no man play out, ten-twenty-forty-fifty days.
 Um babies come' (designating the Incapables), 'no can tell.
 Mebbe when hell freeze over; mebbe not then.'
 The manufacture of snowshoes and moccasins ceased.
