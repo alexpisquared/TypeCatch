@@ -121,7 +121,9 @@
                 <MenuItem Header="_E   ; : -               "  Command="{Binding LTCmd}" CommandParameter="B-13"       />
                 <MenuItem Header="_F   Sentences with '    "  Command="{Binding LTCmd}" CommandParameter="B-14"       />
                 <MenuItem Header="_G   Punctuation marks   "  Command="{Binding LTCmd}" CommandParameter="B-15"       />
-                <MenuItem Header="_J   Examination         "  Command="{Binding LTCmd}" CommandParameter="B-16"       />
+                <MenuItem Header="_H   Examination         "  Command="{Binding LTCmd}" CommandParameter="B-16"       />
+                <MenuItem Header="_I   Zzz DevDbg 1/2      "  Command="{Binding LTCmd}" CommandParameter="B-17"       />
+                <MenuItem Header="_J   Zzz DevDbg 2/2      "  Command="{Binding LTCmd}" CommandParameter="B-18"       />
               </MenuItem>
               <MenuItem Header="_Combinations"                FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                 <MenuItem Header="_1 Combinations A"          Command="{Binding LTCmd}" CommandParameter="C-0"        />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using AAV.Sys.Helpers;
@@ -11,7 +12,7 @@ namespace TypingWpf
   public static partial class LessonHelper
   {
     static readonly Random _random = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
-    public const int PaddingLen = 2;
+    public const int PaddingLen = 1; // for occasional ending with ' ' or '\r'.
 
     static (string lessonTxt, int lessonLen) GetLesson_Phrases(string lessonLenStr)
     {
@@ -30,15 +31,30 @@ namespace TypingWpf
           100;
       }
 
-      string txt;
+#if DEBUG
+
+      var lessons = File.ReadAllText("Assets\\TypingDrillList.txt").Split(new[] { "·" }, StringSplitOptions.RemoveEmptyEntries);
+      Trace.WriteLine($"*** {lessons.Length} lessons");
+
+      foreach (var lesson in lessons)
+      {
+        var allLines = lesson.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+        Trace.WriteLine($"***   {allLines.First()} ");
+
+      }
+
+#endif
+
+      var allText = File.ReadAllText("Assets\\FreeTextLesson.txt");
 
       if (_random.Next(10) % 2 == 0)
       {
-        txt = AllPhrases.Substring(_random.Next(AllPhrases.Length - lessonLen - PaddingLen), lessonLen + PaddingLen); 
+        return (allText.Substring(_random.Next(allText.Length - lessonLen - PaddingLen), lessonLen + PaddingLen), lessonLen);
       }
       else
       {
-        var allLines = AllPhrases.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        var allLines = allText.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
         var sb = new StringBuilder();
         for (var i = 0; sb.Length < lessonLen && i < allLines.Length; i++)
@@ -46,12 +62,10 @@ namespace TypingWpf
           sb.Append(allLines[_random.Next(allLines.Length)]).Append(Environment.NewLine);
         }
 
-        txt = sb.Length > lessonLen + PaddingLen ? sb.ToString().Substring(0, lessonLen + PaddingLen) : sb.ToString();
-
-        Trace.WriteLine($"sb:{sb.Length} chars,  rv:{txt.Length} chars,  rv:{txt.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length} lines.");
+        var lessonBody = sb.Length > lessonLen + PaddingLen ? sb.ToString().Substring(0, lessonLen + PaddingLen) : sb.ToString();        //Trace.WriteLine($"sb:{sb.Length} chars,  rv:{lessonBody.Length} chars,  rv:{lessonBody.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length} lines.");
+        return (lessonBody, lessonLen);
       }
 
-      return (txt, lessonLen);
     }
     public static void CodeGen()
     {
@@ -78,11 +92,13 @@ namespace TypingWpf
         default: s = $"Nothing for {_0to3}"; break;
       }
 
-      var ss = s.Split(new[] { "[#]" }, StringSplitOptions.RemoveEmptyEntries);
+      var ss = s.Split(new[] { "[#] " }, StringSplitOptions.RemoveEmptyEntries);
 
-      if (int.TryParse(sublesson, out var sublessonInt))
-        if (sublessonInt < ss.Length)
-          return (ss[sublessonInt], ss[sublessonInt].Length);
+      if (int.TryParse(sublesson, out var sublessonInt) && sublessonInt < ss.Length)
+      {
+        var lesson = ss[sublessonInt].Trim(new[] { '\r', '\n' });
+        return (lesson, lesson.Length);
+      }
 
       return ("????????", 9);
     }

@@ -266,8 +266,19 @@
     <None Remove="Assets\wav\Start 05.wav" />
     <None Remove="Assets\wav\Start 06.wav" />
     <None Remove="Keyboard - Aha-Soft-Security-Login.ico" />
+    <None Remove="Misc\FreeTextLesson.txt" />
+    <None Remove="Misc\TypingDrillList.txt" />
     <None Remove="Resources\AudioQue.wav" />
     <None Remove="shapes.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\FreeTextLesson.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\TypingDrillList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
