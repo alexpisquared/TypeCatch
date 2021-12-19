@@ -150,6 +150,11 @@
                 <MenuItem Header="_2   HTML                "  Command="{Binding LTCmd}" CommandParameter="S-1"        />
                 <MenuItem Header="_3   NumPad (digits only)"  Command="{Binding LTCmd}" CommandParameter="S-2"        />
                 <MenuItem Header="_4   NumPad              "  Command="{Binding LTCmd}" CommandParameter="S-3"        />
+                <Separator/>
+                <MenuItem Header="_6   Linq                "  Command="{Binding LTCmd}" CommandParameter="S-4"        />
+                <MenuItem Header="_7   C#                  "  Command="{Binding LTCmd}" CommandParameter="S-5"        />
+                <MenuItem Header="_8   XAML                "  Command="{Binding LTCmd}" CommandParameter="S-6"        />
+                <MenuItem Header="_9   Ctrl                "  Command="{Binding LTCmd}" CommandParameter="S-7"        />
               </MenuItem>
               <MenuItem Header="_Phrases"                     FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                 <MenuItem Header="_100 Characters"            Command="{Binding LTCmd}" CommandParameter="P-1"        />

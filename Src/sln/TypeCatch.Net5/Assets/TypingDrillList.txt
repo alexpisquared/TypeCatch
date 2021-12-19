@@ -8,15 +8,15 @@ zing! //?/? ?//?? yes/no? /?/?/ ??/?/ zephyr/pizza? !/!z? /z??! /!/?z z/!!?
 z?z!/ ?!//z ?z?/! !?zz/ zenith/frozen waltz tzar/lizzie pkunzip.zip? new!
 all right! what? which? are you here? good luck/bye!
 
-·' ""()
+·' "()
 ((()))(()())(())()()())()( a) b) c) (home) ()(() )()() (Time), (mix), (Drill),
 (go) '''))) '')') )'')) ')')' ))')' I'm, it's (Don't) ')'') )')') isn't Can't
-(Father's) I'll """"""''' """"'""' '""""'' ""Hi!"" ""I'm hungry"" ""'""'"" ''""'""
-""Won't"", ""hasn't"", ""It's no good"", ""Bye"" ((""("" ""(("""" (""(""( """"(""(
-(""Ball""), (""Tie"") (""(("" ""(""("" (""Cow""), (""Wake up""), (""Fine"") ''('(
-(''(( (hasn't) '('(' (('(' (Doesn't) ))"")"" ""))"""" (""Disk"") "")"") """")"")
-(""Rome"") ')'("" )(""""' )')""( ()''"" (""(') ""'))( ""("")' '""(() ""I'll be back"",
-(""Don't cry""), ""L'Instant X"".
+(Father's) I'll """''' ""'"' '""'' "Hi!" "I'm hungry" "'"'" ''"'"
+"Won't", "hasn't", "It's no good", "Bye" (("(" "(("" ("("( ""("(
+("Ball"), ("Tie") ("((" "("(" ("Cow"), ("Wake up"), ("Fine") ''('(
+(''(( (hasn't) '('(' (('(' (Doesn't) ))")" "))"" ("Disk") ")") "")")
+("Rome") ')'(" )(""' )')"( ()''" ("(') "'))( "(")' '"(() "I'll be back",
+("Don't cry"), "L'Instant X".
 
 ·Parts of speech 1
 the the the the they they they they they they there there there there there
@@ -96,14 +96,14 @@ H1 { color: red; }
 >\><| |>\\< >x><z \ z>xX< | ><>., \ ,><<.
 
 ·HTML
-/#/#/# #'#'#' %""%""%"" %&%&%& _/_/_/ ;@;@;@ -:-:-: <!<!<! >=>=>= =""#993366"" ='30%'
+/#/#/# #'#'#' %"%"%" %&%&%& _/_/_/ ;@;@;@ -:-:-: <!<!<! >=>=>= ="#993366" ='30%'
 <a href=mailto:x@y.z> <html> <head><title>Welcome</title></head>
-<body bgcolor=#0F0F0F leftmargin=0><p align=""right"">Hi, people!</p>
-<table border=""0"" width=76%><tr><td>&nbsp;</td></tr></table>
+<body bgcolor=#0F0F0F leftmargin=0><p align="right">Hi, people!</p>
+<table border="0" width=76%><tr><td>&nbsp;</td></tr></table>
 <div align='center' width='50%'>
-<p style=""border:1px solid #339966"">&lt; &nbsp; &quot; &amp; &gt; </p>
+<p style="border:1px solid #339966">&lt; &nbsp; &quot; &amp; &gt; </p>
 </div> <!-- comments -->
-<hr width=82% color=""#38f7e9""><a href=""http://staminapro.com"" target=_blank>Home</a>
+<hr width=82% color="#38f7e9"><a href="http://staminapro.com" target=_blank>Home</a>
 </body></html>
 
 ·NumPad (digits only)
@@ -111,4 +111,16 @@ H1 { color: red; }
 
 ·NumPad
 7/8/9¶5/6/4¶3/1/2¶9/5/1¶87/46/32¶8*7*9¶5*6*4¶2*1*3¶7*5*3¶89*46*12¶7-9-8¶5-6-4¶3-1-2¶8-4-3¶79-65-20¶9+7+8¶5+4+6¶2+1+3¶7+6+2¶98+54+30¶7.98¶5.64¶3.12¶0.951¶3.14¶7/5*3-1+3.08¶76+84-943+80+215-30-51¶286/14*9*372/84*50/306¶.315*.486+1.509-.75/6.02¶45+5.18+862-.75-13/.94/26*3.14*80+1.27*50-6.52/9";
-  
+
+· Linq
+var rv = dbx.People.Where(r => r == "Hello" && r.Id != null && r.Age <= 45 && r.Income >= 123).OrderBy(r => r.RIF).Take(9);
+
+· C#
+      public static LessonHelper Create() { return new LessonHelper(); }
+
+· XAML
+      <lnk:WindowBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=System"
+
+· Ctrl
+Ctrl-K, Ctrl-D
+Ctrl-K, Ctrl-e

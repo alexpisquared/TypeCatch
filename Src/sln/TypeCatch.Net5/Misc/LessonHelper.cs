@@ -31,21 +31,6 @@ namespace TypingWpf
           100;
       }
 
-#if DEBUG
-
-      var lessons = File.ReadAllText("Assets\\TypingDrillList.txt").Split(new[] { "·" }, StringSplitOptions.RemoveEmptyEntries);
-      Trace.WriteLine($"*** {lessons.Length} lessons");
-
-      foreach (var lesson in lessons)
-      {
-        var allLines = lesson.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-
-        Trace.WriteLine($"***   {allLines.First()} ");
-
-      }
-
-#endif
-
       var allText = File.ReadAllText("Assets\\FreeTextLesson.txt");
 
       if (_random.Next(10) % 2 == 0)
@@ -67,37 +52,61 @@ namespace TypingWpf
       }
 
     }
+
+    private static string[] LoadAllLessons()
+    {
+      var lessons = File.ReadAllText("Assets\\TypingDrillList.txt").Split(new[] { "·" }, StringSplitOptions.RemoveEmptyEntries);
+
+      Trace.WriteLine($"*** {lessons.Length} lessons");
+      foreach (var lesson in lessons)
+      {
+        var allLines = lesson.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        Trace.WriteLine($"***   {allLines.First()}  {allLines.Length - 1,4} lines");
+      }
+
+      return lessons;
+    }
+
     public static void CodeGen()
     {
       var i = 0;
-      foreach (var s in _specialDrill.Split(new[] { "[#]", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
+      foreach (var s in _specialDrill.Split(new[] { "·", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
       {
         if (s.Length > 77 || s.StartsWith("\t")) continue;
         var ln = $"<MenuItem Header=\"_{i + 1,-2:X} {s,-30}\"      Command=\"{{Binding LTCmd}}\" CommandParameter=\"D-{i++}\"  />";
         Trace.TraceInformation(ln);
       }
     }
-    public static (string lessonTxt, int lessonLen) GetLesson(LessonType _0to3, string sublesson)
+    public static (string lessonTxt, int lessonLen) GetLesson(LessonType lt, string sublesson)
     {
-      string s;
-      switch (_0to3)
+      string allLessonsForType;
+      switch (lt)
       {
-        case LessonType.BasicLessons: s = _basicLessons; break;
-        case LessonType.Combinations: s = _combinations; break;
-        case LessonType.DigitSymbols: s = _digitSymbols; break;
-        case LessonType.SpecialDrill: s = _specialDrill; break;
-        case LessonType.Experimental: s = getFromOneDrive(sublesson); return (s, s.Length);
+        case LessonType.BasicLessons: allLessonsForType = _basicLessons; break;
+        case LessonType.Combinations: allLessonsForType = _combinations; break;
+        case LessonType.DigitSymbols: allLessonsForType = _digitSymbols; break;
+        case LessonType.SpecialDrill: allLessonsForType = _specialDrill; break;
+        case LessonType.Experimental: allLessonsForType = getFromOneDrive(sublesson); return (allLessonsForType, allLessonsForType.Length);
         case LessonType.PhrasesRandm: return GetLesson_Phrases(sublesson);
-        case LessonType.EditableFile: s = getCreateFromOneDrive(sublesson); return (s, s.Length);
-        default: s = $"Nothing for {_0to3}"; break;
+        case LessonType.EditableFile: allLessonsForType = getCreateFromOneDrive(sublesson); return (allLessonsForType, allLessonsForType.Length);
+        case LessonType.DrillsInFile: allLessonsForType = "Drills in file is under construction"; return (allLessonsForType, allLessonsForType.Length);
+        default: allLessonsForType = $"Nothing for {lt}"; break;
       }
 
-      var ss = s.Split(new[] { "[#] " }, StringSplitOptions.RemoveEmptyEntries);
+      var lessonArrayFromFile = LoadAllLessons();
 
-      if (int.TryParse(sublesson, out var sublessonInt) && sublessonInt < ss.Length)
+      var lessonArray = allLessonsForType.Split(new[] { "· " }, StringSplitOptions.RemoveEmptyEntries);
+
+      if (int.TryParse(sublesson, out var sublessonInt) && sublessonInt < lessonArray.Length)
       {
-        var lesson = ss[sublessonInt].Trim(new[] { '\r', '\n' });
-        return (lesson, lesson.Length);
+        var lessonHardcoded = lessonArray[sublessonInt].Trim(new[] { '\r', '\n' });
+
+        var lessonHeaderName = lessonHardcoded.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).First();
+        var lessonFromFile = lessonArrayFromFile.FirstOrDefault(r => r.StartsWith(lessonHeaderName));
+        if (lessonFromFile != null)
+          return (lessonFromFile, lessonFromFile.Length);
+
+        return (lessonHardcoded, lessonHardcoded.Length);
       }
 
       return ("????????", 9);
@@ -178,6 +187,7 @@ namespace TypingWpf
     SpecialDrill,
     PhrasesRandm,
     Experimental,
-    EditableFile
+    EditableFile,
+    DrillsInFile
   }
 }
