@@ -141,6 +141,7 @@
     <None Remove="Assets\mp3\Start 04.mp3" />
     <None Remove="Assets\mp3\Start 05.mp3" />
     <None Remove="Assets\mp3\Start 06.mp3" />
+    <None Remove="Assets\TypingDrillList.Org.txt" />
     <None Remove="Assets\wav\Bad - B&amp;B suxx.wav" />
     <None Remove="Assets\wav\Bad - Cry.wav" />
     <None Remove="Assets\wav\Bad - Noseblow.wav" />
@@ -274,6 +275,9 @@
 
   <ItemGroup>
     <Content Include="Assets\FreeTextLesson.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\TypingDrillList.Org.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\TypingDrillList.txt">
