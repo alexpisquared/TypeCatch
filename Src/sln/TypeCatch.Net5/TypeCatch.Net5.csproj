@@ -4,7 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
+	  <Nullable>enable</Nullable>
+	  <LangVersion>latest</LangVersion>
+	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Keyboard - Aha-Soft-Security-Login.ico</ApplicationIcon>
   </PropertyGroup>
 

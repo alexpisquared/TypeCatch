@@ -209,9 +209,10 @@ namespace TypingWpf.VMs
 
       switch (x[0])
       {
+        case 'D': LesnTyp = LessonType.DrillsInFile; break;
         case 'B': LesnTyp = LessonType.BasicLessons; break;
         case 'C': LesnTyp = LessonType.Combinations; break;
-        case 'D': LesnTyp = LessonType.DigitSymbols; break;
+        case 'N': LesnTyp = LessonType.NumerSymbols; break;
         case 'F': LesnTyp = LessonType.EditableFile; break;
         case 'S': LesnTyp = LessonType.SpecialDrill; break;
         case 'P': LesnTyp = LessonType.PhrasesRandm; break;

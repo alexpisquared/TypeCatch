@@ -353,17 +353,15 @@ B-| B-( 8=) :-)))))
 7/8/9¶5/6/4¶3/1/2¶9/5/1¶87/46/32¶8*7*9¶5*6*4¶2*1*3¶7*5*3¶89*46*12¶7-9-8¶5-6-4¶3-1-2¶8-4-3¶79-65-20¶9+7+8¶5+4+6¶2+1+3¶7+6+2¶98+54+30¶7.98¶5.64¶3.12¶0.951¶3.14¶7/5*3-1+3.08¶76+84-943+80+215-30-51¶286/14*9*372/84*50/306¶.315*.486+1.509-.75/6.02¶45+5.18+862-.75-13/.94/26*3.14*80+1.27*50-6.52/9
 
 · Linq
-var rv = dbx.People.Where(r => r == ""Hello"" && r.Id != null && r.Age <= 45 && r.Income >= 123).OrderBy(r => r.RIF).Take(9);
+see C:\g\TypeCatch\Src\sln\TypeCatch.Net5\Assets\TypingDrillList.txt
 
 · C#
-public static LessonHelper Create() { return new LessonHelper(); }
+see C:\g\TypeCatch\Src\sln\TypeCatch.Net5\Assets\TypingDrillList.txt
 
 · XAML
-<lnk:WindowBase xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" xmlns:d=""http://schemas.microsoft.com/expression/blend/2008"" xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006"" xmlns:System=""clr-namespace:System;assembly=System""
+see C:\g\TypeCatch\Src\sln\TypeCatch.Net5\Assets\TypingDrillList.txt
 
 · Ctrl
-Ctrl-K, Ctrl-D
-Ctrl-K, Ctrl-e
-";
+see C:\g\TypeCatch\Src\sln\TypeCatch.Net5\Assets\TypingDrillList.txt";
   }
 }

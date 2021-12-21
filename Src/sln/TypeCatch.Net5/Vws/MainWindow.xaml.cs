@@ -2,6 +2,7 @@
 using AsLink;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace TypingWpf
 {
@@ -22,9 +23,18 @@ namespace TypingWpf
     void onWindowRestoree(object s, RoutedEventArgs e) { wr.Visibility = Visibility.Collapsed; wm.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Normal; }
     void onWindowMaximize(object s, RoutedEventArgs e) { wm.Visibility = Visibility.Collapsed; wr.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Maximized; }
 
-    private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
-
+      const string accelkeys = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+";
+      int i = 0;
+      var rr = LessonHelper.LoadDrillDataArray();
+      foreach (var dr in rr)
+        mniFileDrills.Items.Add(new MenuItem
+        {
+          Header = $"_{accelkeys[i++]} \t{dr.Header}",
+          CommandParameter = dr.SqlExcerciseName,
+          //Command = .. used through Style.
+        });
     }
   }
 }
