@@ -149,3 +149,9 @@ xmlns:System="clr-namespace:System;assembly=System">
 ·A-17≈≈ Ctrl≡
 Ctrl-K, Ctrl-D
 Ctrl-K, Ctrl-e
+
+·A-18≈≈ !#$ &()=≡
+4321 != $"(88 * 77)" && "#def" != $"#f80"
+4321 != $"(88 * 77)" && "#def" != $"#f80"
+4321 != $"(88 * 77)" && "#def" != $"#f80"
+4321 != $"(88 * 77)" && "#def" != $"#f80"

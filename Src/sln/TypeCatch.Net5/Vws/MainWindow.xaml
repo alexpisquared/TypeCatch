@@ -256,12 +256,11 @@
             </MultiBinding>
           </TextBlock.Background>-->
         </TextBlock>
-        <TextBox   Grid.Column="1" Grid.Row="1" x:Name="t2" FontSize="24" Margin="0 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding PupilInput, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812', UpdateSourceTrigger=PropertyChanged}"                    
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="t2" FontSize="24" Margin="0 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding PupilInput, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812', UpdateSourceTrigger=PropertyChanged}"                    
                  BorderThickness="0" AcceptsReturn="True" IsEnabled="{Binding IsInSsn}" Background="Transparent" Foreground="{Binding IsCorrect, Converter={lnk:BoolToColorConverter}}" 
                  msc:FocusExtension.IsFocused="{Binding IsFocusedPI}" />
 
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" Margin="-5 -5 -5 -5" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}"
-              BorderThickness="2" CornerRadius="15"  >
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" BorderThickness="1" CornerRadius="4" Margin="-1 -3 -1 -2" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
           <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
               <GradientStop Color="#777" Offset="0"/>
@@ -486,13 +485,11 @@
           <TextBlock   Foreground="#00f" Text="{Binding CrntCpm, FallbackValue=123, StringFormat=\{0:N0\}}" FontSize="20" HorizontalAlignment="Center" Margin="0 0 50 0" ToolTip="Your current typing speed" />
           <TextBlock   Foreground="#f0f" Text="{Binding RcrdCpm, FallbackValue=123, StringFormat=\{0:N0\}}" FontSize="20" HorizontalAlignment="Center" Margin="50 0 0 0" ToolTip="Your record typing speed for this lesson in cpm (characters per minute)" />
           <Rectangle         Fill="#f0f" Width="1" StrokeThickness="0"  Height="10" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+          <TextBlock   Foreground="#ddd" Text="{Binding InfoMsg, FallbackValue='···'}" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center" />
         </Grid>
       </Border>
 
-      <TextBlock   Grid.RowSpan="3" Grid.ColumnSpan="2" Foreground="#00a" 
-                     Text="{Binding InfoMsg, FallbackValue='···'}" 
-                     FontSize="13" VerticalAlignment="Bottom"    HorizontalAlignment="Right" Margin="5"
-                     ToolTip="InfoMsg" />
 
     </Grid>
   </Border>

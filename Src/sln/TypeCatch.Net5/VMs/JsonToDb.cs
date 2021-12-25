@@ -48,7 +48,7 @@ namespace TypingWpf.VMs
           Audible   /**/ = appStngUsr.Audible;
           LesnTyp   /**/ = appStngUsr.LesnTyp;
 
-          InfoMsg = $" Total {db.SessionResults.Count(),4} runs (SesRslt rows). \r\n {LesnTyp} - {SubLesnId}\r\n User: '{SelectUser}' (Stngs: {appStngUsr.UserId},  bfr-aft: {appSetngCountBefore}-{appSetngCount_After}) ";
+          InfoMsg = $" {DashName}/{SelectUser}/Global   {await db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == DashName).CountAsync()}/{await db.SessionResults.Where(r => r.UserId == SelectUser).CountAsync()}/{await db.SessionResults.CountAsync()} runs   (tbl SessionResults)   ";
         }
       }
       catch (Exception ex) { InfoMsg = ex.Log(); }
@@ -135,7 +135,7 @@ namespace TypingWpf.VMs
 
           var rv = db.TrySaveReportAsync(); //Trace.TraceInformation($"{rv}");
 
-          InfoMsg = $" Total {db.SessionResults.Count(),4} SesRslt rows. \r\n {LesnTyp} - {SubLesnId}\r\n SelectUser: '{SelectUser}'";
+          InfoMsg = $" GLobal/Total runs {db.SessionResults.Count(),4} (SessionResults rows). \r\n {LesnTyp}-{SubLesnId}\r\n SelectUser: '{SelectUser}'";
         }
       }
       catch (Exception ex) { InfoMsg = ex.Log(); }
