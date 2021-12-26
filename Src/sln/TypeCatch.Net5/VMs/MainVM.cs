@@ -134,6 +134,8 @@ namespace TypingWpf.VMs
       switch ((string)mode)
       {
         case "Full": f = "y-M-d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt)); break;
+        case "Year": f = "MMM d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddYears(-1)).OrderByDescending(r => r.DoneAt)); break;
+        case "3Mon": f = "ddd d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-3)).OrderByDescending(r => r.DoneAt)); break;
         case "Mont": f = "ddd d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); break;
         case "Week": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-7)).OrderByDescending(r => r.DoneAt)); break;
         case "PreX": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10)); break;
