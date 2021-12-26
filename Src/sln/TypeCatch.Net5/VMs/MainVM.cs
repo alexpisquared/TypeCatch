@@ -211,6 +211,7 @@ namespace TypingWpf.VMs
 
       switch (x[0])
       {
+        case 'A':
         case 'D': LesnTyp = LessonType.DrillsInFile; break;
         case 'B': LesnTyp = LessonType.BasicLessons; break;
         case 'C': LesnTyp = LessonType.Combinations; break;
