@@ -61,7 +61,7 @@ namespace TypingWpf.VMs
 
         CurInfo = $"{(LesnTyp)} - {SubLesnId:N0}  ";// ({DashName})";
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right: {ex.Message}. Talk to you later"); }
 
       Trace.TraceInformation($"{DateTime.Now:HH:mm:ss.fff} AutoExec: \t.");
     }
@@ -263,7 +263,7 @@ namespace TypingWpf.VMs
         if (todoToday < 0)
           todoToday = _planPerDay - doneToday;
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right: {ex.Message}. Talk to you later"); }
 
       DoneToday = doneToday;
       ExrzeRuns = sinceRcrd;

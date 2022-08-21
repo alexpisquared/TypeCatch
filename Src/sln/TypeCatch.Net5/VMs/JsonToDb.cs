@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,9 +51,18 @@ namespace TypingWpf.VMs
 
           InfoMsg = $" {DashName}/{SelectUser}/Global   {await db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == DashName).CountAsync()}/{await db.SessionResults.Where(r => r.UserId == SelectUser).CountAsync()}/{await db.SessionResults.CountAsync()} runs   (tbl SessionResults)   ";
         }
+
+        synth.SpeakAsyncCancelAll(); synth.SpeakFaF("Ready, player one.");
+      }
+      catch (SqlException ex)
+      {
+        InfoMsg = ex.Log();
+        synth.SpeakAsyncCancelAll(); 
+        await synth.SpeakAsync("Get the right 'AzureSqlCredentials.json' to the right place. Everything is your friend. ");
+        await Task.Delay(2000); // SpeakAsync does not wait long enough to finish the sentence.
       }
       catch (Exception ex) { InfoMsg = ex.Log(); }
-      finally { IsBusy = false; synth.SpeakAsyncCancelAll(); synth.SpeakFaF("Ready, player one."); }
+      finally { IsBusy = false; }
     }
 
     async Task<AppStng> getCurUserSettings(A0DbMdl db)
