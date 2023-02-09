@@ -3,7 +3,7 @@ using AsLink;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using TypingWpf.DbMdl;
+using TypeCatch.Net5.DbMdl;
 
 namespace TypingWpf.DbExt
 {

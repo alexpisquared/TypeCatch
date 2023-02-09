@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TypeCatch.Net5.DbMdl;
 using TypingWpf.DbMdl;
 using TypingWpf.Resources;
 using TypingWpf.VMs;

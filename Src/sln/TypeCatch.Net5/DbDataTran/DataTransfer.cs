@@ -3,6 +3,7 @@ using AsLink;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using TypeCatch.Net5.DbMdl;
 using TypingWpf.DbMdl;
 
 namespace TypingWpf.DbDataTran

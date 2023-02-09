@@ -6,9 +6,9 @@ using System.Windows;
 using System.IO;
 using System.Globalization;
 using TypingWpf.DbDataTran;
-using TypingWpf.DbMdl;
 using AAV.Sys.Helpers;
 using SpeechSynthLib.Adapter;
+using TypeCatch.Net5.DbMdl;
 
 namespace TypingWpf.VMs
 {

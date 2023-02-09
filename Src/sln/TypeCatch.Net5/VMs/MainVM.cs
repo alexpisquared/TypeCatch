@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using TypeCatch.Net5;
-using TypingWpf.DbMdl;
+using TypeCatch.Net5.DbMdl;
 using xMvvmMin;
 using db = TypingWpf.DbMdl;
 

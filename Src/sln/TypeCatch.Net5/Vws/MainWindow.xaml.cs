@@ -3,6 +3,7 @@ using AsLink;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using TypeCatch.Net5.DbMdl;
 
 namespace TypingWpf
 {
@@ -14,7 +15,7 @@ namespace TypingWpf
 
       _ignoreEscape = true;
 
-      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{DbMdl.A0DbMdl.GetA0DbMdlAzureDb.ServerDatabase()}";
+      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{A0DbMdl.GetA0DbMdlAzureDb.ServerDatabase()}";
 
       Topmost = Debugger.IsAttached;
     }

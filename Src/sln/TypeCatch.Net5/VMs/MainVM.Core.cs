@@ -8,6 +8,7 @@ using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using AsLink;
 using TypeCatch.Net5;
+using TypeCatch.Net5.DbMdl;
 using TypingWpf.Mdl;
 using dbMdl = TypingWpf.DbMdl;
 
@@ -147,7 +148,7 @@ namespace TypingWpf.VMs
         if (thisResult.CpM > prevRcrdCpm)
           thisResult.IsRecord = true;
 
-        using (var db = dbMdl.A0DbMdl.GetA0DbMdlAzureDb)
+        using (var db = A0DbMdl.GetA0DbMdlAzureDb)
         {
           //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
           //2019-12/           await Task.Delay(50);

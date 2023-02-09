@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using TypingWpf.DbMdl;
+using TypeCatch.Net5.DbMdl;
 
 namespace TypingWpf.Vws
 {

@@ -5,6 +5,7 @@ using System.Windows;
 using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using MVVM.Common;
+using TypeCatch.Net5.DbMdl;
 using TypingWpf.DbMdl;
 using db = TypingWpf.DbMdl;
 using js = TypingWpf.Mdl;
