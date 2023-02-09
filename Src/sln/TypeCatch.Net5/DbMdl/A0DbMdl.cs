@@ -43,7 +43,7 @@ namespace TypingWpf.DbMdl
     }
 
 
-    const string _rgn = "azuresqluser", _key = "use proper key here";
+    const string _rgn = "azuresqluser", _key = "Everything is your friend...";
     static readonly AzureSqlCredentials _asc;
 
     static A0DbMdl()
