@@ -46,7 +46,6 @@ namespace TypingWpf.VMs
       return vm;
     }
 
-    public MainVM() { }
 
     static void deleteOldBackUps_NOTUSED_DEMO_ONLY()
     {

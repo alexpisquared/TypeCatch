@@ -1,7 +1,9 @@
 ﻿using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
 using AmbienceLib;
+using Microsoft.Extensions.Configuration;
 using MVVM.Common;
+using Serilog.Core;
 using System;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -25,9 +27,17 @@ namespace TypingWpf.VMs
     readonly Stopwatch _swMain = new Stopwatch();
     ResourcePlayer _soundPlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
-    readonly SpeechSynth synth = new SpeechSynth( "");
-    //Brush _errorBrush = new SolidColorBrush(Colors.Red);
-    //Brush _greenBrush = new SolidColorBrush(Colors.Green);
+    readonly SpeechSynth synth;
+
+    public MainVM()
+    {
+      var key = new ConfigurationBuilder().AddUserSecrets<App>().Build()["AppSecrets:MagicSpeech"] ?? "no key"; //tu: adhoc usersecrets
+      //var lgr = new Logger();
+
+      synth = new SpeechSynth(key, true, lgr: null);
+
+      if (Debugger.IsAttached) return;
+    }
 
     protected override void AutoExec() { }
     protected override async Task AutoExecAsync()
