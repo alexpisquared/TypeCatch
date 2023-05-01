@@ -41,7 +41,7 @@ namespace TypingWpf.VMs
     db.SessionResult _SelectSnRt;   /**/ public SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
     db.User _SlctUser;              /**/ public User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
     string _SelectUser;             /**/ public string SelectUser { get => _SelectUser; set { if (Set(ref _SelectUser, value) /*&& _isLoaded*/) { using (var db = A0DbMdl.GetA0DbMdlAzureDb) { loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(db), value, db); } } } }
-    bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { Bpr.BeepClk(); ProLvl = value ? 1 : .7; } } }
+    bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { Bpr.Click(); ProLvl = value ? 1 : .7; } } }
     double _ProLvl = .7;            /**/ public double ProLvl { get => _ProLvl; set => Set(ref _ProLvl, value); }
     double _Opcty = 1;              /**/ public double Opcty { get => _Opcty; set => Set(ref _Opcty, value); }
     bool _IsInSsn = true;           /**/ public bool IsInSsn { get => _IsInSsn; set { if (Set(ref _IsInSsn, value)) {; } } }

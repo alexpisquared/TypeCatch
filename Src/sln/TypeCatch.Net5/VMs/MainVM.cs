@@ -1,7 +1,7 @@
 ﻿using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
+using AmbienceLib;
 using MVVM.Common;
-using SpeechSynthLib.Adapter;
 using System;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -25,7 +25,7 @@ namespace TypingWpf.VMs
     readonly Stopwatch _swMain = new Stopwatch();
     ResourcePlayer _soundPlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
-    readonly SpeechSynthesizer synth = new SpeechSynthesizer();
+    readonly SpeechSynth synth = new SpeechSynth( "");
     //Brush _errorBrush = new SolidColorBrush(Colors.Red);
     //Brush _greenBrush = new SolidColorBrush(Colors.Green);
 
@@ -48,7 +48,7 @@ namespace TypingWpf.VMs
           IsAdmin = VerHelper.IsVIP;
 
           //var gnd = (VoiceGender)((AppRunCount++) % 3 + 1);
-          synth.Rate = 3;
+          //synth.Rate = 3;
           //Feb 2020: seems to hang on this one: synth.SelectVoiceByHints(gnd, VoiceAge.Senior);
 
           _dt = new DispatcherTimer(TimeSpan.FromMilliseconds(_t333ms), DispatcherPriority.Background, new EventHandler(async (s, e) => await tick333ms()), Dispatcher.CurrentDispatcher); //tu: one-line timer
@@ -67,7 +67,7 @@ namespace TypingWpf.VMs
     }
     protected override async Task ClosingVM()
     {
-      Bpr.BeepClk();
+      //Bpr.Click();
 
       if (_cancelClosing = IsInSsn) // if in session: finish it and cancel closing and show results.
       {
@@ -114,7 +114,7 @@ namespace TypingWpf.VMs
 
         Debug.WriteLine($"~~~ D: {db.SessionResults.Count()} - {CurUserCurExcrsRsltLst.Count}");
       }
-      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Something is not right: {ex.Message}. Talk to you later"); }
+      catch (Exception ex) { ex.Log(); synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Something is not right: {ex.Message}. Talk to you later"); }
     }
     string getTheLatestLessonTypeTheUserWorksOn(A0DbMdl db)
     {
@@ -153,7 +153,7 @@ namespace TypingWpf.VMs
     {
       if (SelectSnRt == null) return;
 
-      synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Are you sure?");
+      synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Are you sure?");
       if (MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
       {
         DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdlAzureDb);
@@ -202,7 +202,7 @@ namespace TypingWpf.VMs
 
       pb.EndParagraph();
       pb.EndStyle();
-      synth.SpeakAsyncCancelAll(); synth.SpeakFaF(pb);
+      synth.SpeakAsyncCancelAll(); synth.SpeakFAF(pb);
       */
     }
     async void prepLessonType(string x, bool doF1 = true)
@@ -238,7 +238,7 @@ namespace TypingWpf.VMs
 
       CurInfo = $"{(LesnTyp)} - {SubLesnId:N0}  ";// ({DashName})";
     }
-    async Task updateDoneTodo(string selectUser, SpeechSynthesizer synth, A0DbMdl db)
+    async Task updateDoneTodo(string selectUser, SpeechSynth synth, A0DbMdl db)
     {
       int doneToday = -1, sinceRcrd = -1, todoToday = -1;
       try

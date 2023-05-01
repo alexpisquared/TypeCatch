@@ -45,7 +45,7 @@ namespace TypingWpf.VMs
         {
           Debug.Write($" ^^ Stopping ---------------- ... ");
           _swMain.Stop();
-          synth.SpeakFaF("Stopped.");
+          synth.SpeakFAF("Stopped.");
         }
       }
       else
@@ -55,7 +55,7 @@ namespace TypingWpf.VMs
         {
           Debug.Write($" vv Starting +++++++++++++++++ ... ");
           _swMain.Start();
-          synth.SpeakFaF("StartedAt.");
+          synth.SpeakFAF("StartedAt.");
         }
       }
       Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" - {_swMain.IsRunning,9}");
@@ -113,7 +113,7 @@ namespace TypingWpf.VMs
       {
         IsInSsn = false;    //todo: why so slow in reflecting in the UI???
         await Task.Yield();
-        Bpr.BeepClk();
+        Bpr.Click();
 
         if (!_swMain.IsRunning || _swMain.ElapsedTicks == 0) // if has not been started yet.
           return;
@@ -131,17 +131,17 @@ namespace TypingWpf.VMs
           return;
         }
 
-        if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Does not count: Mistyped! Always finish typing till the last letter. Pressing Escape button ruins/discards the lesson."); return; }
+        if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Does not count: Mistyped! Always finish typing till the last letter. Pressing Escape button ruins/discards the lesson."); return; }
 
         var prevRcrdCpm = RcrdCpm;
         var thisResult = new dbMdl.SessionResult { Duration = _swMain.Elapsed, ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName.Substring(0, 2).ToLower()}{Environment.MachineName.Substring(Environment.MachineName.Length - 1)}", DoneAt = DateTime.Now };
         if (thisResult.CpM < .333 * prevRcrdCpm)
         {
-          synth.SpeakAsyncCancelAll(); synth.SpeakFaF($"Does not count: Very-very-very- V. E. R. Y. slow!");
+          synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Does not count: Very-very-very- V. E. R. Y. slow!");
           return;
         }
 
-        //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakFaF(pb); // synth.SpeakFaF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
+        //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakFAF(pb); // synth.SpeakFAF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
 
         var swStoring = Stopwatch.StartNew();
 

@@ -52,7 +52,7 @@ namespace TypingWpf.Vws
           Debug.WriteLine($"::>{tbInfo.Text}");
 
           await Task.Yield();
-          Bpr.BeepClk();
+          Bpr.Click();
 
           int brandNew = 0, noMatchesInDb = 0, alreadySame = 0, updated = 0;
 
