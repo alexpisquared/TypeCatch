@@ -216,14 +216,26 @@
       </StackPanel>
 
       <StackPanel x:Name="pnlZoomer" Orientation="Horizontal" Margin="4" HorizontalAlignment="Right" Grid.ColumnSpan="3" >
+        <StackPanel.Resources>
+          <Style TargetType="{x:Type Button}" >
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width"  Value="20" />
+            <Setter Property="Foreground" Value="#ccc" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Margin" Value="5" />
+          </Style>
+
+        </StackPanel.Resources>
         <xui:Zoomer x:Name="ZoomSlider2" ZmValue="{Binding ZV, ElementName=w, FallbackValue=1, Mode=TwoWay}" />
 
-        <Button Margin="0 2 0 2" Content="-"                          FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Padding="2 -3" Width="20" Foreground="#111" IsTabStop="False" ToolTip="Close Window" Click="onWindowMinimize"                                     />
-        <Button Margin="0 2 0 2" Content="£" FontFamily="Wingdings 2" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Padding="0 -1" Width="20" Foreground="#111" IsTabStop="False" ToolTip="Close Window" Click="onWindowMaximize" x:Name="wm"                         />
-        <Button Margin="0 2 0 2" Content="+" FontFamily="Wingdings 2" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Padding="0 -1" Width="20" Foreground="#111" IsTabStop="False" ToolTip="Close Window" Click="onWindowRestoree" x:Name="wr" Visibility="Collapsed"  />
-        <Button Margin="0 2 2 0" Content="r" FontFamily="Webdings"    FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Padding="0 -1" Width="20" Foreground="#F00" IsTabStop="False" ToolTip="Close Window" Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=w}" Opacity="{Binding ProLvl, FallbackValue=.4}" 
-              IsCancel="True" />
-        <!--<Button Margin="0 2 2 0" Content="r" FontFamily="Webdings"    FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Padding="-0 -1" Width="20" Foreground="Red" ToolTip="Close Window" Click="onWindowCloseeee" IsCancel="True" />-->
+        <Button Content="-"                          FontSize="20" Padding="2 -3" ToolTip="Close Window" Click="onWindowMinimize"                                     />
+        <Button Content="£" FontFamily="Wingdings 2" FontSize="16" Padding="0 -1" ToolTip="Close Window" Click="onWindowMaximize" x:Name="wm"                         />
+        <Button Content="+" FontFamily="Wingdings 2" FontSize="16" Padding="0 -1" ToolTip="Close Window" Click="onWindowRestoree" x:Name="wr" Visibility="Collapsed"  />
+        <Button Content="r" FontFamily="Webdings"    FontSize="18" Padding="0 -1" ToolTip="Close Window" Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=w}" Opacity="{Binding ProLvl, FallbackValue=.4}" IsCancel="True" Foreground="#F66" />
       </StackPanel>
 
       <TextBlock  x:Name="VersioInfo" Text="123" Foreground="#ccc" FontSize="13" Margin="8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.ColumnSpan="3" TextAlignment="Right"/>
