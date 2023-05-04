@@ -120,14 +120,12 @@ namespace TypingWpf.VMs
 
         _swMain.Stop();
 
-        if (PupilInput.Length == 0)
-          return;
+        //if (PupilInput.Length == 0)
+        //  return;
 
         if (PupilInput.Trim().Length < LessonLen - 3)
         {
-#if !DEBUG
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Does not count: Too short!");
-#endif
+          synth.SpeakFAF($"Does not count: Too short!", speakingRate: 1.4);
           return;
         }
 
@@ -153,15 +151,15 @@ namespace TypingWpf.VMs
           //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
           //2019-12/           await Task.Delay(50);
 
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("adding");    /**/ db.SessionResults.Add(SelectSnRt = thisResult);                                                           /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("added");
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("seting");    /**/ await updateSettings(db);                                                                                 /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("setingsed");
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("saving");    /**/ await db.TrySaveReportAsync();                                                                            /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("saved");
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("loading");   /**/ loadListsFromDB(DashName, SelectUser, db);                                                                /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("loaded");
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("todoing");   /**/ await updateDoneTodo(SelectUser, synth, db);                                                              /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("todoed");
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync("charting");  /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      /**/       //      synth.SpeakAsyncCancelAll(); await synth.Speak("charted");
-        }
+          db.SessionResults.Add(SelectSnRt = thisResult);                                                           
+          await updateSettings(db);                                                                                 
+          await db.TrySaveReportAsync();                                                                            
+          loadListsFromDB(DashName, SelectUser, db);                                                                
+          await updateDoneTodo(SelectUser, synth, db);                                                              
+          _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());      
 
-        synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"took {swStoring.Elapsed.TotalSeconds:N0} seconds.");
+          synth.SpeakFAF("OK?");
+        }
 
         IsFocusedPI = false;
         IsFocusedSB = true;
@@ -178,8 +176,6 @@ namespace TypingWpf.VMs
           else
           {
             //Jun 2019: too old: SoundPlayer.PlaySessionFinish_Baad();
-
-            synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"{thisResult.CpM}");
 
             if (TodoToday > 0)
             {
