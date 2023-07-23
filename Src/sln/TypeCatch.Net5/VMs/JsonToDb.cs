@@ -59,7 +59,7 @@ namespace TypingWpf.VMs
       {
         InfoMsg = ex.Log();
         synth.SpeakAsyncCancelAll(); 
-        await synth.SpeakAsync("Get the right 'AzureSqlCredentials.json' to the right place. Everything is your friend. ");
+        await synth.SpeakAsync("Get the right 'AzureSqlCredentials.json' to the right place. Everything is your friend. BTW, resetting password on Azure portal is easier than other options.");
         await Task.Delay(2000); // SpeakAsync does not wait long enough to finish the sentence.
       }
       catch (Exception ex) { InfoMsg = ex.Log(); }
