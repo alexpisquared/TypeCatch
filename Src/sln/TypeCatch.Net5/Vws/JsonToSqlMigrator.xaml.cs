@@ -31,7 +31,7 @@ namespace TypingWpf.Vws
       tbInfo.Text = tbEror.Text = "";
     }
 
-    async void onLoaded(object sender, RoutedEventArgs e) { await migrate(A0DbMdl.GetA0DbMdlAzureDb); }
+    async void onLoaded(object sender, RoutedEventArgs e) { await migrate(A0DbMdl.GetA0DbMdl); }
     async Task migrate(A0DbMdl db)
     {
       Bpr.Beep1of2();

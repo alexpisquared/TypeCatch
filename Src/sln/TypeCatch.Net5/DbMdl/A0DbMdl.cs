@@ -50,8 +50,10 @@ public partial class A0DbMdl : DbContext
     catch (Exception ex) { ex.Log(); throw; }
   }
 
+  public static A0DbMdl GetA0DbMdl => GetA0DbMdlExpress;
   public static A0DbMdl GetA0DbMdlAzureDb => new($"data source=sqs.database.windows.net;initial catalog=OneBase;persist security info=True;user id={_asc.Usr};password=\"{_asc.Key}\";MultipleActiveResultSets=True;App=EntityFramework");
-  public static A0DbMdl GetA0DbMdlExpress => new(@"Data Source=.\SQLEXPRESS;initial catalog=TypeCatchDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+  public static A0DbMdl GetA0DbMdlExpress => new(@"Data Source=.\SQLEXPRESS;initial catalog=OneBase;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+  public static A0DbMdl GetA0DbMdlExp_OLD => new(@"Data Source=.\SQLEXPRESS;initial catalog=TypeCatchDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
   public static A0DbMdl GetA0DbMdlLocalDb => new($@"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename={App.Dbfn};Integrated Security=True;Connect Timeout=15;");
 
   public static A0DbMdl GetInitDbx([CallerMemberName] string cmn = "", [CallerFilePath] string cfp = "", [CallerLineNumber] int cln = 0)
@@ -59,7 +61,7 @@ public partial class A0DbMdl : DbContext
     Bpr.BeepShort();
 
     var sw = Stopwatch.StartNew();
-    var db = GetA0DbMdlAzureDb;
+    var db = GetA0DbMdl;
 
     Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   took {sw.ElapsedMilliseconds:N0} ms."); sw.Restart();
 
@@ -76,7 +78,7 @@ public partial class A0DbMdl : DbContext
     //Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff} GetCreateA0DbMdl: called from {cfp}({cln}):\t{cmn}()");
 
     Bpr.BeepShort();
-    var db = GetA0DbMdlAzureDb;
+    var db = GetA0DbMdl;
     Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   took {sw.ElapsedMilliseconds:N0} ms."); sw.Restart();
     if (db.Database.Exists())
 #if !NeedToWaitFor_4sec

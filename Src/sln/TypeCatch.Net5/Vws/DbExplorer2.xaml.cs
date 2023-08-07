@@ -11,7 +11,7 @@ namespace TypingWpf.Vws
 {
   public partial class DbExplorer2 : WindowBase
   {
-    readonly A0DbMdl _db = A0DbMdl.GetA0DbMdlAzureDb;
+    readonly A0DbMdl _db = A0DbMdl.GetA0DbMdl;
     public DbExplorer2() => InitializeComponent();
 
     async void Window_Loaded(object sender, RoutedEventArgs e)

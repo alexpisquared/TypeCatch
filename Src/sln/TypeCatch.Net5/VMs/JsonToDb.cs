@@ -27,7 +27,7 @@ namespace TypingWpf.VMs
       IsBusy = true;
       try
       {
-        // using (var db = A0DbMdl.GetA0DbMdlAzureDb)
+        // using (var db = A0DbMdl.GetA0DbMdl)
         {
           //Users.Clear();
           ////.await db.Users.LoadAsync(); 
@@ -137,7 +137,7 @@ namespace TypingWpf.VMs
       var now = DateTime.Now;
       try
       {
-        // using (var db = A0DbMdl.GetA0DbMdlAzureDb)
+        // using (var db = A0DbMdl.GetA0DbMdl)
         {
           //if (Debugger.IsAttached) Debugger.Break(); // >>> DoneAt = sr.DoneAt.DateTime, //todo: ?? .AddMinutes(sr.DoneAt.OffsetMinutes)
 

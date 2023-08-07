@@ -146,7 +146,7 @@ namespace TypingWpf.VMs
         if (thisResult.CpM > prevRcrdCpm)
           thisResult.IsRecord = true;
 
-        using (var db = A0DbMdl.GetA0DbMdlAzureDb)
+        using (var db = A0DbMdl.GetA0DbMdl)
         {
           //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
           //2019-12/           await Task.Delay(50);

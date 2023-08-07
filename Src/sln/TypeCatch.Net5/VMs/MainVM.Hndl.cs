@@ -72,7 +72,7 @@ namespace TypingWpf.VMs
     async void onF4(object o)
     {
       //runTreatIfAny();
-      await updateDoneTodo(SelectUser, synth, A0DbMdl.GetA0DbMdlAzureDb);
+      await updateDoneTodo(SelectUser, synth, A0DbMdl.GetA0DbMdl);
       synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
     }
     void onF5(object o) { sessionLoad_Start_lazy(); }
@@ -101,7 +101,7 @@ namespace TypingWpf.VMs
         synth.SpeakAsyncCancelAll(); synth.SpeakFAF(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
       }
     }
-    void onF9(object o) { var rv = new DataTransfer().CopyChunkyAzureSynch(A0DbMdl.GetA0DbMdlLocalDb, A0DbMdl.GetA0DbMdlAzureDb); InfoMsg = $"{rv.report}"; }
+    void onF9(object o) { var rv = new DataTransfer().CopyChunkyAzureSynch(A0DbMdl.GetA0DbMdlLocalDb, A0DbMdl.GetA0DbMdl); InfoMsg = $"{rv.report}"; }
     void onFA(object o) { ProLTgl = !ProLTgl; }
     void onFB(object o) { /*Process.Start("Explorer.exe", Tracing.RemoteLogFolder);*/ }
     void onFC(object o) { Process.Start("Explorer.exe", OneDrive.Folder(LessonHelper.ExercizeDir)); }

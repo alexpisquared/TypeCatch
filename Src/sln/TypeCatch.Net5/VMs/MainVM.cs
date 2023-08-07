@@ -47,7 +47,7 @@ namespace TypingWpf.VMs
         base.AutoExec();
         VersioInfo = VerHelper.CurVerStr(".Net5");
 
-        using (var db = A0DbMdl.GetA0DbMdlAzureDb)
+        using (var db = A0DbMdl.GetA0DbMdl)
         {
           await LoadFromDbAsync(db);
 
@@ -166,7 +166,7 @@ namespace TypingWpf.VMs
       synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Are you sure?");
       if (MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
       {
-        DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdlAzureDb);
+        DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdl);
       }
     }
     void promptSample()
@@ -239,7 +239,7 @@ namespace TypingWpf.VMs
 
       if (doF1)
       {
-        using (var db = A0DbMdl.GetA0DbMdlAzureDb)
+        using (var db = A0DbMdl.GetA0DbMdl)
         {
           loadListsFromDB(DashName, SelectUser, db);
           await updateDoneTodo(SelectUser, synth, db);

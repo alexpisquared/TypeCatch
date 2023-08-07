@@ -9,7 +9,8 @@
                 x:Class="TypingWpf.MainWindow" x:Name="w" mc:Ignorable="d"
         Title="Type Catch"  Height="500"  Width="1250" 
         Style="{DynamicResource WindowStyle_Aav0}" 
-        Opacity="{Binding ProLvl, FallbackValue=.7}" Loaded="OnLoaded">
+                Loaded="OnLoaded">
+        <!--Opacity="{Binding ProLvl, FallbackValue=.7}"--> 
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
   </WindowChrome.WindowChrome>

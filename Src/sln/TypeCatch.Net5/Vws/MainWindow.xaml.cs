@@ -15,7 +15,7 @@ namespace TypingWpf
 
       _ignoreEscape = true;
 
-      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{A0DbMdl.GetA0DbMdlAzureDb.ServerDatabase()}";
+      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{A0DbMdl.GetA0DbMdl.ServerDatabase()}";
 
       Topmost = Debugger.IsAttached;
     }
