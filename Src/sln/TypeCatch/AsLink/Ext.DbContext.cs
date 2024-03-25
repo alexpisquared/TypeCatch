@@ -27,8 +27,8 @@ namespace AsLink // org standalone AsLink for \c\...  for \g\ use C:\g\OneDriveA
 
         report =
             rowsSaved == 0 ? $"No DB changes to save. {info}" :
-            rowsSaved > 0 && sw.Elapsed.TotalSeconds < .01 ?
-                $"{rowsSaved,7:N0} records saved. {info}" :
+            rowsSaved > 0 && sw.Elapsed.TotalSeconds < 1 ?
+                $"{rowsSaved,7:N0} rows saved. {info}" :
                 $"row/sec: {rowsSaved,8:N0} / {sw.Elapsed.TotalSeconds,-5:N1}= {(rowsSaved / sw.Elapsed.TotalSeconds):N0}. {info}";
 
         success = true;
@@ -36,7 +36,7 @@ namespace AsLink // org standalone AsLink for \c\...  for \g\ use C:\g\OneDriveA
       catch (DbEntityValidationException ex) { var msg = ValidationExceptionToString(ex); /**/	report = ex.Log(msg); }
       catch (DbUpdateException ex) {    /**/   var msg = DbUpdateExceptionToString(ex);   /**/	report = ex.Log(msg); }
       catch (Exception ex) {                                                              /**/  report = ex.Log(); }
-      finally { Trace.TraceInformation($"::>{callerName}.TrySaveReportAsync({info}): {report}"); }
+      finally { Trace.TraceInformation($"::>{callerName}.TrySaveReport({info}): {report}"); }
 
       return (success, rowsSaved, report);
     }
@@ -54,8 +54,8 @@ namespace AsLink // org standalone AsLink for \c\...  for \g\ use C:\g\OneDriveA
 
         report =
             rowsSaved == 0 ? $"No DB changes to save. {info}" :
-            rowsSaved > 0 && sw.Elapsed.TotalSeconds < .01 ?
-                $"{rowsSaved,7:N0} records saved. {info}" :
+            rowsSaved > 0 && sw.Elapsed.TotalSeconds < 1 ?
+                $"{rowsSaved,7:N0} rows saved. {info}" :
                 $"row/sec: {rowsSaved,8:N0} / {sw.Elapsed.TotalSeconds,-5:N1}= {(rowsSaved / sw.Elapsed.TotalSeconds):N0}. {info}";
 
         success = true;
