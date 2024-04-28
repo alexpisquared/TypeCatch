@@ -1,11 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using TypingWpf.DbMdl;
-using AsLink;
-using AAV.Sys.Ext;
-using TypeCatch.Net5.DbMdl;
-
-namespace TypingWpf.DbExt
+﻿namespace TypingWpf.DbExt
 {
   public class DbInitializer : DropCreateDatabaseIfModelChanges<A0DbMdl>
   {

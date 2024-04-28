@@ -1,12 +1,4 @@
-﻿using AAV.Sys.Ext;
-using AsLink;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using TypeCatch.Net5.DbMdl;
-using TypingWpf.DbMdl;
-
-namespace TypingWpf.DbDataTran
+﻿namespace TypingWpf.DbDataTran
 {
   public class DataTransfer
   {
@@ -36,7 +28,7 @@ namespace TypingWpf.DbDataTran
           Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"  **> skipping match:  {s.DoneAt}   {s.UserId} ");
         else
         {
-          trg.SessionResults.Add(new SessionResult
+          trg.SessionResults.Add(new DbMdl.SessionResult
           {
             Duration = s.Duration,
             ExcerciseName = s.ExcerciseName,

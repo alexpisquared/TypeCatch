@@ -1,15 +1,4 @@
-﻿using AAV.Sys.Ext;
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AsLink // org standalone AsLink for \c\...  for \g\ use C:\g\OneDriveAudit\Src\ODA\AAV.Db.EF\DbContextExt.cs   (2020-12)
+﻿namespace AsLink // org standalone AsLink for \c\...  for \g\ use C:\g\OneDriveAudit\Src\ODA\AAV.Db.EF\DbContextExt.cs   (2020-12)
 {
   public static class DbContext_Ext // replacing DbSaveLib and all others!!! (Aug 2018)
   {

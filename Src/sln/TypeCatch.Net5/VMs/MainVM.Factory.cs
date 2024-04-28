@@ -1,11 +1,4 @@
 ﻿#define MyOneDrive //  ISO
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using AAV.Sys.Helpers;
-using LiveCharts.Wpf;
-using MVVM.Common;
 
 namespace TypingWpf.VMs
 {

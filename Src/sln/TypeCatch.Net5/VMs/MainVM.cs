@@ -1,20 +1,4 @@
-﻿using AAV.Sys.Ext;
-using AAV.Sys.Helpers;
-using AmbienceLib;
-using Microsoft.Extensions.Configuration;
-using MVVM.Common;
-using Serilog.Core;
-using System;
-using System.Data.Entity;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
-using TypeCatch.Net5;
-using TypeCatch.Net5.DbMdl;
-using xMvvmMin;
-using db = TypingWpf.DbMdl;
+﻿using db = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs
 {
@@ -45,7 +29,7 @@ namespace TypingWpf.VMs
       try
       {
         base.AutoExec();
-        VersioInfo = VerHelper.CurVerStr(".Net5");
+        VersioInfo = "123233412312"; // VerHelper.CurVerStr(".Net5");
 
         using (var db = A0DbMdl.GetA0DbMdl)
         {
@@ -55,7 +39,7 @@ namespace TypingWpf.VMs
 
           //sessionLoad_Start_lazy();
           IsInSsn = true;
-          IsAdmin = VerHelper.IsVIP;
+          IsAdmin = true; // VerHelper.IsVIP;
 
           //var gnd = (VoiceGender)((AppRunCount++) % 3 + 1);
           //synth.Rate = 3;

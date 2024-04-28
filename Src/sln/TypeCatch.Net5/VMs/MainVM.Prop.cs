@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Windows;
-using AAV.Sys.Ext;
-using AAV.Sys.Helpers;
-using MVVM.Common;
-using TypeCatch.Net5.DbMdl;
-using TypingWpf.DbMdl;
+﻿using TypeCatch.Net5.Mdl;
 using db = TypingWpf.DbMdl;
 using js = TypingWpf.Mdl;
 
@@ -17,7 +9,7 @@ namespace TypingWpf.VMs
 
     //[Obsolete("Not used any more", true)]    //public ObservableCollection<db.User> Users { get; set; } = new ObservableCollection<db.User>(); // <string> { "Alx", "Mei", "Ndn", "Zoe" };         //public ObservableCollection<js.SessionResult> snrts = new ObservableCollection<js.SessionResult>(); [Obsolete("Use DB!", false)]public ObservableCollection<js.SessionResult> SnRts { get { /*if (snrts.Count == 0) LoadFromDb();*/ return snrts; } }
     public ObservableCollection<db.SessionResult> CurUserCurExcrsRsltLst { get; set; } = new ObservableCollection<db.SessionResult>();
-    public ObservableCollection<js.VeloMeasure> PrgsChart { get; set; } = new ObservableCollection<js.VeloMeasure>();
+    public ObservableCollection<VeloMeasure> PrgsChart { get; set; } = new ObservableCollection<VeloMeasure>();
 
     public int LessonLen;// => (LessonText.Length - LessonHelper.PaddingLen) > 8 ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
 
@@ -36,12 +28,12 @@ namespace TypingWpf.VMs
     string _InfoMsg;                /**/ public string InfoMsg { get => _InfoMsg; set => Set(ref _InfoMsg, value); }
     string _PreSelect;              /**/ public string PreSelect { get => _PreSelect; set { if (Set(ref _PreSelect, value)) {; } } }
     string _LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading ... "; public string LessonText { get => _LessonText; set { if (Set(ref _LessonText, value)) {; } } }
-    string _PupilInput;             /**/ public string PupilInput { get => _PupilInput; set { if (Set(ref _PupilInput, value)) { onUserInput(null); } } }
+    string _PupilInput;             /**/ public string PupilInput { get => _PupilInput; set { if (Set(ref _PupilInput, value)) { OnUserInput(); } } }
     string _VersioInfo;             /**/ public string VersioInfo { get => _VersioInfo; set { if (Set(ref _VersioInfo, value)) {; } } }
     db.SessionResult _SelectSnRt;   /**/ public SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
     db.User _SlctUser;              /**/ public User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
     string _SelectUser;             /**/ public string SelectUser { get => _SelectUser; set { if (Set(ref _SelectUser, value) /*&& _isLoaded*/) { using (var db = A0DbMdl.GetA0DbMdl) { loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(db), value, db); } } } }
-    bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { Bpr.Click(); ProLvl = value ? 1 : .7; } } }
+    bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { ProLvl = value ? 1 : .7; } } }
     double _ProLvl = .7;            /**/ public double ProLvl { get => _ProLvl; set => Set(ref _ProLvl, value); }
     double _Opcty = 1;              /**/ public double Opcty { get => _Opcty; set => Set(ref _Opcty, value); }
     bool _IsInSsn = true;           /**/ public bool IsInSsn { get => _IsInSsn; set { if (Set(ref _IsInSsn, value)) {; } } }

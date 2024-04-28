@@ -1,10 +1,4 @@
-﻿using AAV.Sys.Helpers;
-using AsLink;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
-using TypeCatch.Net5.DbMdl;
-
+﻿
 namespace TypingWpf
 {
   public partial class MainWindow : WindowBase
@@ -15,7 +9,7 @@ namespace TypingWpf
 
       _ignoreEscape = true;
 
-      VersioInfo.Text = $"{VerHelper.CurVerStr(".Net5")}\n{A0DbMdl.GetA0DbMdl.ServerDatabase()}";
+      VersioInfo.Text = $"{"VerHelper.CurVerStr(.Net5)"}\n{A0DbMdl.GetA0DbMdl.ServerDatabase()}";
 
       Topmost = Debugger.IsAttached;
     }

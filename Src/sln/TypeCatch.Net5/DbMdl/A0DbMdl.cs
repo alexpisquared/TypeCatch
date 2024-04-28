@@ -58,7 +58,7 @@ public partial class A0DbMdl : DbContext
 
   public static A0DbMdl GetInitDbx([CallerMemberName] string cmn = "", [CallerFilePath] string cfp = "", [CallerLineNumber] int cln = 0)
   {
-    Bpr.BeepShort();
+    Bpr.Beep1of2();
 
     var sw = Stopwatch.StartNew();
     var db = GetA0DbMdl;
@@ -77,7 +77,7 @@ public partial class A0DbMdl : DbContext
     var sw = Stopwatch.StartNew();
     //Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff} GetCreateA0DbMdl: called from {cfp}({cln}):\t{cmn}()");
 
-    Bpr.BeepShort();
+    Bpr.Beep1of2();
     var db = GetA0DbMdl;
     Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   took {sw.ElapsedMilliseconds:N0} ms."); sw.Restart();
     if (db.Database.Exists())

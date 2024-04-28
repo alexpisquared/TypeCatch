@@ -1,4 +1,4 @@
-﻿using AAV.Sys.Ext;
+﻿//using AAV.Sys.Ext;
 //using AsLink;
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using StandardLib.Extensions;
 
 namespace xMvvmMin
 {

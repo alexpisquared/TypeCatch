@@ -428,7 +428,7 @@
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
               <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="_Year"  Command="{Binding ShowChart}" CommandParameter="Year" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Seasn" Command="{Binding ShowChart}" CommandParameter="3Mon" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              <Button Content="Seas_n" Command="{Binding ShowChart}" CommandParameter="3Mon" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
