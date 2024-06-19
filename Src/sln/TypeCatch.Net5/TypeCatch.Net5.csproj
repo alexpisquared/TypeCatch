@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\FreeTextLesson.txt" />
     <None Remove="Assets\mp3\Bad - B&amp;B suxx.mp3" />
     <None Remove="Assets\mp3\Bad - Cry.mp3" />
     <None Remove="Assets\mp3\Bad - Noseblow.mp3" />
