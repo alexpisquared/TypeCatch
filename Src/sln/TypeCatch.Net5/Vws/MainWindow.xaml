@@ -488,7 +488,7 @@
         </Border.Resources>
         <Grid>
           <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" x:Name="pbAnim"            VerticalAlignment="Stretch" Background="#999" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
-          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm}"  VerticalAlignment="Center"  Background="Transparent" Height="2" Visibility="Visible">
+          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm}"  VerticalAlignment="Stretch" Background="Transparent" Foreground="#1000" d:Value="33" >
             <ProgressBar.Triggers>
               <EventTrigger RoutedEvent="ProgressBar.ValueChanged">
                 <EventTrigger.Actions>
