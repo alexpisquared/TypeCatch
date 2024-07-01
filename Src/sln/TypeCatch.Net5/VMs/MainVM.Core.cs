@@ -114,17 +114,17 @@ public partial class MainVM
 
       if (PupilInput.Trim().Length < LessonLen - 3)
       {
-        synth.SpeakFAF($"Does not count: Too short!", speakingRate: 1.4);
+        synth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
         return;
       }
 
-      if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Does not count: Mistyped! Always finish typing till the last letter. Pressing Escape button ruins/discards the lesson."); return; }
+      if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Almost there! Remember to finish typing till the last letter. Hitting Escape is like ghosting the lesson - not cool!"); return; }
 
       var prevRcrdCpm = RcrdCpm;
       var thisResult = new dbMdl.SessionResult { Duration = _swMain.Elapsed, ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName[..2].ToLower()}{Environment.MachineName[^1..]}", DoneAt = DateTime.Now };
       if (thisResult.CpM < .333 * prevRcrdCpm)
       {
-        synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Does not count: Very-very-very- V. E. R. Y. slow!");
+        synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Whoa there, slow poke! Let's kick it up a notch and show this keyboard who's boss!");
         return;
       }
 
