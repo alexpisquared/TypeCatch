@@ -316,7 +316,7 @@
                 3
               </DoubleCollection>
               <system:Double x:Key="SeriesStrokeThickness">
-                3.0
+                1.0
               </system:Double>
 
               <Style TargetType="lvc:CartesianChart">
