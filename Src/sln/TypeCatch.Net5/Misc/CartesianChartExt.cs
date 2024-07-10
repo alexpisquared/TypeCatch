@@ -21,4 +21,3 @@ public static class CartesianChartExt
   }
 }
 
-public record DateMdl(DateTime DTime, double Value);
