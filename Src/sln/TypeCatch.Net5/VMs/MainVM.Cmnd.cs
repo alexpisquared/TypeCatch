@@ -1,10 +1,10 @@
-﻿using MVVM.Common;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using TypeCatch.Net5.AsLink;
 using TypingWpf.Vws;
 
 namespace TypingWpf.VMs
 {
-    public partial class MainVM : BindableBaseViewModel
+  public partial class MainVM : BindableBaseViewModel
     {
         ICommand _F1; public ICommand F1Cmd => _F1 ?? (_F1 = new RelayCommand(x => new DbExplorer2().ShowDialog() /*updateUserLessonLst(DashName, SelectUser)*/, x => true, Key.F1));
         ICommand _F2; public ICommand F2Cmd => _F2 ?? (_F2 = new RelayCommand(x => onF2(x), x => true, Key.F2));

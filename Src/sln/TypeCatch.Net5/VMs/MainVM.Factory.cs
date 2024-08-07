@@ -1,5 +1,7 @@
 ﻿#define MyOneDrive //  ISO
 
+using TypeCatch.Net5.AsLink;
+
 namespace TypingWpf.VMs
 {
   public partial class MainVM : BindableBaseViewModel

@@ -1,4 +1,5 @@
-﻿using TypingWpf.DbDataTran;
+﻿using TypeCatch.Net5.AsLink;
+using TypingWpf.DbDataTran;
 
 namespace TypingWpf.VMs;
 

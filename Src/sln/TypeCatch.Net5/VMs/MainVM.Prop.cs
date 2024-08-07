@@ -1,4 +1,5 @@
-﻿using TypeCatch.Net5.Mdl;
+﻿using TypeCatch.Net5.AsLink;
+using TypeCatch.Net5.Mdl;
 using db = TypingWpf.DbMdl;
 using js = TypingWpf.Mdl;
 

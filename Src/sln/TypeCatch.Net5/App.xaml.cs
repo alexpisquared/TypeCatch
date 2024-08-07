@@ -1,4 +1,6 @@
-﻿namespace TypeCatch.Net5;
+﻿using TypeCatch.Net5.AsLink;
+
+namespace TypeCatch.Net5;
 
 public partial class App : Application
 {

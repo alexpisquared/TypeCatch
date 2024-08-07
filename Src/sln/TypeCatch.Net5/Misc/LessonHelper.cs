@@ -135,7 +135,7 @@ public static partial class LessonHelper
         var dflt =
             (sublesson.Equals("msa")) ? string.Format(_msa, string.IsNullOrEmpty(Environment.UserDomainName.ToLower()) ? "random" : Environment.UserDomainName.ToLower(), Environment.UserName.ToLower()) :
             (sublesson.Equals("nymi")) ? string.Format(_nym, Environment.UserName.ToLower()) :
-            typeof(LessonHelper).GetField($"_{sublesson}", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null).ToString();
+            typeof(LessonHelper).GetField($"_{sublesson}", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null)?.ToString();
 
         using (var fs = File.Create(file))
         {

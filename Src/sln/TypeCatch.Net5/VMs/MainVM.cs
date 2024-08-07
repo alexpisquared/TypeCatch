@@ -1,4 +1,5 @@
-﻿using db = TypingWpf.DbMdl;
+﻿using TypeCatch.Net5.AsLink;
+using db = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs
 {
