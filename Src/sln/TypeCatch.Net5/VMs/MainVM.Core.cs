@@ -170,64 +170,69 @@ public partial class MainVM
         {
           //Jun 2019: too old: SoundPlayer.PlaySessionFinish_Baad();
 
-          if (TodoToday > 0)
+          if (TodoToday <= 0)
+          {
+            synth.SpeakAsyncCancelAll();
+            await synth.SpeakAsync($"You are off the hook for today.");
+          }
+          else
           {
             var randomMessage =
-                thisResult.CpM > .99 * prevRcrdCpm ? $"OMG! You're on fire! 🔥 New record incoming any second now!" :
-                thisResult.CpM > .98 * prevRcrdCpm ? $"Yaass queen! 👑 You're so close to smashing that record!" :
-                thisResult.CpM > .97 * prevRcrdCpm ? $"Holy guacamole! 🥑 That was insanely good!" :
-                thisResult.CpM > .96 * prevRcrdCpm ? $"Slay! 💅 You're thisclose to a new personal best!" :
-                thisResult.CpM > .95 * prevRcrdCpm ? $"You're crushing it! 💪 Keep slaying!" :
-                thisResult.CpM > .94 * prevRcrdCpm ? $"So close to perfection! You've got this! 🌟" :
+                thisResult.CpM > .99 * prevRcrdCpm ? $"OMG! You're on fire!  New record incoming any second now!" :
+                thisResult.CpM > .98 * prevRcrdCpm ? $"Yaass queen! You're so close to smashing that record!" :
+                thisResult.CpM > .97 * prevRcrdCpm ? $"Holy guacamole! That was insanely good!" :
+                thisResult.CpM > .96 * prevRcrdCpm ? $"Slay! You're thisclose to a new personal best!" :
+                thisResult.CpM > .95 * prevRcrdCpm ? $"You're crushing it! Keep slaying!" :
+                thisResult.CpM > .94 * prevRcrdCpm ? $"So close to perfection! You've got this!" :
                 thisResult.CpM > .93 * prevRcrdCpm ? $"Yesss! Keep that awesome energy going! ⚡" :
                 thisResult.CpM > .92 * prevRcrdCpm ? $"You're on a roll! 🎢 Don't stop now!" :
-                thisResult.CpM > .91 * prevRcrdCpm ? $"Wowza! 🤩 You're giving me life right now!" :
-                thisResult.CpM > .90 * prevRcrdCpm ? $"Looking fierce! 🐯 That record is shaking!" :
-                thisResult.CpM > .89 * prevRcrdCpm ? $"You're glowing up! ✨ Keep shining!" :
-                thisResult.CpM > .88 * prevRcrdCpm ? $"Serving looks and speed! 💃 Work it!" :
-                thisResult.CpM > .87 * prevRcrdCpm ? $"Yaaaas! Even better than before! 🚀" :
+                thisResult.CpM > .91 * prevRcrdCpm ? $"Wowza!  You're giving me life right now!" :
+                thisResult.CpM > .90 * prevRcrdCpm ? $"Looking fierce!  That record is shaking!" :
+                thisResult.CpM > .89 * prevRcrdCpm ? $"You're glowing up!  Keep shining!" :
+                thisResult.CpM > .88 * prevRcrdCpm ? $"Serving looks and speed! Work it!" :
+                thisResult.CpM > .87 * prevRcrdCpm ? $"Yaaaas! Even better than before! " :
                 thisResult.CpM > .86 * prevRcrdCpm ? $"Okay, I see you! 👀 That was lit!" :
                 thisResult.CpM > .85 * prevRcrdCpm ? $"You're leveling up! 🎮 Next stop: record city!" :
-                thisResult.CpM > .84 * prevRcrdCpm ? $"Nice one! But I bet you can slay even harder! 💅" :
+                thisResult.CpM > .84 * prevRcrdCpm ? $"Nice one! But I bet you can slay even harder! " :
                 thisResult.CpM > .83 * prevRcrdCpm ? $"Killin' it! 🔪 Keep that vibe going!" :
                 thisResult.CpM > .82 * prevRcrdCpm ? $"You did that! 👏 Now do it again, but fiercer!" :
                 thisResult.CpM > .81 * prevRcrdCpm ? $"Getting better by the second! 🕒 Time to glow up!" :
                 thisResult.CpM > .80 * prevRcrdCpm ? $"Yesss! Now let's take it to the next level! 🔝" :
                 thisResult.CpM > .79 * prevRcrdCpm ? $"Deep breath, and channel your inner boss babe! 💼" :
-                thisResult.CpM > .78 * prevRcrdCpm ? $"Not too shabby! But I know you've got more sass in you! 💁‍♀️" :
-                thisResult.CpM > .77 * prevRcrdCpm ? $"Good start! Now let's make it Instagram-worthy! 📸" :
-                thisResult.CpM > .76 * prevRcrdCpm ? $"Nice try! But let's aim for TikTok viral, okay? 🎵" :
+                thisResult.CpM > .78 * prevRcrdCpm ? $"Not too shabby! But I know you've got more sass in you!" :
+                thisResult.CpM > .77 * prevRcrdCpm ? $"Good start! Now let's make it Instagram-worthy! " :
+                thisResult.CpM > .76 * prevRcrdCpm ? $"Nice try! But let's aim for TikTok viral, okay?" :
                 thisResult.CpM > .75 * prevRcrdCpm ? $"Getting warmer! Time to bring the heat! 🌡️" :
-                thisResult.CpM > .74 * prevRcrdCpm ? $"You've got potential! Now unleash your inner diva! 🎤" :
-                thisResult.CpM > .73 * prevRcrdCpm ? $"Remember: effort is everything! You've got this! 💪" :
+                thisResult.CpM > .74 * prevRcrdCpm ? $"You've got potential! Now unleash your inner diva!" :
+                thisResult.CpM > .73 * prevRcrdCpm ? $"Remember: effort is everything! You've got this!" :
                 thisResult.CpM > .72 * prevRcrdCpm ? $"Good, but not yet Insta-story worthy! Let's change that! 📱" :
-                thisResult.CpM > .71 * prevRcrdCpm ? $"Time to show these keys who's boss! 👑" :
-                thisResult.CpM > .70 * prevRcrdCpm ? $"Channel your fave pop star energy! 🎵 You can do better!" :
+                thisResult.CpM > .71 * prevRcrdCpm ? $"Time to show these keys who's boss!" :
+                thisResult.CpM > .70 * prevRcrdCpm ? $"Channel your fave pop star energy!  You can do better!" :
                 thisResult.CpM > .69 * prevRcrdCpm ? $"Take a deep breath, and let's make this keyboard your runway! 👠" :
-                thisResult.CpM > .68 * prevRcrdCpm ? $"You're on your way! Now let's make it iconic! 🌠" :
-                thisResult.CpM > .67 * prevRcrdCpm ? $"Pick up the pace, bestie! You've got this! 🏃‍♀️" :
+                thisResult.CpM > .68 * prevRcrdCpm ? $"You're on your way! Now let's make it iconic! " :
+                thisResult.CpM > .67 * prevRcrdCpm ? $"Pick up the pace, bestie! You've got this! ‍♀️" :
                 thisResult.CpM > .66 * prevRcrdCpm ? $"Let's turn up the beat! 🎧 Show me what you've got!" :
-                thisResult.CpM > .65 * prevRcrdCpm ? $"Time to glow up your typing game! ✨ I believe in you!" :
-                thisResult.CpM > .64 * prevRcrdCpm ? $"C'mon, this keyboard isn't going to slay itself! 💅" :
-                thisResult.CpM > .63 * prevRcrdCpm ? $"Warm-up's over! Time to make these keys your BFF! 👯‍♀️" :
-                thisResult.CpM > .62 * prevRcrdCpm ? $"Let's see some sparkle in those fingertips! ✨👆" :
+                thisResult.CpM > .65 * prevRcrdCpm ? $"Time to glow up your typing game!  I believe in you!" :
+                thisResult.CpM > .64 * prevRcrdCpm ? $"C'mon, this keyboard isn't going to slay itself! " :
+                thisResult.CpM > .63 * prevRcrdCpm ? $"Warm-up's over! Time to make these keys your BFF! " :
+                thisResult.CpM > .62 * prevRcrdCpm ? $"Let's see some sparkle in those fingertips! 👆" :
                 thisResult.CpM > .61 * prevRcrdCpm ? $"Okay, but like, for real this time? 🙃" :
                 thisResult.CpM > .60 * prevRcrdCpm ? $"Cute warm-up! Now let's see your true power! 💫" :
-                thisResult.CpM > .59 * prevRcrdCpm ? $"Hey girl, I know you've got more sass than that! 💁‍♀️" :
-                thisResult.CpM > .58 * prevRcrdCpm ? $"We're aiming for main character energy here! 🌟" :
-                thisResult.CpM > .57 * prevRcrdCpm ? $"Earth to bestie! Time to wake up those fingers! ☕" :
-                thisResult.CpM > .56 * prevRcrdCpm ? $"Last year called, it wants its typing speed back! 📞" :
+                thisResult.CpM > .59 * prevRcrdCpm ? $"Hey girl, I know you've got more sass than that!" :
+                thisResult.CpM > .58 * prevRcrdCpm ? $"We're aiming for main character energy here!" :
+                thisResult.CpM > .57 * prevRcrdCpm ? $"Earth to bestie! Time to wake up those fingers! " :
+                thisResult.CpM > .56 * prevRcrdCpm ? $"Last year called, it wants its typing speed back! " :
                 thisResult.CpM > .55 * prevRcrdCpm ? $"Rise and shine, sleeping beauty! ⏰ The keyboard misses you!" :
                 thisResult.CpM > .54 * prevRcrdCpm ? $"Even your cat could type faster! 🐱 (Just kidding, prove me wrong!)" :
-                thisResult.CpM > .53 * prevRcrdCpm ? $"Hello? Is this thing on? 🎤 We need more energy!" :
-                thisResult.CpM > .52 * prevRcrdCpm ? $"Oops! I think you forgot to hit the slay button! 🔘" :
-                thisResult.CpM > .51 * prevRcrdCpm ? $"Remember: slower than this, and we'll have to call it a nap! 😴" :
-                thisResult.CpM > .50 * prevRcrdCpm ? $"Phew! You barely made the cut. Now let's see some real magic! ✨" :
-                thisResult.CpM > .47 * prevRcrdCpm ? $"Houston, we have a problem! 🚀 Time to blast off!" :
-                thisResult.CpM > .45 * prevRcrdCpm ? $"Your future self called, she types way faster! 🔮" :
-                thisResult.CpM > .40 * prevRcrdCpm ? $"Even Internet Explorer loads faster than this! 🐢 You can do better!" :
-                thisResult.CpM > .33 * prevRcrdCpm ? $"Okay, bestie, I'll count this one, but let's pretend it never happened and start fresh! 🔄" :
-                $"Yikes! 😱 This is too slow to count. But don't worry, you've got this! Shake it off and try again! 💃";
+                thisResult.CpM > .53 * prevRcrdCpm ? $"Hello? Is this thing on? We need more energy!" :
+                thisResult.CpM > .52 * prevRcrdCpm ? $"Oops! I think you forgot to hit the slay button! " :
+                thisResult.CpM > .51 * prevRcrdCpm ? $"Remember: slower than this, and we'll have to call it a nap! " :
+                thisResult.CpM > .50 * prevRcrdCpm ? $"Phew! You barely made the cut. Now let's see some real magic! " :
+                thisResult.CpM > .47 * prevRcrdCpm ? $"Houston, we have a problem!  Time to blast off!" :
+                thisResult.CpM > .45 * prevRcrdCpm ? $"Your future self called, she types way faster! " :
+                thisResult.CpM > .40 * prevRcrdCpm ? $"Even Internet Explorer loads faster than this!  You can do better!" :
+                thisResult.CpM > .33 * prevRcrdCpm ? $"Okay, bestie, I'll count this one, but let's pretend it never happened and start fresh! " :
+                $"Yikes! 😱 This is too slow to count. But don't worry, you've got this! Shake it off and try again! ";
 
             synth.SpeakAsyncCancelAll();
             synth.SpeakFAF($"{randomMessage} {DoneToday} down; {TodoToday} to go.");
