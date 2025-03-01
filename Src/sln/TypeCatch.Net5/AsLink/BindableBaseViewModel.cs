@@ -41,10 +41,10 @@ public abstract class BindableBaseViewModel : BindableBase
       try
       {
         if (view != null)
-          if (Application.Current.Dispatcher.CheckAccess()) // if on UI thread							
+          if (System.Windows.Application.Current.Dispatcher.CheckAccess()) // if on UI thread							
             view.Close();
           else
-            await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(view.Close));
+            await System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(view.Close));
       }
       catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
     } // When the ViewModel asks to be closed, close the window.
@@ -126,10 +126,10 @@ public abstract class BindableBaseViewModel : BindableBase
   {
     try
     {
-      if (Application.Current.Dispatcher.CheckAccess()) // if on UI thread
+      if (System.Windows.Application.Current.Dispatcher.CheckAccess()) // if on UI thread
         vMdl.AutoExec();
       else
-        _ = Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(vMdl.AutoExec));
+        _ = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(vMdl.AutoExec));
     }
     catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
   }
@@ -137,15 +137,15 @@ public abstract class BindableBaseViewModel : BindableBase
   {
     try
     {
-      if (Application.Current.Dispatcher.CheckAccess()) // if on UI thread
+      if (System.Windows.Application.Current.Dispatcher.CheckAccess()) // if on UI thread
         await vMdl.AutoExecAsync();
       else
-        await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(async () => //todo: rejoin properly to the UI thread (Oct 2017)
+        await System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(async () => //todo: rejoin properly to the UI thread (Oct 2017)
         await vMdl.AutoExecAsync()));
     }
     catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
   }
 
-  protected static async Task refreshUi() => await Application.Current.Dispatcher.BeginInvoke(new ThreadStart(refreshUiSynch));
+  protected static async Task refreshUi() => await System.Windows.Application.Current.Dispatcher.BeginInvoke(new ThreadStart(refreshUiSynch));
   protected static void refreshUiSynch() => CommandManager.InvalidateRequerySuggested();  //tu: Sticky UI state fix for MVVM (May2015)
 }

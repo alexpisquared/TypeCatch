@@ -149,7 +149,7 @@ namespace TypingWpf.VMs
       if (SelectSnRt == null) return;
 
       synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Are you sure?");
-      if (MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+      if (System.Windows.MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
       {
         DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdl);
       }

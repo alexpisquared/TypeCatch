@@ -2,7 +2,7 @@
 
 namespace TypeCatch.Net5;
 
-public partial class App : Application
+public partial class App : System.Windows.Application
 {
   public static readonly DateTime StartedAt = DateTime.Now;
   public static TraceSwitch // copy for orgl in C:\C\Lgc\ScrSvrs\AAV.SS\App.xaml.cs

@@ -26,15 +26,15 @@ namespace AsLink
       if (crntCpm > rcrdCpm && crntCpm != 0)
       {
         var ds = (byte)((225.0 * rcrdCpm / crntCpm));
-        return new SolidColorBrush(Color.FromRgb(ds, 255, ds)); // Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"++ {CrntCpm,5} / {_recordCpm} ==> {(10.0 * CrntCpm / _recordCpm),6:N1} ==> {ds,4} ++");
+        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(ds, 255, ds)); // Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"++ {CrntCpm,5} / {_recordCpm} ==> {(10.0 * CrntCpm / _recordCpm),6:N1} ==> {ds,4} ++");
       }
       else if (rcrdCpm != 0)
       {
         var ds = (byte)(255.0 * (100 + crntCpm) / (100 + rcrdCpm));
-        return new SolidColorBrush(Color.FromRgb(255, ds, ds));
+        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, ds, ds));
       }
 
-      return new SolidColorBrush(Color.FromRgb(255, 255, 190));
+      return new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 190));
     }
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException("search for CpmToColorConverter");
     public override object ProvideValue(IServiceProvider serviceProvider) { return this; }

@@ -72,10 +72,10 @@ public partial class MainVM : BindableBaseViewModel
   void onF7(object o) => Process.Start("Explorer.exe", "IsoHelper.GetIsoFolder()");
   void onF8(object o)
   {
-    if (Clipboard.ContainsFileDropList())
+    if (System.Windows.Clipboard.ContainsFileDropList())
     {
       Trace.WriteLine("");
-      var ff = Clipboard.GetFileDropList();
+      var ff = System.Windows.Clipboard.GetFileDropList();
       if (ff.Count > 0)
       {
         synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"looks like an {(File.Exists(ff[0]) ? "" : "non-")}existing file with extension {Path.GetExtension(ff[0])}.");
@@ -87,9 +87,9 @@ public partial class MainVM : BindableBaseViewModel
         synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Nothing found here.");
       }
     }
-    else if (Clipboard.ContainsText())
+    else if (System.Windows.Clipboard.ContainsText())
     {
-      PreSelect = Clipboard.GetText();
+      PreSelect = System.Windows.Clipboard.GetText();
       synth.SpeakAsyncCancelAll(); synth.SpeakFAF(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
     }
   }

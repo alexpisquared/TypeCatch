@@ -22,7 +22,7 @@ namespace xMvvmMin
 
 			try
 			{
-				var dispatcher = Application.Current.Dispatcher; // dispatcher on the UI thread
+				var dispatcher = System.Windows.Application.Current.Dispatcher; // dispatcher on the UI thread
 				dispatcher.BeginInvoke(new Action(() =>
 				{
 					trg.ClearAddRangeSynch(src); // trg.Clear(); src.ToList().ForEach(trg.Add);
@@ -45,9 +45,9 @@ namespace xMvvmMin
 		{
 			try
 			{
-				if (Application.Current.Dispatcher.CheckAccess()) { trg.Clear(); src?.ToList().ForEach(trg.Add); }// if on UI thread
+				if (System.Windows.Application.Current.Dispatcher.CheckAccess()) { trg.Clear(); src?.ToList().ForEach(trg.Add); }// if on UI thread
 				else
-					Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => { trg.Clear(); src?.ToList().ForEach(trg.Add); }));
+					System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => { trg.Clear(); src?.ToList().ForEach(trg.Add); }));
 
 			}
 			catch (Exception ex) { ex.Log(); throw; }
@@ -69,8 +69,8 @@ namespace xMvvmMin
 		{
 			try
 			{
-				if (!Application.Current.Dispatcher.CheckAccess())  // if on UI thread
-					Application.Current.Dispatcher.BeginInvoke(action);
+				if (!System.Windows.Application.Current.Dispatcher.CheckAccess())  // if on UI thread
+					System.Windows.Application.Current.Dispatcher.BeginInvoke(action);
 				else
 					action.Invoke();
 			}

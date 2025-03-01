@@ -17,7 +17,7 @@ public partial class JsonToSqlMigrator : Window
   {
     Bpr.Beep1of2();
     if (JsonFileSerializer.Load<ObsMainVM>(MainVM.MainVmJsonFile) is not ObsMainVM obsVm)
-      _ = MessageBox.Show("No Go");
+      _ = System.Windows.MessageBox.Show("No Go");
     else
     {
       var srFromJsonWithNote = obsVm.SnRts.Where(r => !string.IsNullOrEmpty(r.Notes));

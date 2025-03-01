@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace TypingWpf.Vws
 {
-  public partial class ProgressChartUsrCtrl : UserControl
+  public partial class ProgressChartUsrCtrl //: UserControl
   {
     public ProgressChartUsrCtrl()
     {
