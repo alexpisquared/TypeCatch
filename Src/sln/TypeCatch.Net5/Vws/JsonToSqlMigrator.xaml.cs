@@ -6,6 +6,7 @@ namespace TypingWpf.Vws;
 
 public partial class JsonToSqlMigrator : Window
 {
+  Bpr Bpr = new();
   public JsonToSqlMigrator()
   {
     InitializeComponent(); MouseLeftButtonDown += new MouseButtonEventHandler((s, e) => DragMove()); //tu:

@@ -11,6 +11,7 @@ namespace TypingWpf.Vws
 {
   public partial class DbExplorer2 : WindowBase
   {
+    Bpr Bpr = new();
     readonly A0DbMdl _db = A0DbMdl.GetA0DbMdl;
     public DbExplorer2() => InitializeComponent();
 

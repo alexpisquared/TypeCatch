@@ -4,6 +4,7 @@ namespace TypeCatch.Net5;
 
 public partial class App : System.Windows.Application
 {
+  Bpr Bpr = new();
   public static readonly DateTime StartedAt = DateTime.Now;
   public static TraceSwitch // copy for orgl in C:\C\Lgc\ScrSvrs\AAV.SS\App.xaml.cs
     AppTraceLevel_Config = new("CfgTraceLevelSwitch", "Switch in config file:  <system.diagnostics><switches><!--0-off, 1-error, 2-warn, 3-info, 4-verbose. --><add name='CfgTraceLevelSwitch' value='3' /> "),

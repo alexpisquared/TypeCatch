@@ -1,6 +1,7 @@
 namespace TypeCatch.Net5.DbMdl;
 public partial class A0DbMdl : DbContext
 {
+  Bpr Bpr = new();
   #region Ext
   A0DbMdl(string cs)
   {
@@ -58,6 +59,7 @@ public partial class A0DbMdl : DbContext
 
   public static A0DbMdl GetInitDbx([CallerMemberName] string cmn = "", [CallerFilePath] string cfp = "", [CallerLineNumber] int cln = 0)
   {
+    Bpr Bpr = new();
     Bpr.Beep1of2();
 
     var sw = Stopwatch.StartNew();
@@ -77,6 +79,7 @@ public partial class A0DbMdl : DbContext
     var sw = Stopwatch.StartNew();
     //Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff} GetCreateA0DbMdl: called from {cfp}({cln}):\t{cmn}()");
 
+    Bpr Bpr = new();
     Bpr.Beep1of2();
     var db = GetA0DbMdl;
     Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   took {sw.ElapsedMilliseconds:N0} ms."); sw.Restart();
