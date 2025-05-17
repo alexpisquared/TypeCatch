@@ -9,7 +9,7 @@
                 x:Class="TypingWpf.MainWindow" x:Name="w" mc:Ignorable="d"
         Title="Type Catch"  Height="500"  Width="1250" 
         Style="{DynamicResource WindowStyle_Aav0}" 
-                Loaded="OnLoaded">
+                Loaded="OnLoaded" Background="#222">
         <!--Opacity="{Binding ProLvl, FallbackValue=.7}"--> 
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
@@ -31,7 +31,7 @@
     <KeyBinding Command="{Binding FBCmd}" CommandParameter="{Binding ElementName=w}" Key="{Binding FBCmd.GestureKey}" Modifiers="{Binding FBCmd.GestureModifier}" />
     <KeyBinding Command="{Binding FCCmd}" CommandParameter="{Binding ElementName=w}" Key="{Binding FCCmd.GestureKey}" Modifiers="{Binding FCCmd.GestureModifier}" />
   </lnk:WindowBase.InputBindings>
-  <Border CornerRadius="8" BorderThickness="1" BorderBrush="#aaa" Background="#ccc">
+  <Border CornerRadius="8" BorderThickness="1" BorderBrush="#777" Background="#222">
     <Grid Visibility="{Binding MainVis, Mode=OneWay}" Style="{DynamicResource FocusOnElementName}">
       <Grid.Resources>
         <Style x:Key="FocusOnElementName" TargetType="Grid">
@@ -42,12 +42,12 @@
           </Style.Triggers>
         </Style>
         <LinearGradientBrush x:Key="GradGray" EndPoint="0.5,1" StartPoint="0.5,0">
-          <GradientStop Color="#bbb" Offset="0"/>
-          <GradientStop Color="#888" Offset="1"/>
+          <GradientStop Color="#555" Offset="0"/>
+          <GradientStop Color="#222" Offset="1"/>
         </LinearGradientBrush>
         <LinearGradientBrush x:Key="GradBlue" EndPoint="0.5,1" StartPoint="0.5,0">
-          <GradientStop Color="#FF3366FF" Offset="0"/>
-          <GradientStop Color="#FF2244cc" Offset="1"/>
+          <GradientStop Color="#008" Offset="0"/>
+          <GradientStop Color="#005" Offset="1"/>
         </LinearGradientBrush>
         <LinearGradientBrush x:Key="GradGrin" EndPoint="0.5,1" StartPoint="0.5,0">
           <GradientStop Color="#FF33FF66" Offset="0"/>
@@ -69,7 +69,7 @@
 
       <Border Grid.Row="1" CornerRadius="0 0 6 6" BorderBrush="#888" BorderThickness="2 0 2 2" Grid.ColumnSpan="2" Margin="14 -2" Padding="0" >
         <Border.Background>
-          <MultiBinding FallbackValue="#ffd" Converter="{lnk:CpmToColorConverter}" >
+          <MultiBinding FallbackValue="#800" Converter="{lnk:CpmToColorConverter}" >
             <Binding Path="CrntCpm" />
             <Binding Path="RcrdCpm" />
           </MultiBinding>
@@ -104,15 +104,14 @@
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="4" Opacity="{Binding ProLvl, FallbackValue=.7}" >
 
         <StackPanel Orientation="Horizontal" Margin="3" IsEnabled="{Binding IsInSsn, Converter={ln2:Bool InvertValue=True}}" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
-          <!-- Player is off:     <Label Margin="10,7,0,7" Content="  _Player:" Foreground="#fff"       FontSize="26" Target="{Binding ElementName=cbUsers}" /> <ComboBox SelectedItem="{Binding SlctUser}"    FontSize="26" MinHeight="20" MinWidth="60" x:Name="cbUsers" IsEditable="False" Background="Transparent" Foreground="#f00" DisplayMemberPath="FullName" ItemsSource="{Binding Users}" /> -->
           <Menu Margin="10,4,0,4" VerticalAlignment="Center"  Background="Transparent" FontSize="26" BorderThickness="1" >
             <Menu.Resources>
               <Style TargetType="{x:Type MenuItem}" >
-                <Setter Property="Foreground" Value="#04c" />
+                <Setter Property="Foreground" Value="#028" />
                 <Setter Property="Command" Value="{Binding LTCmd}" />
               </Style>
             </Menu.Resources>
-            <MenuItem Header="   _Lesson  " Foreground="#fff" ToolTip="Select a Lesson Type and Subtype" >
+            <MenuItem Header="   _Lesson  " Foreground="#bbb" ToolTip="Select a Lesson Type and Subtype" >
               <MenuItem Header="_Drills from File"            FontSize="16" FontWeight="SemiBold" BorderThickness="1" x:Name="mniFileDrills">
               </MenuItem>
               <MenuItem Header="_Basic Lessons"               FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
@@ -194,7 +193,7 @@
                             <MenuItem Header="_6 domain\user  "           Command="{Binding LTCmd}" CommandParameter="X-6"        />
                         </MenuItem>-->
             </MenuItem>
-            <MenuItem Header="   _Start "   Command="{Binding F5Cmd}" Foreground="#fff" ToolTip="Start your game"     />
+            <MenuItem Header="   _Start "   Command="{Binding F5Cmd}" Foreground="#bbb" ToolTip="Start your game"     />
           </Menu>
 
           <Button Command="{Binding F5Cmd}" msc:FocusExtension.IsFocused="{Binding IsFocusedSB}"  x:Name="btnStart" IsDefault="True" Opacity="0" ToolTip="F5 works too!!!" />
@@ -203,17 +202,17 @@
         <StackPanel Orientation="Horizontal" Margin="3" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=False}}">
           <!-- Player is off:         
         -->
-          <Label Margin="10,8,0,4" Content="  Player:" Foreground="#ddd" />
-          <TextBlock  Text="{Binding SelectUser, FallbackValue=Abc}"     Foreground="#ffe" FontSize="26" Margin="4" />
+          <Label Margin="10,8,0,4" Content="  Player:" Foreground="#777" />
+          <TextBlock  Text="{Binding SelectUser, FallbackValue=Abc}"     Foreground="#bbb" FontSize="26" Margin="4" />
 
-          <Label Margin="10,8,0,4" Content="  Lesson:" Foreground="#ddd" />
-          <TextBlock  Text="{Binding CurInfo, FallbackValue=Type Catch}" Foreground="#ffe" FontSize="26" Margin="4 4 40 4" />
+          <Label Margin="10,8,0,4" Content="  Lesson:" Foreground="#777" />
+          <TextBlock  Text="{Binding CurInfo, FallbackValue=Type Catch}" Foreground="#bbb" FontSize="26" Margin="4 4 40 4" />
         </StackPanel>
 
-        <Label      Content="Done+Todo:"                          Foreground="#ff8" Margin="10,8,0,4" />
-        <TextBlock  Text="{Binding DoneToday, FallbackValue='0'}" Foreground="#ff8" FontSize="26" Margin="4" />
-        <TextBlock  Text="+"                                      Foreground="#ff8" FontSize="26" Margin="4" />
-        <TextBlock  Text="{Binding TodoToday, FallbackValue='5'}" Foreground="#ff8" FontSize="26" Margin="4" />
+        <Label      Content="Done+Todo:"                          Foreground="#bb0" Margin="10,8,0,4" />
+        <TextBlock  Text="{Binding DoneToday, FallbackValue='0'}" Foreground="#bb0" FontSize="26" Margin="4" />
+        <TextBlock  Text="+"                                      Foreground="#bb0" FontSize="26" Margin="4" />
+        <TextBlock  Text="{Binding TodoToday, FallbackValue='5'}" Foreground="#bb0" FontSize="26" Margin="4" />
       </StackPanel>
 
       <StackPanel x:Name="pnlZoomer" Orientation="Horizontal" Margin="4" HorizontalAlignment="Right" Grid.ColumnSpan="3" >
@@ -261,19 +260,13 @@
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="t1" FontSize="24" Margin="2 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding LessonText, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812345678123456781234567812345678'}" Foreground="#00a" >
-          <!--<TextBlock.Background>
-            <MultiBinding FallbackValue="#ffd" Converter="{lnk:CpmToColorConverter}" >
-              <Binding Path="CrntCpm" />
-              <Binding Path="RcrdCpm" />
-            </MultiBinding>
-          </TextBlock.Background>-->
-        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="t1" FontSize="24" Margin="2 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding LessonText, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812345678123456781234567812345678'}" Foreground="#888" />
+
         <TextBox Grid.Column="1" Grid.Row="1" x:Name="t2" FontSize="24" Margin="0 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding PupilInput, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812', UpdateSourceTrigger=PropertyChanged}"                    
                  BorderThickness="0" AcceptsReturn="True" IsEnabled="{Binding IsInSsn}" Background="Transparent" Foreground="{Binding IsCorrect, Converter={lnk:BoolToColorConverter}}" 
                  msc:FocusExtension.IsFocused="{Binding IsFocusedPI}" />
 
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" BorderThickness="1" CornerRadius="4" Margin="-1 -3 -1 -2" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#777" BorderThickness="1" CornerRadius="4" Margin="-1 -3 -1 -2" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
           <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
               <GradientStop Color="#777" Offset="0"/>
@@ -372,7 +365,7 @@
             <!--<WindowsFormsHost Margin="10" >
                         <Vws:WinFormChartUsrCtrl x:Name="cChart1"  />
                     </WindowsFormsHost>-->
-            <lvc:CartesianChart x:Name="cChart1" Margin="10" >
+            <lvc:CartesianChart x:Name="cChart1" Margin="10" Background="#333" >
               <lvc:CartesianChart.AxisX>
                 <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
               </lvc:CartesianChart.AxisX>
@@ -380,7 +373,7 @@
 
             <TextBlock Grid.Column="1" FontSize="24" Margin="2 0" VerticalAlignment="Top"  HorizontalAlignment="Center" Text="Scoreboard"   Foreground="#08f" />
             <DataGrid  Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}"  AutoGenerateColumns="False" EnableRowVirtualization="True"                   
-                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" 
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333"
                      >
               <DataGrid.Columns>
                 <!--
@@ -454,15 +447,13 @@
           </TransformGroup>
         </Grid.RenderTransform>
         <Viewbox    Width="60"  VerticalAlignment="Top" >
-          <DataGrid ItemsSource="{Binding PrgsChart}" AutoGenerateColumns="False"  Width="210.0" MinHeight="100" HorizontalAlignment="Right" VerticalAlignment="Bottom"   EnableRowVirtualization="True"  Margin="0"
-        IsReadOnly="True" BorderThickness="0" RowBackground="Transparent" AlternatingRowBackground="Transparent" Background="Transparent" GridLinesVisibility="None" HeadersVisibility="None" >
+          <DataGrid ItemsSource="{Binding PrgsChart}" AutoGenerateColumns="False"  Width="210.0" MinHeight="100" HorizontalAlignment="Right" VerticalAlignment="Bottom"   EnableRowVirtualization="True"  Margin="0" IsReadOnly="True" BorderThickness="0" RowBackground="#444" AlternatingRowBackground="#333" Background="Transparent" GridLinesVisibility="None" HeadersVisibility="None" >
             <DataGrid.Columns>
               <DataGridTemplateColumn SortMemberPath="Progres"                 Header="Progress"    Width="Auto" CanUserSort="True" >
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <Grid  HorizontalAlignment="Stretch" >
                       <Rectangle   Width="{Binding Percentg}" HorizontalAlignment="Left"    VerticalAlignment="Stretch" Margin="0 -1" Fill="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
-                      <!--<ProgressBar Value="{Binding SppedCpm}" Maximum="{Binding UpperLim}"  Height="8" Background="#088"  Foreground="#0f0" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />-->
                       <TextBlock    Text="{Binding SppedCpm, StringFormat='{}{0,4}'}" HorizontalAlignment="Left" FontSize="28" FontWeight="Medium" Foreground="#ff0" Margin="20 -5 -5 -5" />
                     </Grid>
                   </DataTemplate>
@@ -473,7 +464,7 @@
         </Viewbox>
       </Grid>
 
-      <Border Grid.Row="2" CornerRadius="6" BorderBrush="#888" BorderThickness="2" Grid.ColumnSpan="2" Margin="14 10" Padding="0" Background="#aaa">
+      <Border Grid.Row="2" CornerRadius="6" BorderBrush="#555" BorderThickness="2" Grid.ColumnSpan="2" Margin="14 10" Padding="0" Background="#555">
         <Border.Resources>
           <Storyboard x:Key="myAnim">
             <ParallelTimeline>
@@ -487,7 +478,7 @@
           </Storyboard>
         </Border.Resources>
         <Grid>
-          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" x:Name="pbAnim"            VerticalAlignment="Stretch" Background="#999" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
+          <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" x:Name="pbAnim"            VerticalAlignment="Stretch" Background="#111" Foreground="{Binding IsRecord, Converter={lnk:BoolToColorConverter}}" />
           <ProgressBar BorderThickness="0" Maximum="{Binding MaxCpm}" Value="{Binding CrntCpm}"  VerticalAlignment="Stretch" Background="Transparent" Foreground="#1000" d:Value="33" >
             <ProgressBar.Triggers>
               <EventTrigger RoutedEvent="ProgressBar.ValueChanged">

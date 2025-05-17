@@ -62,21 +62,17 @@ namespace TypingWpf.VMs
     }
     protected override async Task ClosingVM()
     {
-      //Bpr.Click();
-
-      if (_cancelClosing = IsInSsn) // if in session: finish it and cancel closing and show results.
+      _cancelClosing = IsInSsn;
+      if (IsInSsn) // if in session: finish it and cancel closing and show results.
       {
         await finishTheSession();
         return;
       }
 
-      //redundant: SaveToDb_SettingsMostly();  <== redundant Jun 2019
-
       Opcty = 0;
-      IsInSsn = true; // just to show responciveness
       MainVis = Visibility.Hidden;
-      refreshUiSynch();
-      await refreshUi();
+      //refreshUiSynch();
+      //await refreshUi();
 
       await Task.Run(() => SoundPlayer.PlayByeByeSound());
       await base.ClosingVM();

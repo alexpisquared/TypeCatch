@@ -27,12 +27,12 @@ public abstract class BindableBaseViewModel : BindableBase
   public event EventHandler RequestClose;
   protected virtual void OnRequestClose() => RequestClose?.Invoke(this, EventArgs.Empty);
   protected virtual bool CanClose() => true;
-  protected virtual async Task ClosingVM() => await Task.Delay(99);  // public abstract void Closing();
+  protected virtual async Task ClosingVM() => await Task.Delay(0);  // public abstract void Closing();
 
   protected static bool _cancelClosing = false;
   public static void CloseEvent(Window view, BindableBaseViewModel vwMdl)
   {
-    async void handler(object sender, EventArgs e)
+    async void handler(object? sender, EventArgs e)
     {
       await vwMdl.ClosingVM();
       if (_cancelClosing) return;
@@ -46,7 +46,7 @@ public abstract class BindableBaseViewModel : BindableBase
           else
             await System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(view.Close));
       }
-      catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
+      catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod()?.Name); if (Debugger.IsAttached) Debugger.Break(); }
     } // When the ViewModel asks to be closed, close the window.
 
     vwMdl.RequestClose += handler;

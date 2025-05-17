@@ -100,21 +100,18 @@ public partial class MainVM
     var sw = Stopwatch.StartNew();
     try
     {
-      IsInSsn = false;    //todo: why so slow in reflecting in the UI???
-      await Task.Yield();
-      //Bpr.Beep1of2();
+      IsInSsn = false;
+      Console.Beep(500, 50);
+      await Task.Delay(32); //todo: why so slow in reflecting in the UI???
 
       if (!_swMain.IsRunning || _swMain.ElapsedTicks == 0) // if has not been started yet.
         return;
 
       _swMain.Stop();
 
-      //if (PupilInput.Length == 0)
-      //  return;
-
       if (PupilInput.Trim().Length < LessonLen - 3)
       {
-        synth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
+        //synth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
         return;
       }
 
@@ -245,7 +242,7 @@ public partial class MainVM
 
       }//);//.ContinueWith(_ => onF1_UpdateCpmRecord(), TaskScheduler.FromCurrentSynchronizationContext());
     }
-    finally { }
+    catch (Exception ex) { _ = ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
   }
 
   public static List<dbMdl.SessionResult> GetLatestCurLessnons(IEnumerable<dbMdl.SessionResult> curLessons) => new(curLessons.OrderByDescending(r => r.DoneAt).Take(10).ToList());

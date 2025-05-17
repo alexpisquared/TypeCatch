@@ -1,0 +1,65 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="DbgDscnctd" />
+    <BuildType Name="Dbg_Fit_FileToDB_Dev" />
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugUI" />
+    <BuildType Name="Release" />
+    <BuildType Name="ReleaseBeta" />
+    <BuildType Name="RlsDscnctd" />
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../../../AAV.Shared/Src/Net6.0/AAV.Sys/AAV.Sys.8.0.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Release" />
+    <BuildType Solution="Dbg_Fit_FileToDB_Dev|*" Project="Release" />
+    <BuildType Solution="DebugUI|*" Project="BldRls" />
+    <BuildType Solution="ReleaseBeta|*" Project="Release" />
+    <BuildType Solution="RlsDscnctd|*" Project="Debug" />
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="../../../AAV.Shared/Src/NetLts/Ambience/AmbienceLib.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Debug" />
+    <BuildType Solution="Dbg_Fit_FileToDB_Dev|*" Project="Debug" />
+    <BuildType Solution="DebugUI|*" Project="Debug" />
+    <BuildType Solution="ReleaseBeta|*" Project="Release" />
+    <BuildType Solution="RlsDscnctd|*" Project="Release" />
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="../../../AAV.Shared/Src/NetLts/StandardLib/StandardLib.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Debug" />
+    <BuildType Solution="Dbg_Fit_FileToDB_Dev|*" Project="Debug" />
+    <BuildType Solution="DebugUI|*" Project="Debug" />
+    <BuildType Solution="ReleaseBeta|*" Project="Release" />
+    <BuildType Solution="RlsDscnctd|*" Project="Release" />
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="../../../Util/Src/OpenVsOnTheCulpritLine/OpenVsOnTheCulpritLine.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Release" />
+    <BuildType Solution="Dbg_Fit_FileToDB_Dev|*" Project="Release" />
+    <BuildType Solution="DebugUI|*" Project="Debug" />
+    <BuildType Solution="ReleaseBeta|*" Project="Release" />
+    <BuildType Solution="RlsDscnctd|*" Project="Debug" />
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="AAV.Common.MVVM/AAV.Common.MVVM.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="AAV.Common.UI/AAV.Common.UI.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Dbg_Fit_FileToDB_Dev" />
+    <BuildType Solution="DebugUI|*" Project="Debug" />
+    <BuildType Solution="RlsDscnctd|*" Project="Release" />
+    <Platform Solution="*|x86" Project="x86" />
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+  <Project Path="TypeCatch.Net5/TypeCatch.Net5.csproj">
+    <BuildType Solution="DbgDscnctd|*" Project="Debug" />
+    <BuildType Solution="Dbg_Fit_FileToDB_Dev|*" Project="Debug" />
+    <BuildType Solution="DebugUI|*" Project="Debug" />
+    <BuildType Solution="ReleaseBeta|*" Project="Release" />
+    <BuildType Solution="RlsDscnctd|*" Project="Release" />
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+</Solution>

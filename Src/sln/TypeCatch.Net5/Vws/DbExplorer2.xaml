@@ -19,7 +19,7 @@
     <CollectionViewSource x:Key="userViewSource"              d:DesignSource="{d:DesignInstance {x:Type DbMdl:User},          CreateList=True}"/>
     <CollectionViewSource x:Key="userSessionResultsViewSource" Source="{Binding SessionResults, Source={StaticResource userViewSource}}"/>
   </lnk:WindowBase.Resources>
-  <Border CornerRadius="5" BorderBrush="#48f" BorderThickness="2" Background="#ccc" >
+  <Border CornerRadius="5" BorderBrush="#48f" BorderThickness="2" Background="#222" >
     <Grid DataContext="{StaticResource userViewSource}" Margin="0,1,0,-1">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="32"/>
@@ -86,8 +86,7 @@
 
 
 
-      <DataGrid x:Name="userDataGrid" Grid.Row="3" ItemsSource="{Binding}" Grid.Column="2" 
-                  CanUserAddRows="True" IsReadOnly="False" >
+      <DataGrid x:Name="userDataGrid" Grid.Row="3" ItemsSource="{Binding}" Grid.Column="2" CanUserAddRows="True" IsReadOnly="False" >
         <DataGrid.Columns>
           <DataGridTextColumn Binding="{Binding UserId}"      Header="Nickname " />
           <DataGridTextColumn Binding="{Binding FullName}"    Header="Full Name" />

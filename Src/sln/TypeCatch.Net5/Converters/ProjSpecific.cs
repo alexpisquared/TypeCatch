@@ -9,8 +9,8 @@ namespace AsLink
 {
   public class BoolToColorConverter : MarkupExtension, IValueConverter
   {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) { return new SolidColorBrush(((bool)value) ? Colors.LimeGreen : Colors.HotPink); }
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) { return null; }
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) { return new SolidColorBrush(((bool)value) ? Colors.DarkBlue : Colors.Red); }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) { return value; }
     public override object ProvideValue(IServiceProvider serviceProvider) { return this; }
     public BoolToColorConverter() { }
   }
@@ -25,16 +25,16 @@ namespace AsLink
       var rcrdCpm = (int)values[1];
       if (crntCpm > rcrdCpm && crntCpm != 0)
       {
-        var ds = (byte)((225.0 * rcrdCpm / crntCpm));
-        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(ds, 255, ds)); // Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"++ {CrntCpm,5} / {_recordCpm} ==> {(10.0 * CrntCpm / _recordCpm),6:N1} ==> {ds,4} ++");
+        var ds = (byte)(64.0 * (100 + crntCpm) / (100 + rcrdCpm));
+        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, ds, 0));
       }
       else if (rcrdCpm != 0)
       {
-        var ds = (byte)(255.0 * (100 + crntCpm) / (100 + rcrdCpm));
-        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, ds, ds));
+        var ds = (byte)(64.0 * (100 + crntCpm) / (100 + rcrdCpm));
+        return new SolidColorBrush(System.Windows.Media.Color.FromRgb(ds, 0, 0));
       }
 
-      return new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 190));
+      return new SolidColorBrush(System.Windows.Media.Color.FromRgb(32, 32, 32));
     }
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException("search for CpmToColorConverter");
     public override object ProvideValue(IServiceProvider serviceProvider) { return this; }
