@@ -358,14 +358,14 @@
               <Setter Property="Opacity" TargetName="border" Value="0.56"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
-              <Setter Property="BorderBrush" TargetName="border" Value="#0f0"/>
+              <Setter Property="BorderBrush" TargetName="border" Value="#060"/>
             </Trigger>
 
             <Trigger Property="IsFocused" Value="false">
               <Setter Property="TextBox.Opacity"  Value=".1" />
             </Trigger>
             <Trigger Property="IsFocused" Value="true">
-              <Setter Property="Background"       Value="#ff8" />
+              <Setter Property="Background"       Value="#860" />
               <Setter Property="TextBox.Opacity"  Value="1" />
             </Trigger>
           </ControlTemplate.Triggers>

@@ -18,7 +18,7 @@ namespace TypingWpf
     void onWindowRestoree(object s, RoutedEventArgs e) { wr.Visibility = Visibility.Collapsed; wm.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Normal; }
     void onWindowMaximize(object s, RoutedEventArgs e) { wm.Visibility = Visibility.Collapsed; wr.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Maximized; }
 
-    private void OnLoaded(object sender, RoutedEventArgs e)
+    void OnLoaded(object sender, RoutedEventArgs e)
     {
       const string accelkeys = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+";
       int i = 0;
@@ -30,6 +30,8 @@ namespace TypingWpf
           CommandParameter = dr.SqlExcerciseName,
           //Command = .. used through Style.
         });
+
+      t2.Focus();
     }
   }
 }

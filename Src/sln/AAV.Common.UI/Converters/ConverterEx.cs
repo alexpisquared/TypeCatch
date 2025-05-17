@@ -52,9 +52,9 @@ namespace AsLink
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       var d = value is DateTime ? (byte)(((int)(DateTime.Now - (DateTime)value).TotalDays) % 256) : (byte)0;
-      var r = (byte)(220 + (255 - d * 30) % 36);
-      var g = (byte)(220 + (255 - d * 20) % 36);
-      var b = (byte)(220 + (255 - d * 10) % 36);
+      var r = (byte)(0 + (255 - d * 30) % 36);
+      var g = (byte)(0 + (255 - d * 20) % 36);
+      var b = (byte)(0 + (255 - d * 10) % 36);
 
       if (targetType == typeof(Brush))
       {
@@ -163,8 +163,8 @@ namespace AsLink
 
   public class WeekDayToForeColorConverter : MarkupExtension, IValueConverter
   {
-    public Brush WeekDay { get; set; } = Brushes.DodgerBlue;
-    public Brush WeekEnd { get; set; } = Brushes.Red;
+    public Brush WeekDay { get; set; } = Brushes.Cyan;
+    public Brush WeekEnd { get; set; } = Brushes.Magenta;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -205,13 +205,13 @@ namespace AsLink
         switch (val.DayOfWeek)
         {
           default:
-          case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(200, 200, 255));
-          case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(255, 200, 200));
-          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(255, 255, 200));
-          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(255, 200, 255));
-          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(200, 255, 255));
-          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(255, 220, 255));
-          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(255, 200, 200));
+          case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 55));
+          case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00));
+          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(55, 55, 00));
+          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 55));
+          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 55, 55));
+          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 20, 55));
+          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00));
         }
       }
 
