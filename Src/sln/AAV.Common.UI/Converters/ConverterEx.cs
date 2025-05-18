@@ -163,8 +163,8 @@ namespace AsLink
 
   public class WeekDayToForeColorConverter : MarkupExtension, IValueConverter
   {
-    public Brush WeekDay { get; set; } = Brushes.Cyan;
-    public Brush WeekEnd { get; set; } = Brushes.Magenta;
+    public Brush WeekDay { get; set; } = Brushes.DarkGray;
+    public Brush WeekEnd { get; set; } = Brushes.DarkMagenta;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -206,12 +206,12 @@ namespace AsLink
         {
           default:
           case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 55));
-          case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00));
-          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(55, 55, 00));
-          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 55));
-          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 55, 55));
-          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 20, 55));
-          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00));
+          case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(00, 30, 00));
+          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(00, 60, 00));
+          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 55));
+          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 25, 55));
+          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 25, 00));
+          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00)); 
         }
       }
 

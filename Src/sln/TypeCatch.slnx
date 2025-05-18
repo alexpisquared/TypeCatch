@@ -43,11 +43,11 @@
     <BuildType Solution="RlsDscnctd|*" Project="Debug" />
     <Platform Solution="*|x64" Project="x64" />
   </Project>
-  <Project Path="AAV.Common.MVVM/AAV.Common.MVVM.csproj">
+  <Project Path="AAV.Common.MVVM/AAV.Common.MVVM.csproj" Id="175d8a5c-519d-4a1f-8b6e-d822a0717680">
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>
-  <Project Path="AAV.Common.UI/AAV.Common.UI.csproj">
+  <Project Path="AAV.Common.UI/AAV.Common.UI.csproj" Id="62e489f8-ccae-4984-a19d-03abb8eb1854">
     <BuildType Solution="DbgDscnctd|*" Project="Dbg_Fit_FileToDB_Dev" />
     <BuildType Solution="DebugUI|*" Project="Debug" />
     <BuildType Solution="RlsDscnctd|*" Project="Release" />

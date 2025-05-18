@@ -19,17 +19,13 @@ namespace AsLink
   {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-      if (!(values[0] is double && values[1] is int)) return new SolidColorBrush(Colors.Transparent);
+      if (!(values[0] is double && values[1] is int) || (100 + (int)values[1]) == 0) return new SolidColorBrush(Colors.Transparent);
 
-      var crntCpm = 100 + (double)values[0];
-      var rcrdCpm = 100 + (int)values[1];
-      if (crntCpm != 0)
-      {
-        var ds = (byte)(64.0 * (crntCpm) / (rcrdCpm));
-        return new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(crntCpm > rcrdCpm ? 0 : (.7 * ds)), ds, 0));
-      }
+      var recordCpm = 100 + (int)values[1];
+      var curnetCpm = 100 + (double)values[0];
+      var ds = (byte)(64.0 * (curnetCpm) / (recordCpm));
 
-      return new SolidColorBrush(System.Windows.Media.Color.FromRgb(32, 32, 32));
+      return new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)(curnetCpm > recordCpm ? 0 : (.7 * ds)), ds, 0));
     }
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException("search for CpmToColorConverter");
     public override object ProvideValue(IServiceProvider serviceProvider) { return this; }

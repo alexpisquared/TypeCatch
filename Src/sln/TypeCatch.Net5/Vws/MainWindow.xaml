@@ -371,9 +371,8 @@
             </lvc:CartesianChart>
 
             <TextBlock Grid.Column="1" FontSize="24" Margin="2 0" VerticalAlignment="Top"  HorizontalAlignment="Center" Text="Scoreboard"   Foreground="#08f" />
-            <DataGrid  Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}"  AutoGenerateColumns="False" EnableRowVirtualization="True"                   
-                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333"
-                     >
+            <DataGrid  Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}"  AutoGenerateColumns="False" EnableRowVirtualization="False"                   
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 32 10 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333"                   >
               <DataGrid.Columns>
                 <!--
                                SelectionChanged="sc" IsVisibleChanged="ivc" 
@@ -446,7 +445,7 @@
           </TransformGroup>
         </Grid.RenderTransform>
         <Viewbox    Width="60"  VerticalAlignment="Top" >
-          <DataGrid ItemsSource="{Binding PrgsChart}" AutoGenerateColumns="False"  Width="210.0" MinHeight="100" HorizontalAlignment="Right" VerticalAlignment="Bottom"   EnableRowVirtualization="True"  Margin="0" IsReadOnly="True" BorderThickness="0" RowBackground="#444" AlternatingRowBackground="#333" Background="Transparent" GridLinesVisibility="None" HeadersVisibility="None" >
+          <DataGrid ItemsSource="{Binding PrgsChart}" AutoGenerateColumns="False"  Width="210.0" MinHeight="100" HorizontalAlignment="Right" VerticalAlignment="Bottom"   EnableRowVirtualization="False"  Margin="0" IsReadOnly="True" BorderThickness="0" RowBackground="#444" AlternatingRowBackground="#333" Background="Transparent" GridLinesVisibility="None" HeadersVisibility="None" >
             <DataGrid.Columns>
               <DataGridTemplateColumn SortMemberPath="Progres"                 Header="Progress"    Width="Auto" CanUserSort="True" >
                 <DataGridTemplateColumn.CellTemplate>

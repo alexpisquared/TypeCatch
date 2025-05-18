@@ -263,7 +263,7 @@
     <Setter Property="BorderBrush"			        Value="#666" />
     <Setter Property="CanUserAddRows"			      Value="False" />
     <Setter Property="ColumnHeaderStyle"		    Value="{DynamicResource ColumnHeaderStyle_Aav0}"/>
-    <Setter Property="EnableRowVirtualization"	Value="True"  />
+    <!--<Setter Property="EnableRowVirtualization"	Value="True"  /> makes it very slow in response. May 2025 -->
     <Setter Property="Foreground"               Value="#eee"/>
     <Setter Property="GridLinesVisibility"		  Value="None" />
     <Setter Property="HeadersVisibility"		    Value="Column" />
