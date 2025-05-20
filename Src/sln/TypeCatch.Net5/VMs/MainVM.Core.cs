@@ -146,9 +146,8 @@ public partial class MainVM
         //_chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
         _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt));
 
-        synth.SpeakFAF("OK?");
-
-        await Task.Delay(99);
+        //synth.SpeakFAF("OK?");
+        //await Task.Delay(99);
       }
 
       IsFocusedPI = false;
@@ -245,7 +244,7 @@ public partial class MainVM
     catch (Exception ex) { _ = ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
   }
 
-  public static List<dbMdl.SessionResult> GetLatestCurLessnons(IEnumerable<dbMdl.SessionResult> curLessons) => new(curLessons.OrderByDescending(r => r.DoneAt).Take(10).ToList());
+  public static List<dbMdl.SessionResult> GetLatestLessnns(IEnumerable<dbMdl.SessionResult> curLessons) => new(curLessons.OrderByDescending(r => r.DoneAt).Take(10).ToList());
 
   async void runTreatIfAny()
   {

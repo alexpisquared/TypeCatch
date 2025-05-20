@@ -266,21 +266,21 @@ namespace TypingWpf.VMs
       var sw = Stopwatch.StartNew();
       var latestGlobalRecord = DateTime.Now.AddYears(-100);
 
-      await dbdbld.SessionResults.Where(r => r.UserId == selectUser).LoadAsync();
+      //await dbdbld.SessionResults.Where(r => r.UserId == selectUser).LoadAsync();
 
       try
       {
-        var allExrczNames = dbdbld.SessionResults.Local.GroupBy(r => r.ExcerciseName);
+        var allExrczNames = dbdbld.SessionResults.Where(r => r.UserId == selectUser).GroupBy(r => r.ExcerciseName);
         foreach (var exrsName in allExrczNames)
         {
-          if (dbdbld.SessionResults.Local.Any(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key))
+          if (dbdbld.SessionResults.Any(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key))
           {
-            var record4userAndExrz = dbdbld.SessionResults.Local.Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key).ToList().Max(r => r.CpM);
-            var lastExrzRecordDate = dbdbld.SessionResults.Local.ToList().Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key && r.CpM == record4userAndExrz).Max(r => r.DoneAt);
+            var record4userAndExrz = dbdbld.SessionResults.Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key).ToList().Max(r => r.CpM);
+            var lastExrzRecordDate = dbdbld.SessionResults.ToList().Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key && r.CpM == record4userAndExrz).Max(r => r.DoneAt);
             if (latestGlobalRecord < lastExrzRecordDate)
             {
               latestGlobalRecord = lastExrzRecordDate;
-              Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" {exrsName.Key,-8}{dbdbld.SessionResults.Local.Count(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key),5} times    max cpm {record4userAndExrz,3}   {lastExrzRecordDate}  ->  {latestGlobalRecord}");
+              Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" {exrsName.Key,-8}{dbdbld.SessionResults.Count(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key),5} times    max cpm {record4userAndExrz,3}   {lastExrzRecordDate}  ->  {latestGlobalRecord}");
             }
           }
         }

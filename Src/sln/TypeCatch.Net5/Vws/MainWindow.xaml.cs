@@ -11,7 +11,7 @@ namespace TypingWpf
 
       VersioInfo.Text = $"{"VerHelper.CurVerStr(.Net5)"}\n{A0DbMdl.GetA0DbMdl.ServerDatabase()}";
 
-      Topmost = Debugger.IsAttached;
+      //Topmost = Debugger.IsAttached;
     }
 
     void onWindowMinimize(object s, RoutedEventArgs e) => WindowState = System.Windows.WindowState.Minimized;
