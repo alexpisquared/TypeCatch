@@ -202,17 +202,16 @@ namespace AsLink
         return new LinearGradientBrush(Color.FromRgb(b, b, b), Color.FromRgb(c, c, c), 90);
       else
       {
-        switch (val.DayOfWeek)
+        return val.DayOfWeek switch
         {
-          default:
-          case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 60));
-          case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(00, 30, 00));
-          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 00));
-          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 60));
-          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 30, 60));
-          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 00));
-          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(60, 00, 00)); 
-        }
+          DayOfWeek.Tuesday => new SolidColorBrush(Color.FromRgb(00, 30, 00)),
+          DayOfWeek.Wednesday => new SolidColorBrush(Color.FromRgb(00, 00, 00)),
+          DayOfWeek.Thursday => new SolidColorBrush(Color.FromRgb(30, 00, 60)),
+          DayOfWeek.Friday => new SolidColorBrush(Color.FromRgb(00, 30, 60)),
+          DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(30, 00, 00)),
+          DayOfWeek.Sunday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
+          _ => new SolidColorBrush(Color.FromRgb(00, 00, 60)),
+        };
       }
 
       //switch (val.DayOfWeek)
