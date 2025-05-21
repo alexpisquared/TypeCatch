@@ -205,13 +205,13 @@ namespace AsLink
         switch (val.DayOfWeek)
         {
           default:
-          case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 55));
+          case DayOfWeek.Monday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 60));
           case DayOfWeek.Tuesday:    /**/ return new SolidColorBrush(Color.FromRgb(00, 30, 00));
-          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(00, 60, 00));
-          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 55));
-          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 25, 55));
-          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(55, 25, 00));
-          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(55, 00, 00)); 
+          case DayOfWeek.Wednesday:  /**/ return new SolidColorBrush(Color.FromRgb(00, 00, 00));
+          case DayOfWeek.Thursday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 60));
+          case DayOfWeek.Friday:     /**/ return new SolidColorBrush(Color.FromRgb(00, 30, 60));
+          case DayOfWeek.Saturday:   /**/ return new SolidColorBrush(Color.FromRgb(30, 00, 00));
+          case DayOfWeek.Sunday:     /**/ return new SolidColorBrush(Color.FromRgb(60, 00, 00)); 
         }
       }
 
