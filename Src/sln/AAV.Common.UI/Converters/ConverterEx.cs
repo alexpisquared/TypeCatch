@@ -197,7 +197,7 @@ public class WeekdaysTo6Colors : MarkupExtension, IValueConverter
         DayOfWeek.Wednesday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
         DayOfWeek.Thursday => new SolidColorBrush(Color.FromRgb(30, 00, 60)),
         DayOfWeek.Friday => new SolidColorBrush(Color.FromRgb(60, 00, 60)),
-        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(30, 30, 00)),
+        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(50, 20, 00)),
         DayOfWeek.Sunday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
         _ => new SolidColorBrush(Color.FromRgb(00, 00, 60)),
       };
