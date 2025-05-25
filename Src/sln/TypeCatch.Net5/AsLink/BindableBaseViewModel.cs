@@ -10,12 +10,12 @@ public abstract class BindableBaseViewModel : BindableBase
 
   protected BindableBaseViewModel() => CloseAppCmd = new RelayCommand(x => OnRequestClose(), param => CanClose())
   {
-#if DEBUG
-      GestureKey = Key.Escape
-#else
-    GestureKey = Key.F4,
-    GestureModifier = ModifierKeys.Alt
-#endif
+//#if __DEBUG
+//      GestureKey = Key.Escape
+//#else
+//    GestureKey = Key.F4,
+//    GestureModifier = ModifierKeys.Alt
+//#endif
   };
 
   protected virtual void AutoExec() => Trace.WriteLineIf(appTraceLevel_Lcl.TraceVerbose, "AutoExec()");

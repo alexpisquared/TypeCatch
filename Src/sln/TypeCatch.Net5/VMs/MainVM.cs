@@ -69,6 +69,9 @@ namespace TypingWpf.VMs
         return;
       }
 
+      _cancelClosing = true; //////////////////////////////////////////////////////////////// May 2025
+      return;                //////////////////////////////////////////////////////////////// May 2025
+
       Opcty = 0;
       MainVis = Visibility.Hidden;
       //refreshUiSynch();

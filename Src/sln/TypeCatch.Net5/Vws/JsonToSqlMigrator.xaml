@@ -15,7 +15,7 @@
         <TextBlock x:Name="tbEror" TextWrapping="Wrap" Text="tbEror" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#f00" />
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" >
-            <Button Content="_Close"  IsCancel="True"  Click="onClose" />
+            <Button Content="_Close"  IsCancel="False"  Click="onClose" />
         </StackPanel>
     </Grid>
 </Window>

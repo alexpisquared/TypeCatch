@@ -34,7 +34,7 @@ namespace AsLink
           switch (e.Key)
           {
             default: break;
-            case Key.Escape: if (!_ignoreEscape) Close(); break;
+            //case Key.Escape: if (!_ignoreEscape) Close(); break;
           }
       };
     }

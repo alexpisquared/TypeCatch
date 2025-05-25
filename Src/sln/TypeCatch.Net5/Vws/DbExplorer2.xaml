@@ -143,7 +143,7 @@
       <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="6" HorizontalAlignment="Right" Margin="5" >
         <Button x:Name="un" Content="_Update Notes" Click="onUpdateSsnRsltNotes"    />
         <Button x:Name="sv" Content="_Save"         Click="onDbSave"    />
-        <Button x:Name="cl" Content="_Close"        Click="onClose" IsCancel="True"   />
+        <Button x:Name="cl" Content="_Close"        Click="onClose" IsCancel="False"   />
       </StackPanel>
 
       <TextBlock x:Name="tbInfo" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="#00f" />
