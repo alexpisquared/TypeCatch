@@ -155,7 +155,7 @@ public class MultiplierConverter : MarkupExtension, IValueConverter
 public class WeekDayToForeColorConverter : MarkupExtension, IValueConverter
 {
   public Brush WeekDay { get; set; } = Brushes.DarkGray;
-  public Brush WeekEnd { get; set; } = Brushes.DarkMagenta;
+  public Brush WeekEnd { get; set; } = new LinearGradientBrush(Colors.Magenta, Colors.Red, 90);
 
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
   {
@@ -197,32 +197,10 @@ public class WeekdaysTo6Colors : MarkupExtension, IValueConverter
         DayOfWeek.Wednesday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
         DayOfWeek.Thursday => new SolidColorBrush(Color.FromRgb(30, 00, 60)),
         DayOfWeek.Friday => new SolidColorBrush(Color.FromRgb(60, 00, 60)),
-        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(50, 20, 00)),
-        DayOfWeek.Sunday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
+        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(50, 40, 00)),
+        DayOfWeek.Sunday => new SolidColorBrush(Color.FromRgb(70, 00, 00)),
         _ => new SolidColorBrush(Color.FromRgb(00, 00, 60)),
       };
-
-    //switch (val.DayOfWeek)
-    //{
-    //  case DayOfWeek.Sunday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x40, 0x40, 0x40), Color.FromArgb(lower, 0x60, 0x60, 0x60), 90); // return new SolidColorBrush(Color.FromRgb(255, 240, 230));
-    //  case DayOfWeek.Monday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x60, 0x60, 0x60), Color.FromArgb(lower, 0x77, 0x77, 0x77), 90);
-    //  case DayOfWeek.Tuesday:   /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x77, 0x77, 0x77), Color.FromArgb(lower, 0x91, 0x91, 0x91), 90);
-    //  case DayOfWeek.Wednesday: /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x91, 0x91, 0x91), Color.FromArgb(lower, 0xAB, 0xAB, 0xAB), 90);
-    //  case DayOfWeek.Thursday:  /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xAB, 0xAB, 0xAB), Color.FromArgb(lower, 0xC4, 0xC4, 0xC4), 90);
-    //  case DayOfWeek.Friday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xC4, 0xC4, 0xC4), Color.FromArgb(lower, 0xE0, 0xE0, 0xE0), 90);
-    //  case DayOfWeek.Saturday:  /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xE0, 0xE0, 0xE0), Color.FromArgb(lower, 0xff, 0xff, 0xff), 90);
-    //}
-
-    //switch (val.DayOfWeek)
-    //{
-    //  case DayOfWeek.Sunday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xff, 0x00, 0x00), Color.FromArgb(lower, 0xFF, 0xB9, 0x00), 90); // return new SolidColorBrush(Color.FromRgb(255, 240, 230));
-    //  case DayOfWeek.Monday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0xB9, 0x00), Color.FromArgb(lower, 0xF3, 0xFF, 0x00), 90);
-    //  case DayOfWeek.Tuesday:   /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xF3, 0xFF, 0x00), Color.FromArgb(lower, 0x00, 0xFF, 0x00), 90);
-    //  case DayOfWeek.Wednesday: /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xFF, 0x00), Color.FromArgb(lower, 0x00, 0xff, 0xff), 90);
-    //  case DayOfWeek.Thursday:  /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xff, 0xff), Color.FromArgb(lower, 0x00, 0x00, 0xff), 90);
-    //  case DayOfWeek.Friday:    /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0x00, 0xff), Color.FromArgb(lower, 0xF3, 0x00, 0xFF), 90);
-    //  case DayOfWeek.Saturday:  /**/ return new LinearGradientBrush(Color.FromArgb(upper, 0xF3, 0x00, 0xFF), Color.FromArgb(lower, 0xfF, 0x00, 0x00), 90);
-    //}
   }
   public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => Binding.DoNothing;
   public override object ProvideValue(IServiceProvider serviceProvider) => this;
