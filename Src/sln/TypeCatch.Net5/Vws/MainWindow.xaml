@@ -397,7 +397,7 @@
                 <DataGridTemplateColumn Header="Date">
                   <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                      <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:y-MM-dd HH}'}" 
+                      <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:y-MM-dd HH:mm}'}" 
                                  Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
                                  Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
                     </DataTemplate>
