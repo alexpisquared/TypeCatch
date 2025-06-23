@@ -235,7 +235,7 @@
         <Button Content="-"                          FontSize="20" Padding="2 -3" ToolTip="Close Window" Click="onWindowMinimize"                                     />
         <Button Content="£" FontFamily="Wingdings 2" FontSize="16" Padding="0 -1" ToolTip="Close Window" Click="onWindowMaximize" x:Name="wm"                         />
         <Button Content="+" FontFamily="Wingdings 2" FontSize="16" Padding="0 -1" ToolTip="Close Window" Click="onWindowRestoree" x:Name="wr" Visibility="Collapsed"  />
-        <Button Content="r" FontFamily="Webdings"    FontSize="18" Padding="0 -1" ToolTip="Close Window" Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=w}" Opacity="{Binding ProLvl, FallbackValue=.4}" IsCancel="True" Foreground="#F66" />
+        <Button Content="r" FontFamily="Webdings"    FontSize="18" Padding="0 -1" ToolTip="Close Window" Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=w}" Opacity="{Binding ProLvl, FallbackValue=.4}" Foreground="#F66" />
       </StackPanel>
 
       <TextBlock  x:Name="VersioInfo" Text="123" Foreground="#ccc" FontSize="13" Margin="8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.ColumnSpan="3" TextAlignment="Right"/>

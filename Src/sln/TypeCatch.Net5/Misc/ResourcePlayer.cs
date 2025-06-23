@@ -70,6 +70,7 @@ namespace TypingWpf
         case 13: _soundPlayer.Stream = TypeCatch.Net5.Properties.Resources.Good___Yes_02; break;
         case 14: _soundPlayer.Stream = TypeCatch.Net5.Properties.Resources.Good___Yes_B_B; break;
       }
+      
       _soundPlayer.PlaySync();
     }
     public void PlaySessionFinish_Baad()
@@ -156,6 +157,7 @@ namespace TypingWpf
         case 44: _soundPlayer.Stream = TypeCatch.Net5.Properties.Resources.Ow___Uh_oh; break;
         case 45: _soundPlayer.Stream = TypeCatch.Net5.Properties.Resources.Ow___Vinni_Pooh; break;
       }
+      Volume = ushort.MaxValue / 26;
       _soundPlayer.Play();
     }
     public void PlayStart()
