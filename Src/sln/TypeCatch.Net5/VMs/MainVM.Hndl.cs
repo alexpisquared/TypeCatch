@@ -9,7 +9,7 @@ public partial class MainVM : BindableBaseViewModel
   {
     //var tdy = DateTime.Today;
     //var gnd = (VoiceGender)(tdy.DayOfYear % 3 + 1);
-    ////synth.Rate = 4;
+    ////__speechSynth.Rate = 4;
 
     //// { Console.WriteLine("CULTURE ISO ISO WIN DISPLAYNAME                              ENGLISHNAME"); foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.NeutralCultures)) { Console.Write("{0,-8}", ci.Name); Console.Write(" {0,-3}", ci.TwoLetterISOLanguageName); Console.Write(" {0,-3}", ci.ThreeLetterISOLanguageName); Console.Write(" {0,-3}", ci.ThreeLetterWindowsLanguageName); Console.Write(" {0,-40}", ci.DisplayName); Console.WriteLine(" {0,-40}", ci.EnglishName); } }
 
@@ -18,17 +18,17 @@ public partial class MainVM : BindableBaseViewModel
 
     //  for (int va = 1; va < 3; va++)
     //  {
-    //    foreach (InstalledVoice iv in synth.GetInstalledVoices())
+    //    foreach (InstalledVoice iv in __speechSynth.GetInstalledVoices())
     //    {
-    //      synth.SelectVoice(iv.VoiceInfo.Name);
-    //      synth.SpeakAsync($"{iv.VoiceInfo.Description} {gnd}. {ci.Name}.  voice Alternate = {va}.");
+    //      __speechSynth.SelectVoice(iv.VoiceInfo.Name);
+    //      __speechSynth.SpeakAsync($"{iv.VoiceInfo.Description} {gnd}. {ci.Name}.  voice Alternate = {va}.");
 
-    //      synth.SelectVoiceByHints(gnd, VoiceAge.Child,   /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Child } {va}");
-    //      synth.SelectVoiceByHints(gnd, VoiceAge.Teen,    /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Teen  } {va}");
-    //      synth.SelectVoiceByHints(gnd, VoiceAge.Adult,   /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Adult } {va}");
-    //      synth.SelectVoiceByHints(gnd, VoiceAge.Senior,  /**/ va, ci); synth.SpeakAsync($"{VoiceAge.Senior} {va}");
+    //      __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child,   /**/ va, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child } {va}");
+    //      __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Teen,    /**/ va, ci); __speechSynth.SpeakAsync($"{VoiceAge.Teen  } {va}");
+    //      __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Adult,   /**/ va, ci); __speechSynth.SpeakAsync($"{VoiceAge.Adult } {va}");
+    //      __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Senior,  /**/ va, ci); __speechSynth.SpeakAsync($"{VoiceAge.Senior} {va}");
 
-    //      var pr = synth.GetCurrentlySpokenPrompt();
+    //      var pr = __speechSynth.GetCurrentlySpokenPrompt();
     //      Trace.WriteLine($"{pr}");
     //    }
     //  }
@@ -37,26 +37,26 @@ public partial class MainVM : BindableBaseViewModel
 
     //  if (Debugger.IsAttached)
     //  {
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 1, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 1, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 1, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 1, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 2, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 2, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 2, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 2, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 3, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 3, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 3, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 3, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 4, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Teen, 4, ci); synth.SpeakAsync($"{VoiceAge.Teen  }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Adult, 4, ci); synth.SpeakAsync($"{VoiceAge.Adult }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Senior, 4, ci); synth.SpeakAsync($"{VoiceAge.Senior}");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 5, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 6, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 7, ci); synth.SpeakAsync($"{VoiceAge.Child }");
-    //    synth.SelectVoiceByHints(gnd, VoiceAge.Child, 8, ci); synth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 1, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Teen, 1, ci); __speechSynth.SpeakAsync($"{VoiceAge.Teen  }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Adult, 1, ci); __speechSynth.SpeakAsync($"{VoiceAge.Adult }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Senior, 1, ci); __speechSynth.SpeakAsync($"{VoiceAge.Senior}");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 2, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Teen, 2, ci); __speechSynth.SpeakAsync($"{VoiceAge.Teen  }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Adult, 2, ci); __speechSynth.SpeakAsync($"{VoiceAge.Adult }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Senior, 2, ci); __speechSynth.SpeakAsync($"{VoiceAge.Senior}");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 3, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Teen, 3, ci); __speechSynth.SpeakAsync($"{VoiceAge.Teen  }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Adult, 3, ci); __speechSynth.SpeakAsync($"{VoiceAge.Adult }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Senior, 3, ci); __speechSynth.SpeakAsync($"{VoiceAge.Senior}");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 4, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Teen, 4, ci); __speechSynth.SpeakAsync($"{VoiceAge.Teen  }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Adult, 4, ci); __speechSynth.SpeakAsync($"{VoiceAge.Adult }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Senior, 4, ci); __speechSynth.SpeakAsync($"{VoiceAge.Senior}");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 5, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 6, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 7, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
+    //    __speechSynth.SelectVoiceByHints(gnd, VoiceAge.Child, 8, ci); __speechSynth.SpeakAsync($"{VoiceAge.Child }");
     //  }
     //}
   }
@@ -64,11 +64,11 @@ public partial class MainVM : BindableBaseViewModel
   async void onF4(object o)
   {
     //runTreatIfAny();
-    await updateDoneTodo(SelectUser, synth, A0DbMdl.GetA0DbMdl);
-    synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
+    await updateDoneTodo(SelectUser, __speechSynth, A0DbMdl.GetA0DbMdl);
+    __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
   }
   void onF5(object o) => sessionLoad_Start_lazy();
-  void onF6(object o) { synth.SpeakAsyncCancelAll(); synth.SpeakFAF(string.IsNullOrEmpty(PreSelect) ? "Nothing is preselected" : $"I see there is something to play: {PreSelect}."); }
+  void onF6(object o) { __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF(string.IsNullOrEmpty(PreSelect) ? "Nothing is preselected" : $"I see there is something to play: {PreSelect}."); }
   void onF7(object o) => Process.Start("Explorer.exe", "IsoHelper.GetIsoFolder()");
   void onF8(object o)
   {
@@ -78,19 +78,19 @@ public partial class MainVM : BindableBaseViewModel
       var ff = System.Windows.Clipboard.GetFileDropList();
       if (ff.Count > 0)
       {
-        synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"looks like an {(File.Exists(ff[0]) ? "" : "non-")}existing file with extension {Path.GetExtension(ff[0])}.");
+        __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"looks like an {(File.Exists(ff[0]) ? "" : "non-")}existing file with extension {Path.GetExtension(ff[0])}.");
 
         PreSelect = ff[0];
       }
       else
       {
-        synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Nothing found here.");
+        __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Nothing found here.");
       }
     }
     else if (System.Windows.Clipboard.ContainsText())
     {
       PreSelect = System.Windows.Clipboard.GetText();
-      synth.SpeakAsyncCancelAll(); synth.SpeakFAF(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
+      __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF(PreSelect.StartsWith("http") ? $"looks like a URL." : $"Does not Look like URL.");
     }
   }
   void onF9(object o)

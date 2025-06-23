@@ -1,4 +1,5 @@
 ﻿using TypeCatch.Net5.Mdl;
+using static AmbienceLib.SpeechSynth;
 using dbMdl = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs;
@@ -34,7 +35,7 @@ public partial class MainVM
       {
         Debug.Write($" ^^ Stopping ---------------- ... ");
         _swMain.Stop();
-        synth.SpeakFAF("Stopped.");
+        __speechSynth.SpeakFAF("Stopped.");
       }
     }
     else
@@ -44,7 +45,7 @@ public partial class MainVM
       {
         Debug.Write($" vv Starting +++++++++++++++++ ... ");
         _swMain.Start();
-        synth.SpeakFAF("StartedAt.");
+        __speechSynth.SpeakFAF("StartedAt.");
       }
     }
 
@@ -62,7 +63,7 @@ public partial class MainVM
     CrntCpm = PupilInput.Length / _swMain.Elapsed.TotalMinutes; //CurInfo = $" Typed {(PupilInput.Length),3:N0}\t Elapsed {_sw.Elapsed:mm\\:ss}\t Speed {CrntCpm:N0}";
     IsRecord = CrntCpm > _recordCpm;
 
-    var now = DateTime.Now;
+    DateTime now = DateTime.Now;
     if (_swMain.IsRunning && PupilInput.Length > 0 && now > _nextMeasureTime)
     {
       var dLen = PupilInput.Length - _prevCharLen;
@@ -80,7 +81,7 @@ public partial class MainVM
 
   async void sessionLoad_Start_lazy() // timing will start on the first keystroke.
   {
-    var (lessonTxt, lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
+    (string lessonTxt, int lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
     LessonText = lessonTxt;
     LessonLen = lessonLen;
 
@@ -111,28 +112,28 @@ public partial class MainVM
 
       if (PupilInput.Trim().Length < LessonLen - 3)
       {
-        //synth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
+        //__speechSynth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
         return;
       }
 
-      if (!IsCorrect) { synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Almost there! Remember to finish typing till the last letter. Hitting Escape is like ghosting the lesson - not cool!"); return; }
+      if (!IsCorrect) { __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Almost there! Remember to finish typing till the last letter. Hitting Escape is like ghosting the lesson - not cool!"); return; }
 
       var prevRcrdCpm = RcrdCpm;
       var thisResult = new dbMdl.SessionResult { Duration = _swMain.Elapsed, ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName[..2].ToLower()}{Environment.MachineName[^1..]}", DoneAt = DateTime.Now };
       if (thisResult.CpM < .333 * prevRcrdCpm)
       {
-        synth.SpeakAsyncCancelAll(); synth.SpeakFAF($"Whoa there, slow poke! Let's kick it up a notch and show this keyboard who's boss!");
+        __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Whoa there, slow poke! Let's kick it up a notch and show this keyboard who's boss!");
         return;
       }
 
-      //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        synth.SpeakFAF(pb); // synth.SpeakFAF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
+      //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        __speechSynth.SpeakFAF(pb); // __speechSynth.SpeakFAF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
 
       var swStoring = Stopwatch.StartNew();
 
       if (thisResult.CpM > prevRcrdCpm)
         thisResult.IsRecord = true;
 
-      using (var db = A0DbMdl.GetA0DbMdl)
+      using (A0DbMdl db = A0DbMdl.GetA0DbMdl)
       {
         //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
         //2019-12/           await Task.Delay(50);
@@ -141,13 +142,13 @@ public partial class MainVM
         await updateSettings(db);
         _ = await db.TrySaveReportAsync();
         loadListsFromDB(DashName, SelectUser, db);
-        await updateDoneTodo(SelectUser, synth, db);
+        await updateDoneTodo(SelectUser, __speechSynth, db);
 
         //_chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
         //_chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
         _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
 
-        //synth.SpeakFAF("OK?");
+        //__speechSynth.SpeakFAF("OK?");
         //await Task.Delay(99);
       }
 
@@ -161,7 +162,7 @@ public partial class MainVM
         if (thisResult.CpM > prevRcrdCpm)
         {
           SoundPlayer.PlaySessionFinish_Good();
-          synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
+          __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"Wow! Congratulations! That is actually a record! {thisResult.CpM - prevRcrdCpm} characters per minute faster or {100 * (thisResult.CpM - prevRcrdCpm) / prevRcrdCpm} percent improvement!");
         }
         else
         {
@@ -169,8 +170,8 @@ public partial class MainVM
 
           if (TodoToday <= 0)
           {
-            synth.SpeakAsyncCancelAll();
-            await synth.SpeakAsync($"You are off the hook for today.");
+            __speechSynth.SpeakAsyncCancelAll();
+            await __speechSynth.SpeakAsync($"You are off the hook for today.");
           }
           else
           {
@@ -231,8 +232,18 @@ public partial class MainVM
                 thisResult.CpM > .33 * prevRcrdCpm ? $"Okay, bestie, I'll count this one, but let's pretend it never happened and start fresh! " :
                 $"Yikes! 😱 This is too slow to count. But don't worry, you've got this! Shake it off and try again! ";
 
-            synth.SpeakAsyncCancelAll();
-            synth.SpeakFAF($"{randomMessage} {DoneToday} down; {TodoToday} to go.");
+            __speechSynth.SpeakAsyncCancelAll();
+
+            var r = new Random(DateTime.Now.Microsecond);
+            switch (r.Next(2))
+            {
+              default:
+              case 0: await __speechSynth.SpeakAsync(randomMessage, voice: CC.Aria, style: CC.EnusAriaNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.EnusAriaNeural.Styles.Length)], role: CC.Girl); break;
+              case 1: await __speechSynth.SpeakAsync(randomMessage, voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl); break;
+            }
+
+            __speechSynth.SpeakFree($"{DoneToday} down; {TodoToday} to go.", speakingRate: 5);
+
             return;
           }
         }
@@ -242,26 +253,26 @@ public partial class MainVM
 
       }//);//.ContinueWith(_ => onF1_UpdateCpmRecord(), TaskScheduler.FromCurrentSynchronizationContext());
     }
-    catch (Exception ex) { _ = ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
+    catch (Exception ex) { _ = ex.Log(); __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
   }
 
-  public static List<dbMdl.SessionResult> GetLatestLessnns(IEnumerable<dbMdl.SessionResult> curLessons) => new(curLessons.OrderByDescending(r => r.DoneAt).Take(10).ToList());
+  public static List<dbMdl.SessionResult> GetLatestLessnns(IEnumerable<dbMdl.SessionResult> curLessons) => [.. curLessons.OrderByDescending(r => r.DoneAt).Take(10).ToList()];
 
   async void runTreatIfAny()
   {
     if (string.IsNullOrEmpty(PreSelect))
     {
-      return; //synth.SpeakAsyncCancelAll(); await synth.Speak("Nothing in the treat section!");
+      return; //__speechSynth.SpeakAsyncCancelAll(); await __speechSynth.Speak("Nothing in the treat section!");
     }
 
     try
     {
-      var process = Directory.Exists(PreSelect) ? Process.Start(VpcExe, PreSelect) : Process.Start(PreSelect);
+      Process process = Directory.Exists(PreSelect) ? Process.Start(VpcExe, PreSelect) : Process.Start(PreSelect);
       double minToWatch = 30;
-      if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
-      else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
-      else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
-      else                                               /**/ { minToWatch = 05; synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
+      if (DateTime.Now.TimeOfDay.TotalHours < 20.5)      /**/ { minToWatch = 30; __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"You deserve a break now! Here is a {minToWatch} minute treat for you. Enjoy!"); }
+      else if (DateTime.Now.TimeOfDay.TotalHours < 20.7) /**/ { minToWatch = 15; __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"You deserve a break now! 9 o'clock is fast approaching; you have {minToWatch} minutes to enjoy."); }
+      else if (DateTime.Now.TimeOfDay.TotalHours < 21.0) /**/ { minToWatch = 10; __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"You deserve a break now! It is almost 9 o'clock now; you have {minToWatch} minutes to enjoy."); }
+      else                                               /**/ { minToWatch = 05; __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"You deserve a break now! It is past 9 o'clock now; have a short {minToWatch} minute break. To have a longer movie time, start earlier tomorrow."); }
 
       // System.Threading.Thread.Sleep(TimeSpan.FromMinutes(minToWatch));
       await Task.Delay(TimeSpan.FromMinutes(minToWatch));
@@ -272,9 +283,9 @@ public partial class MainVM
       }
 
       System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
-      synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
+      __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"Oopsy.. The {minToWatch} minute treat is over! What you wanna do now?");
 
     }
-    catch (Exception ex) { _ = ex.Log(); synth.SpeakAsyncCancelAll(); await synth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
+    catch (Exception ex) { _ = ex.Log(); __speechSynth.SpeakAsyncCancelAll(); await __speechSynth.SpeakAsync($"Something is not right with {PreSelect}. Exception details are: {ex.Message}. Talk to you later"); }
   }
 }

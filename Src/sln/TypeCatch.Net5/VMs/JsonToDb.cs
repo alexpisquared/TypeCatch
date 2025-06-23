@@ -1,17 +1,18 @@
-﻿using db = TypingWpf.DbMdl;
+﻿using static AmbienceLib.SpeechSynth;
+using db = TypingWpf.DbMdl;
 
 namespace TypingWpf.VMs;
 
 public partial class MainVM //: BindableBaseViewModel
 {
-  internal void onJsonToDb_Suspended() => synth.SpeakFAF("Migrating JSON to local DB is suspended till further notice.");
+  internal void onJsonToDb_Suspended() => __speechSynth.SpeakFAF("Migrating JSON to local DB is suspended till further notice.");
 
   internal async Task LoadFromDbAsync(A0DbMdl db)
   {
     LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading \r\n\n\t\t\t from DB Async ... ";
-    //synth.SpeakAsyncCancelAll(); synth.SpeakFAF("Loading from DB.");
+    //__speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF("Loading from DB.");
 
-    //if (Settings.Default.ReadOnlyUsr=="haha")      {        synth.SpeakFAF("Change the credentials in CFG, search for haha.");        return;      }
+    //if (Settings.Default.ReadOnlyUsr=="haha")      {        __speechSynth.SpeakFAF("Change the credentials in CFG, search for haha.");        return;      }
 
     IsBusy = true;
     try
@@ -42,13 +43,14 @@ public partial class MainVM //: BindableBaseViewModel
         InfoMsg = $" {DashName}/{SelectUser}/Global   {await db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == DashName).CountAsync()}/{await db.SessionResults.Where(r => r.UserId == SelectUser).CountAsync()}/{await db.SessionResults.CountAsync()} runs   (tbl SessionResults)   ";
       }
 
-      synth.SpeakAsyncCancelAll(); synth.SpeakFAF("Ready, player one.");
+      __speechSynth.SpeakAsyncCancelAll(); 
+      __speechSynth.SpeakFAF("Ready, player one.", voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl);
     }
     catch (SqlException ex)
     {
       InfoMsg = ex.Log();
-      synth.SpeakAsyncCancelAll();
-      await synth.SpeakAsync("Get the right 'AzureSqlCredentials.json' to the right place. Everything is your friend. BTW, resetting password on Azure portal is easier than other options.");
+      __speechSynth.SpeakAsyncCancelAll();
+      await __speechSynth.SpeakAsync("Get the right 'AzureSqlCredentials.json' to the right place. Everything is your friend. BTW, resetting password on Azure portal is easier than other options.");
       await Task.Delay(2000); // SpeakAsync does not wait long enough to finish the sentence.
     }
     catch (Exception ex) { InfoMsg = ex.Log(); }
