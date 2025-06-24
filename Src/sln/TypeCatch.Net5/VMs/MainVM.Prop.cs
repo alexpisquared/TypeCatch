@@ -38,7 +38,7 @@ namespace TypingWpf.VMs
     double _ProLvl = .7;            /**/ public double ProLvl { get => _ProLvl; set => Set(ref _ProLvl, value); }
     double _Opcty = 1;              /**/ public double Opcty { get => _Opcty; set => Set(ref _Opcty, value); }
     bool _IsInSsn = true;           /**/ public bool IsInSsn { get => _IsInSsn; set { if (Set(ref _IsInSsn, value)) {; } } }
-    bool _Audible = false;          /**/ public bool Audible { get => _Audible; set { if (Set(ref _Audible, value)) { SoundPlayer.Volume = value ? ushort.MaxValue : (ushort)0; } } }
+    bool _Audible = false;          /**/ public bool Audible { get => _Audible; set { if (Set(ref _Audible, value)) { SoundPlayer.SystemVolume = value ? ushort.MaxValue : (ushort)0; } } }
     bool _IsFocusedPI = true;       /**/ public bool IsFocusedPI { get => _IsFocusedPI; set { if (_IsFocusedPI == value) { Set(ref _IsFocusedPI, !value); } Set(ref _IsFocusedPI, value); } }
     bool _IsFocusedSB = true;       /**/ public bool IsFocusedSB { get => _IsFocusedSB; set { if (_IsFocusedSB == value) { Set(ref _IsFocusedSB, !value); } Set(ref _IsFocusedSB, value); } }
     bool _IsCorrect = true;         /**/ public bool IsCorrect { get => _IsCorrect; set { if (Set(ref _IsCorrect, value)) {; } } }
@@ -51,7 +51,7 @@ namespace TypingWpf.VMs
     readonly DateTime _Date0 = new DateTime(2017, 3, 27);
     const int _planPerDay = 2;
 
-    public ResourcePlayer SoundPlayer { get => _soundPlayer; set => _soundPlayer = value; }
+    public ResourcePlayer SoundPlayer { get => _resourcePlayer; set => _resourcePlayer = value; }
 
     //[JsonIgnore]
     //[XmlIgnore]

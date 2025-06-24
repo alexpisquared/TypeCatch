@@ -10,7 +10,7 @@ namespace TypingWpf.VMs
     TimeSpan _measurePeriod = TimeSpan.FromSeconds(2.5);
     public static readonly TimeSpan _shortView = TimeSpan.FromDays(28);
     readonly Stopwatch _swMain = new Stopwatch();
-    ResourcePlayer _soundPlayer = new ResourcePlayer();
+    ResourcePlayer _resourcePlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
     readonly SpeechSynth __speechSynth;
 
@@ -69,8 +69,8 @@ namespace TypingWpf.VMs
         return;
       }
 
-      //_cancelClosing = true; //////////////////////////////////////////////////////////////// May 2025
-      //return;                //////////////////////////////////////////////////////////////// May 2025
+      _cancelClosing = true; //////////////////////////////////////////////////////////////// May 2025
+      return;                //////////////////////////////////////////////////////////////// May 2025
 
       Opcty = 0;
       MainVis = Visibility.Hidden;
@@ -159,7 +159,7 @@ namespace TypingWpf.VMs
       var ps = new PromptStyle
       {
         Emphasis = PromptEmphasis.Strong,
-        Volume = PromptVolume.ExtraLoud
+        SystemVolume = PromptVolume.ExtraLoud
       };
 
       var pb = new PromptBuilder();
