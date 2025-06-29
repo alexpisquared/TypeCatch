@@ -197,7 +197,7 @@ public class WeekdaysTo6Colors : MarkupExtension, IValueConverter
         DayOfWeek.Wednesday => new SolidColorBrush(Color.FromRgb(60, 00, 00)),
         DayOfWeek.Thursday => new SolidColorBrush(Color.FromRgb(30, 00, 60)),
         DayOfWeek.Friday => new SolidColorBrush(Color.FromRgb(60, 00, 60)),
-        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(50, 40, 00)),
+        DayOfWeek.Saturday => new SolidColorBrush(Color.FromRgb(00, 40, 80)),
         DayOfWeek.Sunday => new SolidColorBrush(Color.FromRgb(70, 00, 00)),
         _ => new SolidColorBrush(Color.FromRgb(00, 00, 60)),
       };
@@ -510,8 +510,8 @@ public class WeekDayToColorConverter : IValueConverter
         case DayOfWeek.Wednesday: return new SolidColorBrush(Colors.Gray);
         case DayOfWeek.Thursday: return new SolidColorBrush(Color.FromRgb(0, 0xb8, 0xb8));
         case DayOfWeek.Friday: return new SolidColorBrush(Color.FromRgb(0, 200, 50));
-        case DayOfWeek.Saturday: return new SolidColorBrush(Colors.Red);
-        case DayOfWeek.Sunday: return new SolidColorBrush(Colors.Red);//		return new BrushConverter().ConvertFromString("#ff0000");
+        case DayOfWeek.Saturday: return new SolidColorBrush(Colors.OrangeRed);
+        case DayOfWeek.Sunday: return new SolidColorBrush(Colors.Pink);//		return new BrushConverter().ConvertFromString("#ff0000");
       }
     }
 
@@ -528,13 +528,13 @@ public class WeekdaysTo6Colors_ORG : IValueConverter
       byte upper = 0x19, lower = 0x20;
       switch (((DateTime)value).DayOfWeek)
       {
-        case DayOfWeek.Monday: return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0x00, 0xff), Color.FromArgb(lower, 0x00, 0x00, 0xff), 90);
-        case DayOfWeek.Tuesday: return new LinearGradientBrush(Color.FromArgb(upper, 0xFC, 0x00, 0xFF), Color.FromArgb(lower, 0xFC, 0x00, 0xFF), 90);
-        case DayOfWeek.Wednesday: return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0xA2, 0x00), Color.FromArgb(lower, 0xFF, 0xA2, 0x00), 90);
-        case DayOfWeek.Thursday: return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xB8, 0xB8), Color.FromArgb(lower, 0x00, 0xB8, 0xB8), 90);
-        case DayOfWeek.Friday: return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xFF, 0x00), Color.FromArgb(lower, 0x00, 0xFF, 0x00), 90);
-        case DayOfWeek.Saturday:
-        case DayOfWeek.Sunday: return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0x00, 0x00), Color.FromArgb(lower, 0xFF, 0x00, 0x00), 90);
+        case DayOfWeek.Monday:    /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0x00, 0xff), Color.FromArgb(lower, 0x00, 0x00, 0xff), 90);
+        case DayOfWeek.Tuesday:   /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0xFC, 0x00, 0xFF), Color.FromArgb(lower, 0xFC, 0x00, 0xFF), 90);
+        case DayOfWeek.Wednesday: /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0xA2, 0x00), Color.FromArgb(lower, 0xFF, 0xA2, 0x00), 90);
+        case DayOfWeek.Thursday:  /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xB8, 0xB8), Color.FromArgb(lower, 0x00, 0xB8, 0xB8), 90);
+        case DayOfWeek.Friday:    /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0x00, 0xFF, 0x00), Color.FromArgb(lower, 0x00, 0xFF, 0x00), 90);
+        case DayOfWeek.Saturday:  /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0x80, 0x00), Color.FromArgb(lower, 0xFF, 0x00, 0x00), 90);
+        case DayOfWeek.Sunday:    /**/  return new LinearGradientBrush(Color.FromArgb(upper, 0xFF, 0x00, 0x00), Color.FromArgb(lower, 0xFF, 0x00, 0x00), 90);
       }
     }
 
