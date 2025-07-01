@@ -99,7 +99,7 @@ public partial class MainVM
   async Task finishTheSession()
   {
     var sw = Stopwatch.StartNew();
-    
+
     _resourcePlayer.SystemVolume = ushort.MaxValue / 3;
 
     try
@@ -237,12 +237,15 @@ public partial class MainVM
 
             __speechSynth.SpeakAsyncCancelAll();
 
-            var r = new Random(DateTime.Now.Microsecond);
-            switch (r.Next(2))
+            if (Environment.MachineName != "MINISFORUM1")
             {
-              default:
-              case 0: await __speechSynth.SpeakAsync(randomMessage, volumePercent: 75, voice: CC.Aria, style: CC.EnusAriaNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.EnusAriaNeural.Styles.Length)], role: CC.Girl); break;
-              case 1: await __speechSynth.SpeakAsync(randomMessage, volumePercent: 75, voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl); break;
+              var r = new Random(DateTime.Now.Microsecond);
+              switch (r.Next(2))
+              {
+                default:
+                case 0: await __speechSynth.SpeakAsync(randomMessage, volumePercent: 75, voice: CC.Aria, style: CC.EnusAriaNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.EnusAriaNeural.Styles.Length)], role: CC.Girl); break;
+                case 1: await __speechSynth.SpeakAsync(randomMessage, volumePercent: 75, voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl); break;
+              }
             }
 
             __speechSynth.SpeakFree($"{DoneToday} down; {TodoToday} to go.", speakingRate: 5);
