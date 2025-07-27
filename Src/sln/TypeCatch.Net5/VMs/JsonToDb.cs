@@ -1,4 +1,6 @@
-﻿using static AmbienceLib.SpeechSynth;
+﻿using System.ComponentModel;
+using System.Windows.Data;
+using static AmbienceLib.SpeechSynth;
 
 namespace TypingWpf.VMs;
 
@@ -9,38 +11,35 @@ public partial class MainVM //: BindableBaseViewModel
   internal async Task LoadFromDbAsync()
   {
     LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading \r\n\n\t\t\t from DB Async ... ";
-    //__speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF("Loading from DB.");
-
-    //if (Settings.Default.ReadOnlyUsr=="haha")      {        __speechSynth.SpeakFAF("Change the credentials in CFG, search for haha.");        return;      }
 
     IsBusy = true;
     try
     {
-      // using (var db = A0DbMdl.GetA0DbMdl)
-      {
-        //Users.Clear();
-        ////.await db.Users.LoadAsync(); 
-        ////.foreach (var user in db.Users) Users.Add(user/*.UserId*/); //SnRts.Clear(); await db.SessionResults.LoadAsync(); foreach (var sr in db.SessionResults) { SnRts.Add(new js.SessionResult { DoneAt = sr.DoneAt, UserId = sr.UserId, Duration = sr.Duration, ExcerciseName = sr.ExcerciseName, PokedIn = sr.PokedIn }); }
-        //foreach (var user in db.Users) Users.Add(user/*.UserId*/);
+      await db.SessionResults.LoadAsync();
 
-        SelectUser = tlaFromCurEnvtUser();
-        var appSetngCountBefore = db.AppStngs.Count();
+      SessionResultCvs = CollectionViewSource.GetDefaultView(db.SessionResults.Local.ToObservableCollection());
+      SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));
+      SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null 
+        || string.IsNullOrEmpty(SearchText) || r.Note.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ;
 
-        //var rmv = db.AppStngs.Find(5); if (rmv != null)  db.AppStngs.Remove(rmv);                    db.TrySave Report();
 
-        var appStngUsr = await getCurUserSettings(db);
 
-        var appSetngCount_After = db.AppStngs.Count();
+      SelectUser = tlaFromCurEnvtUser();
+      var appSetngCountBefore = db.AppStngs.Count();
 
-        foreach (var aps in db.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
+      //var rmv = db.AppStngs.Find(5); if (rmv != null)  db.AppStngs.Remove(rmv);                    db.TrySave Report();
 
-        SubLesnId /**/ = appStngUsr.SubLesnId;
-        ProLTgl   /**/ = appStngUsr.ProLtgl;
-        Audible   /**/ = appStngUsr.Audible;
-        LesnTyp   /**/ = (LessonType)appStngUsr.LesnTyp;
+      var appStngUsr = await getCurUserSettings(db);
 
-        //InfoMsg = $" {DashName}/{SelectUser}/Global   {await db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == DashName).CountAsync()}/{await db.SessionResults.Where(r => r.UserId == SelectUser).CountAsync()}/{await db.SessionResults.CountAsync()} runs   (tbl SessionResults)   ";
-      }
+      var appSetngCount_After = db.AppStngs.Count();
+
+      foreach (var aps in db.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
+
+      SubLesnId /**/ = appStngUsr.SubLesnId;
+      ProLTgl   /**/ = appStngUsr.ProLtgl;
+      Audible   /**/ = appStngUsr.Audible;
+      LesnTyp   /**/ = (LessonType)appStngUsr.LesnTyp;
+
 
       __speechSynth.SpeakAsyncCancelAll();
       __speechSynth.SpeakFAF("Ready, player one.", voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl);
@@ -105,10 +104,10 @@ public partial class MainVM //: BindableBaseViewModel
 
   async Task updateSettings(OneBaseContext db)
   {
-    var stg = await getCurUserSettings(db) ?? db.AppStngs.Add(new AppStng { LesnTyp =(int) LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." }).Entity;
+    var stg = await getCurUserSettings(db) ?? db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." }).Entity;
 
     stg.SubLesnId = SubLesnId;
-    stg.LesnTyp =(int) LesnTyp;
+    stg.LesnTyp = (int)LesnTyp;
     stg.Audible = Audible;
     stg.ProLtgl = ProLTgl;
     stg.UserId = SelectUser;

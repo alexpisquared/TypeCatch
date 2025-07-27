@@ -1,15 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
+using System.Windows.Data;
 using TypeCatch.Net5.AsLink;
 using TypeCatch.Net5.Mdl;
-//using db = OneBase.Db.PowerTools.Models;
 
 namespace TypingWpf.VMs;
 
 public partial class MainVM : BindableBaseViewModel
 {
-  //[Obsolete("Not used any more", true)]    //public ObservableCollection<db.User> Users { get; set; } = new ObservableCollection<db.User>(); // <string> { "Alx", "Mei", "Ndn", "Zoe" };         //public ObservableCollection<js.SessionResult> snrts = new ObservableCollection<js.SessionResult>(); [Obsolete("Use DB!", false)]public ObservableCollection<js.SessionResult> SnRts { get { /*if (snrts.Count == 0) LoadFromDb();*/ return snrts; } }
-
   [ObservableProperty] ObservableCollection<SessionResult> curUserCurExcrsRsltLst = [];
+  [ObservableProperty] ICollectionView sessionResultCvs = CollectionViewSource.GetDefaultView(new List<SessionResult>());
+  [ObservableProperty] string searchText = ""; partial void OnSearchTextChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); }
+
   public ObservableCollection<VeloMeasure> PrgsChart { get; set; } = [];
 
   public int LessonLen;// => (LessonText.Length - LessonHelper.PaddingLen) > 8 ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
