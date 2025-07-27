@@ -101,7 +101,7 @@ public partial class MainVM
   {
     var sw = Stopwatch.StartNew();
 
-    _resourcePlayer.SystemVolume = ushort.MaxValue / 3;
+    SoundPlayer.SystemVolume = ushort.MaxValue / 3;
 
     try
     {
@@ -264,7 +264,7 @@ public partial class MainVM
       return; //__speechSynth.SpeakAsyncCancelAll(); await __speechSynth.Speak("Nothing in the treat section!");
     }
 
-    _resourcePlayer.SystemVolume = ushort.MaxValue / 3;
+    SoundPlayer.SystemVolume = ushort.MaxValue / 3;
 
     try
     {

@@ -13,7 +13,6 @@ namespace TypingWpf.VMs
     TimeSpan _measurePeriod = TimeSpan.FromSeconds(2.5);
     public static readonly TimeSpan _shortView = TimeSpan.FromDays(28);
     readonly Stopwatch _swMain = new Stopwatch();
-    ResourcePlayer _resourcePlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
     readonly SpeechSynth __speechSynth;
     OneBaseContext db; 

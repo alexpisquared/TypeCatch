@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 namespace MVVM.Common
@@ -8,7 +9,7 @@ namespace MVVM.Common
   /// AP: A copy from a w8 demo project
   /// </summary>
   //[Windows.Foundation.Metadata.WebHostHidden]
-  public abstract class BindableBase : INotifyPropertyChanged
+  public abstract class BindableBase : ObservableObject, INotifyPropertyChanged
   {
     /// <summary>
     /// Multicast event for property change notifications.

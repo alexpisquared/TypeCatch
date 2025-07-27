@@ -60,7 +60,7 @@ public partial class MainVM : BindableBaseViewModel
     //  }
     //}
   }
-  void onF3(object o) => _resourcePlayer.Test();
+  void onF3(object o) => SoundPlayer.Test();
   async void onF4(object o)
   {
     //runTreatIfAny();
