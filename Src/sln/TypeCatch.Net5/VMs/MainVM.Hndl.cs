@@ -64,7 +64,7 @@ public partial class MainVM : BindableBaseViewModel
   async void onF4(object o)
   {
     //runTreatIfAny();
-    await updateDoneTodo(SelectUser, __speechSynth, A0DbMdl.GetA0DbMdl);
+    await updateDoneTodo(SelectUser, __speechSynth, db);
     __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Total done Since Day 0: {ExrzeRuns}, done Today, {DoneToday}, left for today: {TodoToday}");
   }
   void onF5(object o) => sessionLoad_Start_lazy();

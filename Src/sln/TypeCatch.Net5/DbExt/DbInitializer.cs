@@ -28,7 +28,7 @@
         db.Users.Add(new User { UserId = "Plr3", FullName = "", Note = "Prepopulated", CreatedAt = now });
         db.Users.Add(new User { UserId = "Plr4", FullName = "", Note = "Prepopulated", CreatedAt = now });
 
-        db.AppStngs.Add(new AppStng { LesnTyp = LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." });
+        db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." });
 
         await db.TrySaveReportAsync();
       }

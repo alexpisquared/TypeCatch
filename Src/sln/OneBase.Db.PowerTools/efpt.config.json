@@ -1,0 +1,154 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "OneBaseContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "MinimumProductVersion": "2.6.0",
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "OneBase.Db.PowerTools",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[APi].[GuestbookMsg]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[APi].[WebEventLog]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[APi].[WebsiteUser]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[Audition]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[LkuLanguage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[LkuLevel]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[LkuSubject]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[Player]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[Problem]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SpB].[TombStone]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[TCh].[AppStng]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[TCh].[SessionResult]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[TCh].[User]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[APi].[vw_EventUserUtc]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[APi].[vw_Last100]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[APi].[vw_User]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[APi].[vw_UserHopsUtc]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[sp_alterdiagram]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_creatediagram]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_dropdiagram]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_helpdiagramdefinition]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_helpdiagrams]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_renamediagram]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_upgraddiagrams]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[APi].[KnownUserName]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[DateOnly]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[fn_diagramobjects]",
+         "ObjectType": 2
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}

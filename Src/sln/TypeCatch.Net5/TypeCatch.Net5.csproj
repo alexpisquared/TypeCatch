@@ -568,6 +568,7 @@
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\NetLts\StandardLib\StandardLib.csproj" />
     <ProjectReference Include="..\AAV.Common.MVVM\AAV.Common.MVVM.csproj" />
     <ProjectReference Include="..\AAV.Common.UI\AAV.Common.UI.csproj" />
+    <ProjectReference Include="..\OneBase.Db.PowerTools\OneBase.Db.PowerTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>

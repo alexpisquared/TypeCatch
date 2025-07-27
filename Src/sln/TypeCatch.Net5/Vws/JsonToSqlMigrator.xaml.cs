@@ -41,7 +41,7 @@ public partial class JsonToSqlMigrator : Window
         {
           var srdb0 = db.SessionResults.FirstOrDefault(d =>
                   d.UserId == srjs.UserId &&
-                  d.Duration == srjs.Duration /*drn(srjs.Duration)*/ &&
+                  d.Duration.ToTimeSpan() == srjs.Duration /*drn(srjs.Duration)*/ &&
                   d.ExcerciseName == srjs.ExcerciseName &&
                   d.PokedIn == srjs.PokedIn &&
                   Math.Abs((d.DoneAt - srjs.DoneAt.DateTime.AddMinutes(srjs.DoneAt.OffsetMinutes)).TotalSeconds) < 5);
@@ -51,7 +51,7 @@ public partial class JsonToSqlMigrator : Window
             {
               DoneAt = srjs.DoneAt.DateTime.AddMinutes(srjs.DoneAt.OffsetMinutes),
               UserId = srjs.UserId,
-              Duration = srjs.Duration /*drn(srjs.Duration)*/ ,
+              Duration = TimeOnly.FromTimeSpan(srjs.Duration), // Updated to use ToTimeSpan()
               ExcerciseName = srjs.ExcerciseName,
               PokedIn = srjs.PokedIn,
               Note = srjs.Notes
@@ -71,7 +71,7 @@ public partial class JsonToSqlMigrator : Window
               {
                 DoneAt = srjs.DoneAt.DateTime.AddMinutes(srjs.DoneAt.OffsetMinutes),
                 UserId = srjs.UserId,
-                Duration = srjs.Duration /*drn(srjs.Duration)*/ ,
+                Duration = TimeOnly.FromTimeSpan(srjs.Duration )/*drn(srjs.Duration)*/ ,
                 ExcerciseName = srjs.ExcerciseName,
                 PokedIn = srjs.PokedIn,
                 Note = srjs.Notes

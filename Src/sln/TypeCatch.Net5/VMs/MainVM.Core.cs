@@ -1,6 +1,7 @@
 ﻿using TypeCatch.Net5.Mdl;
 using static AmbienceLib.SpeechSynth;
-using dbMdl = TypingWpf.DbMdl;
+using dbMdl_ = TypingWpf.DbMdl;
+using dbMdl = OneBase.Db.PowerTools.Models;
 
 namespace TypingWpf.VMs;
 
@@ -105,8 +106,8 @@ public partial class MainVM
     try
     {
       IsInSsn = false;
-      Console.Beep(500, 50);
-      await Task.Delay(32); //todo: why so slow in reflecting in the UI???
+      //Console.Beep(500, 50);
+      //await Task.Delay(32); //todo: why so slow in reflecting in the UI???
 
       if (!_swMain.IsRunning || _swMain.ElapsedTicks == 0) // if has not been started yet.
         return;
@@ -122,34 +123,26 @@ public partial class MainVM
       if (!IsCorrect) { __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Almost there! Remember to finish typing till the last letter. Hitting Escape is like ghosting the lesson - not cool!"); return; }
 
       var prevRcrdCpm = RcrdCpm;
-      var thisResult = new dbMdl.SessionResult { Duration = _swMain.Elapsed, ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName[..2].ToLower()}{Environment.MachineName[^1..]}", DoneAt = DateTime.Now };
+      var thisResult = new dbMdl.SessionResult { Duration = TimeOnly.FromTimeSpan(_swMain.Elapsed), ExcerciseName = DashName, PokedIn = PupilInput.Length, UserId = SelectUser, Note = $"{Environment.MachineName[..2].ToLower()}{Environment.MachineName[^1..]}", DoneAt = DateTime.Now };
       if (thisResult.CpM < .333 * prevRcrdCpm)
       {
         __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Whoa there, slow poke! Let's kick it up a notch and show this keyboard who's boss!");
         return;
       }
 
-      //var pb = new PromptBuilder();        for (int i = 0; i < 10; i++) { pb.AppendText($"{1 + i} mississippi ", i % 2 > 0 ? PromptEmphasis.Strong : PromptEmphasis.Reduced); }        __speechSynth.SpeakFAF(pb); // __speechSynth.SpeakFAF("The end. Storing the results... 1 mississippi 2 mississippi 3 mississippi 4 mississippi 5 mississippi 6 mississippi 7 mississippi 8 mississippi 9 mississippi 10 mississippi 11 mississippi 12 mississippi 13 mississippi 14 mississippi 15 mississippi 16 mississippi 17 mississippi 18 mississippi 19 ");        await Task.Delay(3333);
-
       var swStoring = Stopwatch.StartNew();
 
       if (thisResult.CpM > prevRcrdCpm)
         thisResult.IsRecord = true;
 
-      using (A0DbMdl db = A0DbMdl.GetA0DbMdl)
+      //using (A0DbMdl db = A0DbMdl.GetA0DbMdl)
       {
-        //2019-12/           _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
-        //2019-12/           await Task.Delay(50);
-
         _ = db.SessionResults.Add(SelectSnRt = thisResult);
         await updateSettings(db);
-        _ = await db.TrySaveReportAsync();
-        loadListsFromDB(DashName, SelectUser, db);
+        _ = await db.SaveChangesAsync(); // _ = await db.TrySaveReportAsync();
         await updateDoneTodo(SelectUser, __speechSynth, db);
 
-        //_chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10).ToList());
-        //_chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
-        _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
+        _chartUC.LoadDataToChart(db.SessionResults.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
 
         //__speechSynth.SpeakFAF("OK?");
         //await Task.Delay(99);

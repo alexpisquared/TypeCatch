@@ -1,5 +1,8 @@
-﻿using TypeCatch.Net5.AsLink;
-using db = TypingWpf.DbMdl;
+﻿using Microsoft.EntityFrameworkCore;
+using OneBase.Db.PowerTools.Models;
+using TypeCatch.Net5.AsLink;
+using db_ = TypingWpf.DbMdl;
+//using db = OneBase.Db.PowerTools.Models;
 
 namespace TypingWpf.VMs
 {
@@ -13,6 +16,7 @@ namespace TypingWpf.VMs
     ResourcePlayer _resourcePlayer = new ResourcePlayer();
     DispatcherTimer _dt = null;
     readonly SpeechSynth __speechSynth;
+    OneBaseContext db; 
 
     public MainVM()
     {
@@ -21,7 +25,16 @@ namespace TypingWpf.VMs
 
       __speechSynth = new SpeechSynth(key, true, lgr: null);
 
+      db = CreateOneBaseContext();
+
       if (Debugger.IsAttached) return;
+    }
+
+    private OneBaseContext CreateOneBaseContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<OneBaseContext>();
+        optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;initial catalog=OneBase;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;Encrypt=False;");
+        return new OneBaseContext(optionsBuilder.Options);
     }
 
     protected override void AutoExec() { }
@@ -32,9 +45,9 @@ namespace TypingWpf.VMs
         base.AutoExec();
         VersioInfo = "123233412312"; // VerHelper.CurVerStr(".Net5");
 
-        using (var db = A0DbMdl.GetA0DbMdl)
+        //using (var db = A0DbMdl.GetA0DbMdl)
         {
-          await LoadFromDbAsync(db);
+          await LoadFromDbAsync();
 
           SelectSnRt = null;
 
@@ -83,7 +96,7 @@ namespace TypingWpf.VMs
 
     //async void loadListsFromDB_(string dashName, string selectUser, A0DbMdl db)    {      await loadListsFromDB(dashName, selectUser, db);    }
 
-    void loadListsFromDB(string dashName, string selectUser, A0DbMdl db)
+    void loadListsFromDB(string dashName, string selectUser, OneBaseContext db)
     {
       if (string.IsNullOrEmpty(selectUser) || string.IsNullOrEmpty(dashName) /*|| SelectUser.Equals(selectUser)*/)
         return;
@@ -96,9 +109,11 @@ namespace TypingWpf.VMs
 
       try
       {
-        var dbsrlst = db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName && r.Duration > TimeSpan.Zero).OrderByDescending(r => r.DoneAt).ToList();
+        var dbsrlst = db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName 
+        //&& r.Duration.ToTimeSpan() > TimeSpan.Zero
+        ).OrderByDescending(r => r.DoneAt).ToList();
 
-        RcrdCpm = dbsrlst?.Count() > 0 ? (int)(dbsrlst?.Max(r => r.PokedIn / r.Duration.TotalMinutes) ?? 110) : 99;
+        RcrdCpm = dbsrlst?.Count() > 0 ? (int)(dbsrlst?.Max(r => r.PokedIn / r.Duration.ToTimeSpan().TotalMinutes) ?? 110) : 99;
 
         MaxCpm = 0 + 2 * RcrdCpm;
 
@@ -110,7 +125,7 @@ namespace TypingWpf.VMs
       }
       catch (Exception ex) { ex.Log(); __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Something is not right: {ex.Message}. Talk to you later"); }
     }
-    string getTheLatestLessonTypeTheUserWorksOn(A0DbMdl db)
+    string getTheLatestLessonTypeTheUserWorksOn(OneBaseContext db)
     {
       var dashName = db.SessionResults.Where(r => r.UserId == SelectUser).OrderByDescending(x => x.DoneAt).FirstOrDefault()?.ExcerciseName;
 
@@ -150,7 +165,7 @@ namespace TypingWpf.VMs
       __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Are you sure?");
       if (System.Windows.MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
       {
-        DeleteSaveSsnRsltToDb(SelectSnRt, A0DbMdl.GetA0DbMdl);
+        DeleteSaveSsnRsltToDb(SelectSnRt, db);
       }
     }
     void promptSample()
@@ -223,7 +238,7 @@ namespace TypingWpf.VMs
 
       if (doF1)
       {
-        using (var db = A0DbMdl.GetA0DbMdl)
+        //using (var db = A0DbMdl.GetA0DbMdl)
         {
           loadListsFromDB(DashName, SelectUser, db);
           await updateDoneTodo(SelectUser, __speechSynth, db);
@@ -232,12 +247,12 @@ namespace TypingWpf.VMs
 
       CurInfo = $"{(LesnTyp)} - {SubLesnId:N0}  ";// ({DashName})";
     }
-    async Task updateDoneTodo(string selectUser, SpeechSynth synth, A0DbMdl db)
+    async Task updateDoneTodo(string selectUser, SpeechSynth synth, OneBaseContext db)
     {
       int doneToday = -1, sinceRcrd = -1, todoToday = -1;
       try
       {
-        doneToday = db.SessionResults.Count(r => r.UserId.Equals(selectUser, StringComparison.OrdinalIgnoreCase) && r.DoneAt > DateTime.Today);
+        doneToday = db.SessionResults.Count(r => r.UserId.ToLower() == selectUser.ToLower() && r.DoneAt > DateTime.Today);
 
         //if (!db.SessionResults.Any(r => r.UserId.Equals(selectUser, StringComparison.OrdinalIgnoreCase)))
         //{
@@ -264,7 +279,7 @@ namespace TypingWpf.VMs
       TodoToday = todoToday;
     }
 
-    static async Task<DateTime> getLatestGlobalRecordDate(string selectUser, A0DbMdl dbdbld) // not just the highest score!
+    static async Task<DateTime> getLatestGlobalRecordDate(string selectUser, OneBaseContext dbdbld) // not just the highest score!
     {
       var sw = Stopwatch.StartNew();
       var latestGlobalRecord = DateTime.Now.AddYears(-100);

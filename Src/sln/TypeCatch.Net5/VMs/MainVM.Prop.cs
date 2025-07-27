@@ -1,6 +1,7 @@
 ﻿using TypeCatch.Net5.AsLink;
 using TypeCatch.Net5.Mdl;
-using db = TypingWpf.DbMdl;
+using db_ = TypingWpf.DbMdl;
+//using db = OneBase.Db.PowerTools.Models;
 using js = TypingWpf.Mdl;
 
 namespace TypingWpf.VMs
@@ -31,9 +32,9 @@ namespace TypingWpf.VMs
     string _LessonText = "\r\n\n\t  W A I T !    \r\n\n\t\t Loading ... "; public string LessonText { get => _LessonText; set { if (Set(ref _LessonText, value)) {; } } }
     string _PupilInput;             /**/ public string PupilInput { get => _PupilInput; set { if (Set(ref _PupilInput, value)) { OnUserInput(); } } }
     string _VersioInfo;             /**/ public string VersioInfo { get => _VersioInfo; set { if (Set(ref _VersioInfo, value)) {; } } }
-    db.SessionResult _SelectSnRt;   /**/ public SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
-    db.User _SlctUser;              /**/ public User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
-    string _SelectUser;             /**/ public string SelectUser { get => _SelectUser; set { if (Set(ref _SelectUser, value) /*&& _isLoaded*/) { using (var db = A0DbMdl.GetA0DbMdl) { loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(db), value, db); } } } }
+    SessionResult _SelectSnRt;   /**/ public SessionResult SelectSnRt { get => _SelectSnRt; set { if (Set(ref _SelectSnRt, value)) {; } } }//..Trace.WriteLine($"SelSsnRt: {value}"); } }
+    User _SlctUser;              /**/ public User SlctUser { get => _SlctUser; set { if (Set(ref _SlctUser, value)) SelectUser = SlctUser.UserId; } }
+    string _SelectUser;             /**/ public string SelectUser { get => _SelectUser; set { if (Set(ref _SelectUser, value) /*&& _isLoaded*/) { { loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(db), value, db); } } } }
     bool _ProLTgl;                  /**/ public bool ProLTgl { get => _ProLTgl; set { if (Set(ref _ProLTgl, value)) { ProLvl = value ? 1 : .7; } } }
     double _ProLvl = .7;            /**/ public double ProLvl { get => _ProLvl; set => Set(ref _ProLvl, value); }
     double _Opcty = 1;              /**/ public double Opcty { get => _Opcty; set => Set(ref _Opcty, value); }

@@ -28,7 +28,7 @@
           Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"  **> skipping match:  {s.DoneAt}   {s.UserId} ");
         else
         {
-          trg.SessionResults.Add(new DbMdl.SessionResult
+          trg.SessionResults.Add(new SessionResult
           {
             Duration = s.Duration,
             ExcerciseName = s.ExcerciseName,
