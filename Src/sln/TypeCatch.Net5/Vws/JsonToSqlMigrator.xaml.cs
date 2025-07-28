@@ -95,7 +95,7 @@ public partial class JsonToSqlMigrator : Window
         tbInfo.Text += $" brandNew {brandNew}, notFoundInDb {noMatchesInDb}, alreadySame {alreadySame}, updated {updated}\n";
         Debug.WriteLine($"::>{tbInfo.Text}");
 
-        var rv = await db.TrySaveReportAsync();
+        var rv = await db.SaveChangesAsync(); // TrySaveReportAsync();
 
         tbInfo.Text += $" {rv}";
         Bpr.Beep2of2();

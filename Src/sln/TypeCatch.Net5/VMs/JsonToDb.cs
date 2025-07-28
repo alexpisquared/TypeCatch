@@ -15,7 +15,7 @@ public partial class MainVM //: BindableBaseViewModel
     IsBusy = true;
     try
     {
-      await db.SessionResults.LoadAsync();
+      db.SessionResults.Load();
 
       SessionResultCvs = CollectionViewSource.GetDefaultView(db.SessionResults.Local.ToObservableCollection());
       SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));

@@ -1,4 +1,6 @@
-﻿namespace TypingWpf.DbDataTran
+﻿using AsLink;
+
+namespace TypingWpf.DbDataTran
 {
   public class DataTransfer
   {

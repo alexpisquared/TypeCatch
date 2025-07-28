@@ -30,7 +30,7 @@
 
         db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." });
 
-        await db.TrySaveReportAsync();
+        await db.SaveChangesAsync(); // .TrySaveReportAsync();
       }
       catch (Exception ex) { var v = ex.Log(); throw; }
     }

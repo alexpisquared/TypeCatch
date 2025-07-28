@@ -17,7 +17,7 @@ global using System.Windows.Controls;
 global using System.Windows.Threading;
 global using AAV.WPF.Helpers;
 global using AmbienceLib;
-global using AsLink;
+//global using AsLink;
 global using LiveCharts.Wpf;
 global using Microsoft.Extensions.Configuration;
 global using MVVM.Common;

@@ -3,7 +3,7 @@
              xmlns:wfuc="clr-namespace:TypingWpf.Vws" 
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
              <!--xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"--> 
-  <WindowsFormsHost>
-    <!--<wfuc:WinFormChartUsrCtrl x:Name="chartuc" />-->
-  </WindowsFormsHost>
+  <!--<WindowsFormsHost>
+    --><!--<wfuc:WinFormChartUsrCtrl x:Name="chartuc" />--><!--
+  </WindowsFormsHost>-->
 </UserControl>

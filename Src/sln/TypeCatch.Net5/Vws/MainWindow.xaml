@@ -10,7 +10,7 @@
         Title="Type Catch"  Height="500"  Width="1250" 
         Style="{DynamicResource WindowStyle_Aav0}" 
                 Loaded="OnLoaded" Background="#222">
-        <!--Opacity="{Binding ProLvl, FallbackValue=.7}"--> 
+  <!--Opacity="{Binding ProLvl, FallbackValue=.7}"-->
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
   </WindowChrome.WindowChrome>
@@ -103,7 +103,8 @@
 
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="4" Opacity="{Binding ProLvl, FallbackValue=.7}" >
 
-        <StackPanel Orientation="Horizontal" Margin="3" IsEnabled="{Binding IsInSsn, Converter={ln2:Bool InvertValue=True}}" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
+        <StackPanel Orientation="Horizontal" Margin="3" IsEnabled="{Binding IsInSsn, Converter={ln2:Bool InvertValue=True}}" 
+                    Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" >
           <Menu Margin="10,4,0,4" VerticalAlignment="Center"  Background="Transparent" FontSize="26" BorderThickness="1" >
             <Menu.Resources>
               <Style TargetType="{x:Type MenuItem}" >
@@ -240,6 +241,208 @@
 
       <TextBlock  x:Name="VersioInfo" Text="123" Foreground="#ccc" FontSize="13" Margin="8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.ColumnSpan="3" TextAlignment="Right"/>
 
+      <Popup x:Name="DraggablePopup" Width="{Binding ElementName=w, Path=ActualWidth}" Height="600" Placement="Top" HorizontalOffset="0" VerticalOffset="0" AllowsTransparency="True" IsOpen="True">
+        <Popup.Resources>
+          <ElasticEase x:Key="ElasticEaseOut_0" EasingMode="EaseOut" Oscillations="0" />
+        </Popup.Resources>
+        <Grid MinWidth="80" MinHeight="80" x:Name="vizTrg2b" RenderTransformOrigin="0.5,0.5">
+          <Grid.Style>
+            <Style TargetType="Grid">
+              <Style.Triggers>
+                <Trigger Property="IsVisible" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX" To="1.0" Duration="0:0:0.33" BeginTime="0:0:.125" EasingFunction="{StaticResource ElasticEaseOut_0}"/>
+                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY" To="1.0" Duration="0:0:0.33" BeginTime="0:0:.125" EasingFunction="{StaticResource ElasticEaseOut_0}"/>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX" To="0.0" Duration="0:0:0.01" BeginTime="0:0:.005" EasingFunction="{StaticResource ElasticEaseOut_0}"/>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </Grid.Style>
+          <Grid.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform x:Name="PopupScaleTransform" ScaleX="0.0" ScaleY="0.0" />
+              <SkewTransform/>
+              <SkewTransform/>
+              <RotateTransform Angle="0"/>
+              <TranslateTransform/>
+            </TransformGroup>
+          </Grid.RenderTransform>
+          <Border CornerRadius="26" BorderThickness="1" BorderBrush="#555" Background="#3888" MouseDown="DragHandle_MouseDown" MouseMove="DragHandle_MouseMove" MouseUp="DragHandle_MouseUp" Cursor="Hand" ToolTip="Use the mouse to drag this window around">
+            <Border.Style>
+              <Style TargetType="{x:Type Border}">
+                <Setter Property="Opacity" Value="0.01"/>
+                <Style.Triggers>
+                  <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </Border.Style>
+          </Border>
+
+          <Border Grid.Column="1" Grid.Row="1" BorderBrush="#777" BorderThickness="1" CornerRadius="4" Margin="32" >
+            <Border.Background>
+              <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#777" Offset="0"/>
+                <GradientStop Color="#555" Offset="1"/>
+              </LinearGradientBrush>
+            </Border.Background>
+            <Grid >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Grid.Resources>
+                <Style TargetType="Button">
+                  <Setter Property="Background"       Value="Transparent" />
+                  <Setter Property="BorderThickness"  Value="0" />
+                  <Setter Property="Margin"           Value="10 0" />
+                </Style>
+
+                <lvc:ColorsCollection x:Key="ColorsCollection">
+                  <Color A="255" R="33" G="149" B="242" />
+                  <Color A="255" R="243" G="67" B="54" />
+                  <Color A="255" R="254" G="192" B="7" />
+                  <Color A="255" R="96" G="125" B="138" />
+                  <Color A="255" R="232" G="30" B="99" />
+                  <Color A="255" R="76" G="174" B="80" />
+                  <Color A="255" R="63" G="81" B="180" />
+                  <Color A="255" R="204" G="219" B="57" />
+                </lvc:ColorsCollection>
+
+                <system:Double x:Key="Size">14</system:Double>
+
+                <system:Double x:Key="SeparatorStrokeThickness">
+                  0.8
+                </system:Double>
+                <DoubleCollection x:Key="SeparatorStrokeDashArray">
+                  3
+                </DoubleCollection>
+                <system:Double x:Key="SeriesStrokeThickness">
+                  1.0
+                </system:Double>
+
+                <Style TargetType="lvc:CartesianChart">
+                  <Setter Property="AnimationsSpeed" Value="0:0:0.420"></Setter>
+                  <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection}"/>
+                </Style>
+
+                <Style TargetType="lvc:Axis">
+                  <Setter Property="FontSize" Value="{StaticResource Size}" />
+                  <Setter Property="FontFamily" Value="Calibri" />
+                  <Setter Property="Foreground" Value="#ddd" />
+                </Style>
+
+                <Style TargetType="lvc:Separator">
+                  <!--<Setter Property="StrokeThickness" Value="{StaticResource SeparatorStrokeThickness}" />
+                <Setter Property="StrokeDashArray" Value="{StaticResource SeparatorStrokeDashArray}" />
+                -->
+                  <Setter Property="Stroke" Value="#888" />
+                  <Style.Triggers>
+                    <Trigger Property="AxisOrientation" Value="X">
+                      <Setter Property="IsEnabled" Value="False"></Setter>
+                    </Trigger>
+                  </Style.Triggers>
+                </Style>
+
+                <Style TargetType="lvc:Series" x:Key="SeriesStyle">
+                  <Setter Property="FontFamily" Value="Calibri" />
+                  <Setter Property="FontSize" Value="{StaticResource Size}" />
+                  <Setter Property="StrokeThickness" Value="{StaticResource SeriesStrokeThickness}" />
+                </Style>
+
+                <Style TargetType="lvc:CandleSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:ColumnSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:HeatSeries"                            BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:LineSeries"                            BasedOn="{StaticResource SeriesStyle}">
+                  <Setter Property="PointGeometrySize"                              Value="{StaticResource Size}" />
+                </Style>
+                <Style TargetType="lvc:StepLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
+                  <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
+                </Style>
+                <Style TargetType="lvc:VerticalLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
+                  <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
+                </Style>
+                <Style TargetType="lvc:OhlcSeries"                BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:RowSeries"                 BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:ScatterSeries"             BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:StackedAreaSeries"         BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:StackedColumnSeries"       BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:StackedRowSeries"          BasedOn="{StaticResource SeriesStyle}"/>
+                <Style TargetType="lvc:VerticalStackedAreaSeries" BasedOn="{StaticResource SeriesStyle}"/>
+
+              </Grid.Resources>
+              <!--<WindowsFormsHost Margin="10" >
+                        <Vws:WinFormChartUsrCtrl x:Name="cChart1"  />
+                    </WindowsFormsHost>-->
+              <lvc:CartesianChart x:Name="cChart1" Margin="3" Background="#333" >
+                <lvc:CartesianChart.AxisX>
+                  <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
+                </lvc:CartesianChart.AxisX>
+              </lvc:CartesianChart>
+
+              <DataGrid Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}" AutoGenerateColumns="False" EnableRowVirtualization="False" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 3 3 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333"                   >
+                  <DataGrid.Columns>
+                  <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ce"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+                  <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="In"       IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+                  <DataGridTemplateColumn Header="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:y-MM-dd HH:mm}'}" 
+                                 Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
+                                 Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
+                      </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                  </DataGridTemplateColumn>
+
+                  <DataGridTextColumn Binding="{Binding CpM, StringFormat=\{0:N0\}}"              Header="CpM"      IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
+                  <DataGridTemplateColumn SortMemberPath="Note" CanUserSort="True" Width="*"     Header="Note"    >
+                    <DataGridTemplateColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock Text="{Binding Note}"  Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
+                      </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                  </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+              </DataGrid>
+
+              <DataGrid Grid.Column="1" ItemsSource="{Binding SessionResultCvs}" AutoGenerateColumns="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        Margin="0 3 3 0" Height="88" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333" />
+
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SearchText}" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="88" />
+
+              <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_Year"  Command="{Binding ShowChart}" CommandParameter="Year" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="Seas_n" Command="{Binding ShowChart}" CommandParameter="3Mon" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+              </StackPanel>
+            </Grid>
+          </Border>
+        </Grid>
+      </Popup>
+
       <Grid    Grid.ColumnSpan="3" Grid.Row="1"  x:Name="Zoomee">
         <Grid.LayoutTransform>
           <TransformGroup>
@@ -264,171 +467,6 @@
         <TextBox   Grid.Column="1" Grid.Row="1" x:Name="t2" FontSize="24" Margin="0 0" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding PupilInput, FallbackValue='Abc 12345678 Abc 12345678 Abc 12345678 Abc 123456781234567812', UpdateSourceTrigger=PropertyChanged}"                    
                    BorderThickness="0" AcceptsReturn="True" IsEnabled="{Binding IsInSsn}" Background="Transparent" Foreground="{Binding IsCorrect, Converter={lnk:BoolToColorConverter}}" 
                    msc:FocusExtension.IsFocused="{Binding IsFocusedPI}" CaretBrush="#ff0" />
-
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#777" BorderThickness="1" CornerRadius="4" Margin="-1 -3 -1 -2" Visibility="{Binding IsInSsn, Converter={ln2:VisibilityConverter InvertValue=True}}" d:Visibility="Collapsed">
-          <Border.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-              <GradientStop Color="#777" Offset="0"/>
-              <GradientStop Color="#555" Offset="1"/>
-            </LinearGradientBrush>
-          </Border.Background>
-          <Grid >
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*"/>
-              <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="*"/>
-              <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.Resources>
-              <Style TargetType="Button">
-                <Setter Property="Background"       Value="Transparent" />
-                <Setter Property="BorderThickness"  Value="0" />
-                <Setter Property="Margin"           Value="10 0" />
-              </Style>
-
-              <lvc:ColorsCollection x:Key="ColorsCollection">
-                <Color A="255" R="33" G="149" B="242" />
-                <Color A="255" R="243" G="67" B="54" />
-                <Color A="255" R="254" G="192" B="7" />
-                <Color A="255" R="96" G="125" B="138" />
-                <Color A="255" R="232" G="30" B="99" />
-                <Color A="255" R="76" G="174" B="80" />
-                <Color A="255" R="63" G="81" B="180" />
-                <Color A="255" R="204" G="219" B="57" />
-              </lvc:ColorsCollection>
-
-              <system:Double x:Key="Size">14</system:Double>
-
-              <system:Double x:Key="SeparatorStrokeThickness">
-                0.8
-              </system:Double>
-              <DoubleCollection x:Key="SeparatorStrokeDashArray">
-                3
-              </DoubleCollection>
-              <system:Double x:Key="SeriesStrokeThickness">
-                1.0
-              </system:Double>
-
-              <Style TargetType="lvc:CartesianChart">
-                <Setter Property="AnimationsSpeed" Value="0:0:0.420"></Setter>
-                <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection}"/>
-              </Style>
-
-              <Style TargetType="lvc:Axis">
-                <Setter Property="FontSize" Value="{StaticResource Size}" />
-                <Setter Property="FontFamily" Value="Calibri" />
-                <Setter Property="Foreground" Value="#ddd" />
-              </Style>
-
-              <Style TargetType="lvc:Separator">
-                <!--<Setter Property="StrokeThickness" Value="{StaticResource SeparatorStrokeThickness}" />
-                <Setter Property="StrokeDashArray" Value="{StaticResource SeparatorStrokeDashArray}" />
-                -->
-                <Setter Property="Stroke" Value="#888" />
-                <Style.Triggers>
-                  <Trigger Property="AxisOrientation" Value="X">
-                    <Setter Property="IsEnabled" Value="False"></Setter>
-                  </Trigger>
-                </Style.Triggers>
-              </Style>
-
-              <Style TargetType="lvc:Series" x:Key="SeriesStyle">
-                <Setter Property="FontFamily" Value="Calibri" />
-                <Setter Property="FontSize" Value="{StaticResource Size}" />
-                <Setter Property="StrokeThickness" Value="{StaticResource SeriesStrokeThickness}" />
-              </Style>
-
-              <Style TargetType="lvc:CandleSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:ColumnSeries"                           BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:HeatSeries"                            BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:LineSeries"                            BasedOn="{StaticResource SeriesStyle}">
-                <Setter Property="PointGeometrySize"                              Value="{StaticResource Size}" />
-              </Style>
-              <Style TargetType="lvc:StepLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
-                <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
-              </Style>
-              <Style TargetType="lvc:VerticalLineSeries"                           BasedOn="{StaticResource SeriesStyle}">
-                <Setter Property="PointGeometrySize"                                Value="{StaticResource Size}" />
-              </Style>
-              <Style TargetType="lvc:OhlcSeries"                BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:RowSeries"                 BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:ScatterSeries"             BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:StackedAreaSeries"         BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:StackedColumnSeries"       BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:StackedRowSeries"          BasedOn="{StaticResource SeriesStyle}"/>
-              <Style TargetType="lvc:VerticalStackedAreaSeries" BasedOn="{StaticResource SeriesStyle}"/>
-
-            </Grid.Resources>
-            <!--<WindowsFormsHost Margin="10" >
-                        <Vws:WinFormChartUsrCtrl x:Name="cChart1"  />
-                    </WindowsFormsHost>-->
-            <lvc:CartesianChart x:Name="cChart1" Margin="3" Background="#333" >
-              <lvc:CartesianChart.AxisX>
-                <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
-              </lvc:CartesianChart.AxisX>
-            </lvc:CartesianChart>
-
-            <DataGrid  Grid.Column="1" ItemsSource="{Binding CurUserCurExcrsRsltLst}" SelectedItem="{Binding SelectSnRt}"  AutoGenerateColumns="False" EnableRowVirtualization="False"         
-                       HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 3 3 0" MinHeight="55" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333"                   >
-              <DataGrid.Columns>
-                <!--
-                               SelectionChanged="sc" IsVisibleChanged="ivc" 
-                     RowBackground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}"
-                     RowBackground="Red"
-     <DataGridCheckBoxColumn Binding="{Binding Exclude}"                    Header="Skip"      IsReadOnly="False" />
-     <DataGridTemplateColumn SortMemberPath="Progres"                 Header="Progress"    Width="Auto" CanUserSort="True" >
-      <DataGridTemplateColumn.CellTemplate>
-       <DataTemplate>
-        <Grid   ToolTip="{Binding Progres}"  Opacity="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.ProLvl}" >
-         <ProgressBar Maximum="1" Value="{Binding Progres}" IsIndeterminate="{Binding IsIndtrmn}" Background="Transparent" />
-        </Grid>
-       </DataTemplate>
-      </DataGridTemplateColumn.CellTemplate>
-     </DataGridTemplateColumn>
-
-          <DataGridTextColumn Binding="{Binding  UserId         }"                 Header="Usr"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
-              <DataGridTextColumn Binding="{Binding Note}"                                   Header="Note"    Width="*"         Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" />
-     -->
-                <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ce"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
-                <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="In"       IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
-                <DataGridTemplateColumn Header="Date">
-                  <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                      <TextBlock Text="{Binding DoneAt, StringFormat='{}{0:y-MM-dd HH:mm}'}" 
-                                 Foreground="{Binding DoneAt, Converter={ln2:WeekDayToForeColorConverter}}" 
-                                 Background="{Binding DoneAt, Converter={ln2:WeekdaysTo6Colors IsGrayScale=False}}" Margin="2 -1" />
-                    </DataTemplate>
-                  </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTextColumn Binding="{Binding CpM, StringFormat=\{0:N0\}}"              Header="CpM"      IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
-                <DataGridTemplateColumn SortMemberPath="Note" CanUserSort="True" Width="*"     Header="Note"    >
-                  <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                      <TextBlock Text="{Binding Note}"  Foreground="{Binding Note, Converter={ln2:PcNameToForeColorConverter}}" FontWeight="Bold" Margin="6 0" />
-                    </DataTemplate>
-                  </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-              </DataGrid.Columns>
-            </DataGrid>
-
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-              <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Year"  Command="{Binding ShowChart}" CommandParameter="Year" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="Seas_n" Command="{Binding ShowChart}" CommandParameter="3Mon" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Month" Command="{Binding ShowChart}" CommandParameter="Mont" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Week " Command="{Binding ShowChart}" CommandParameter="Week" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-              <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-            </StackPanel>
-          </Grid>
-        </Border>
-
       </Grid>
 
       <Grid      Grid.RowSpan="3" Grid.Column="0" HorizontalAlignment="Left"   Width="60"  VerticalAlignment="Stretch" RenderTransformOrigin="1.4,-0.03"  >
