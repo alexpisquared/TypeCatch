@@ -10,7 +10,7 @@ public partial class MainVM : BindableBaseViewModel
 {
   [ObservableProperty] ObservableCollection<SessionResult> curUserCurExcrsRsltLst = [];
   [ObservableProperty] ICollectionView sessionResultCvs = CollectionViewSource.GetDefaultView(new List<SessionResult>());
-  [ObservableProperty] string searchText = ""; partial void OnSearchTextChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); }
+  [ObservableProperty] string searchText = ""; partial void OnSearchTextChanged(string value)  {    SessionResultCvs.Refresh(); Console.Beep(222, 222);    InfoMsg = $"{((ListCollectionView)SessionResultCvs).Count} matches so far.";  }
 
   public ObservableCollection<VeloMeasure> PrgsChart { get; set; } = [];
 

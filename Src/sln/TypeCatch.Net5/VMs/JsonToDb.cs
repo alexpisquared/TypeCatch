@@ -19,10 +19,11 @@ public partial class MainVM //: BindableBaseViewModel
 
       SessionResultCvs = CollectionViewSource.GetDefaultView(db.SessionResults.Local.ToObservableCollection());
       SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));
-      SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null 
-        || string.IsNullOrEmpty(SearchText) || r.Note.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ;
+      SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null
+        || string.IsNullOrEmpty(SearchText) || r.Note.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true;
 
-
+      LessonText =
+      InfoMsg = $"{((ListCollectionView)SessionResultCvs).Count} matches so far.";
 
       SelectUser = tlaFromCurEnvtUser();
       var appSetngCountBefore = db.AppStngs.Count();
@@ -119,7 +120,7 @@ public partial class MainVM //: BindableBaseViewModel
     _ = DateTime.Now;
     try
     {
-      
+
       {
         //if (Debugger.IsAttached) Debugger.Break(); // >>> DoneAt = sr.DoneAt.DateTime, //todo: ?? .AddMinutes(sr.DoneAt.OffsetMinutes)
 

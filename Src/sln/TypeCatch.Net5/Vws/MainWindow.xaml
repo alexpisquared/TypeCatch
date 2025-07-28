@@ -394,9 +394,9 @@
               </DataGrid>
 
               <DataGrid Grid.Column="1" ItemsSource="{Binding SessionResultCvs}" AutoGenerateColumns="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
-                        Margin="0 3 3 0" Height="88" IsReadOnly="False" BorderBrush="Transparent" Width="320" Background="#333" />
+                        Margin="0 3 3 0" Height="88" BorderBrush="Transparent" Width="320" Background="#333" />
 
-              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SearchText}" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="88" />
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=333}" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="88" />
 
               <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
