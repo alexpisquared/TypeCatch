@@ -73,37 +73,6 @@ namespace TypingWpf
 
     */
 
-    bool _isDragging;
-    System.Windows.Point _dragStartPoint;
-    void DragHandle_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-      if (e.ChangedButton == MouseButton.Left)
-      {
-        _isDragging = true;
-        _dragStartPoint = e.GetPosition(this);
-        _ = ((sender as UIElement)?.CaptureMouse());
-      }
-    }
-    void DragHandle_MouseMove(object sender, MouseEventArgs e)
-    {
-      if (_isDragging)
-      {
-        System.Windows.Point currentPosition = e.GetPosition(this);
-        DraggablePopup.HorizontalOffset += currentPosition.X - _dragStartPoint.X;
-        DraggablePopup.VerticalOffset += currentPosition.Y - _dragStartPoint.Y;
-        _dragStartPoint = currentPosition;
-      }
-    }
-    void DragHandle_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-      if (e.ChangedButton == MouseButton.Left)
-      {
-        _isDragging = false;
-        (sender as UIElement)?.ReleaseMouseCapture();
-      }
-    }
-
-
     void onWindowMinimize(object s, RoutedEventArgs e) => WindowState = System.Windows.WindowState.Minimized;
     void onWindowRestoree(object s, RoutedEventArgs e) { wr.Visibility = Visibility.Collapsed; wm.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Normal; }
     void onWindowMaximize(object s, RoutedEventArgs e) { wm.Visibility = Visibility.Collapsed; wr.Visibility = Visibility.Visible; WindowState = System.Windows.WindowState.Maximized; }

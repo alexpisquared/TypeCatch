@@ -6,7 +6,7 @@ namespace AAV.Common.UI.UsrCtrls
 {
 	public partial class ProgressBar : UserControl
 	{
-		public ProgressBar() { InitializeComponent(); } //tu: !!! Binding ElementName=uc, Path= DataContext = this;
+		public ProgressBar() { InitializeComponent(); } 
 
 		static void reflect(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{

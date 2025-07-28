@@ -135,6 +135,8 @@ public partial class MainVM
       if (thisResult.CpM > prevRcrdCpm)
         thisResult.IsRecord = true;
 
+      LessonText = PupilInput = "■";
+
       //using (A0DbMdl db = A0DbMdl.GetA0DbMdl)
       {
         _ = db.SessionResults.Add(SelectSnRt = thisResult);

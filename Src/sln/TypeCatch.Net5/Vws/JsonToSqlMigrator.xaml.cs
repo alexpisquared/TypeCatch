@@ -17,7 +17,7 @@ public partial class JsonToSqlMigrator : Window
   async Task migrate(A0DbMdl db)
   {
     Bpr.Beep1of2();
-    if (JsonFileSerializer.Load<ObsMainVM>(MainVM.MainVmJsonFile) is not ObsMainVM obsVm)
+    if (JsonFileSerializer.Load<ObsMainVM>(OneDrive.Folder($@"Public\AppData\TypeCatch\{typeof(MainVM).Name}.json")) is not ObsMainVM obsVm)
       _ = System.Windows.MessageBox.Show("No Go");
     else
     {

@@ -119,7 +119,7 @@ public partial class MainVM //: BindableBaseViewModel
     _ = DateTime.Now;
     try
     {
-      // using (var db = A0DbMdl.GetA0DbMdl)
+      
       {
         //if (Debugger.IsAttached) Debugger.Break(); // >>> DoneAt = sr.DoneAt.DateTime, //todo: ?? .AddMinutes(sr.DoneAt.OffsetMinutes)
 
