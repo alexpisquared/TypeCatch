@@ -1,27 +1,22 @@
-﻿#define brave 
-using System.Threading;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
-
 namespace TypeCatch.Net5.AsLink;
-
-public abstract class BindableBaseViewModel : BindableBase
+public abstract class BindableBaseViewModel : ObservableObject
 {
   static readonly TraceSwitch appTraceLevel_Lcl = new("Display nanme", "Descr-n") { Level = TraceLevel.Error };
-
   protected BindableBaseViewModel() => CloseAppCmd = new RelayCommand(x => OnRequestClose(), param => CanClose())
   {
-//#if __DEBUG
-//      GestureKey = Key.Escape
-//#else
-//    GestureKey = Key.F4,
-//    GestureModifier = ModifierKeys.Alt
-//#endif
+    //#if __DEBUG
+    //      GestureKey = Key.Escape
+    //#else
+    //    GestureKey = Key.F4,
+    //    GestureModifier = ModifierKeys.Alt
+    //#endif
   };
 
   protected virtual void AutoExec() => Trace.WriteLineIf(appTraceLevel_Lcl.TraceVerbose, "AutoExec()");
   protected virtual void AutoExecSynch() => Trace.WriteLineIf(appTraceLevel_Lcl.TraceVerbose, "AutoExecSynch()");
   protected virtual async Task AutoExecAsync() { Trace.WriteLineIf(appTraceLevel_Lcl.TraceVerbose, "AutoExecAsync()"); await Task.Delay(1); }
-
   public ICommand CloseAppCmd { get; }
 
   public event EventHandler RequestClose;
@@ -93,16 +88,12 @@ public abstract class BindableBaseViewModel : BindableBase
     view.DataContext = vMdl;
     CloseEvent(view, vMdl);
 
-#if brave
     autoexecSafe(vMdl);
-#else
-          autoexecSafe(vMdl);
-#endif
 
     return view.ShowDialog();
   }
 
-  public static bool? ShowModalMvvmAsync(BindableBaseViewModel vMdl, Window view, Window? owner = null) // public static async Task<bool?> ShowModalMvvmAsync(BindableBaseViewModel vMdl, Window view, Window owner = null)
+  public static async Task<bool?> ShowModalMvvmAsync(BindableBaseViewModel vMdl, Window view, Window? owner = null) // public static async Task<bool?> ShowModalMvvmAsync(BindableBaseViewModel vMdl, Window view, Window owner = null)
   {
     if (owner != null)
     {
@@ -116,7 +107,7 @@ public abstract class BindableBaseViewModel : BindableBase
 #if brave
     Task.Run(async () => await autoexecAsyncSafe(vMdl)); //todo: 
 #else
-          await vMdl.AutoExecAsync(); //todo:             
+    await vMdl.AutoExecAsync(); //todo:             
 #endif
 
     return view.ShowDialog();
@@ -133,19 +124,6 @@ public abstract class BindableBaseViewModel : BindableBase
     }
     catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
   }
-  static async Task autoexecAsyncSafe(BindableBaseViewModel vMdl)
-  {
-    try
-    {
-      if (System.Windows.Application.Current.Dispatcher.CheckAccess()) // if on UI thread
-        await vMdl.AutoExecAsync();
-      else
-        await System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(async () => //todo: rejoin properly to the UI thread (Oct 2017)
-        await vMdl.AutoExecAsync()));
-    }
-    catch (Exception ex) { Trace.WriteLine(ex.Message, MethodBase.GetCurrentMethod().Name); if (Debugger.IsAttached) Debugger.Break(); }
-  }
-
   protected static async Task refreshUi() => await System.Windows.Application.Current.Dispatcher.BeginInvoke(new ThreadStart(refreshUiSynch));
   protected static void refreshUiSynch() => CommandManager.InvalidateRequerySuggested();  //tu: Sticky UI state fix for MVVM (May2015)
 }

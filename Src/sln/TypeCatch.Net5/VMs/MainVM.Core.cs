@@ -62,7 +62,7 @@ public partial class MainVM
     //autoPause();
 
     CrntCpm = PupilInput.Length / _swMain.Elapsed.TotalMinutes; //CurInfo = $" Typed {(PupilInput.Length),3:N0}\t Elapsed {_sw.Elapsed:mm\\:ss}\t Speed {CrntCpm:N0}";
-    IsRecord = CrntCpm > _recordCpm;
+    IsRecord = CrntCpm > RcrdCpm;
 
     DateTime now = DateTime.Now;
     if (_swMain.IsRunning && PupilInput.Length > 0 && now > _nextMeasureTime)
@@ -70,7 +70,7 @@ public partial class MainVM
       var dLen = PupilInput.Length - _prevCharLen;
       var dMin = _swMain.Elapsed.TotalMinutes - _prevMinutes;
       if (dMin > 0)
-        PrgsChart.Add(new VeloMeasure { SppedCpm = (int)(dLen / dMin), PrevRcrd = _recordCpm });
+        PrgsChart.Add(new VeloMeasure { SppedCpm = (int)(dLen / dMin), PrevRcrd = RcrdCpm });
 
       _prevMinutes = _swMain.Elapsed.TotalMinutes;
       _prevCharLen = PupilInput.Length;
@@ -137,14 +137,14 @@ public partial class MainVM
 
       LessonText = PupilInput = "■";
 
-      //using (A0DbMdl db = A0DbMdl.GetA0DbMdl)
+      //using (A0DbMdl _dbx = A0DbMdl.GetA0DbMdl)
       {
-        _ = db.SessionResults.Add(SelectSnRt = thisResult);
-        await updateSettings(db);
-        _ = await db.SaveChangesAsync(); // _ = await db.TrySaveReportAsync();
-        await updateDoneTodo(SelectUser, __speechSynth, db);
+        _dbx.SessionResults.Local.Add(SelectSnRt = thisResult);
+        await updateSettings(_dbx);
+        _ = await _dbx.SaveChangesAsync(); // _ = await _dbx.TrySaveReportAsync();
+        await updateDoneTodo(SelectUser, __speechSynth, _dbx);
 
-        _chartUC.LoadDataToChart(db.SessionResults.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
+        _chartUC.LoadDataToChart(_dbx.SessionResults.Local.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); /////////////////////////////////////////
 
         //__speechSynth.SpeakFAF("OK?");
         //await Task.Delay(99);

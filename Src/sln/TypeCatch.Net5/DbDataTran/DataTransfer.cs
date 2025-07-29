@@ -22,8 +22,6 @@ namespace TypingWpf.DbDataTran
         }
       }
 
-      //trg.SessionResults.Load(); // chunky vs chattee
-
       foreach (var s in src.SessionResults)
       {
         if (trg.SessionResults.Any(r => s.DoneAt == r.DoneAt && s.UserId.Equals(r.UserId, StringComparison.OrdinalIgnoreCase)))

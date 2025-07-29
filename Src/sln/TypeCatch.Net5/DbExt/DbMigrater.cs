@@ -38,7 +38,7 @@ namespace TypingWpf.DbExt
         /// called upon a migration
         /// add additional seeding if needed... 
         /// ...although MigrateDatabaseToLatestVersion.InitializeDatabase seems OK too.
-        /// db.TrySaveReportAsync();
+        /// _dbx.TrySaveReportAsync();
       }
       catch (Exception ex) { ex.Log(); throw; }
     }

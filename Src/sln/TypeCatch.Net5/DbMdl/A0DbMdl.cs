@@ -24,9 +24,9 @@ public partial class A0DbMdl : DbContext
     /// this works too but SQLEXPRESS is misleading:
     /// $@"Data Source=.\SQLEXPRESS;AttachDbFilename={dbfn};Integrated Security=True;Connect Timeout=10;User Instance=True;";
     /// todo:
-    ///     install local db on asus2 off the installer on a onedrive
+    ///     install local _dbx on asus2 off the installer on a onedrive
     ///     and/or
-    ///     run a setup program for TypeCatch with the prerequisite kicking in and installing sql db 2014.
+    ///     run a setup program for TypeCatch with the prerequisite kicking in and installing sql _dbx 2014.
 
     Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"::>{Database.Connection.ConnectionString}");
     //..Trace.WriteLine($"{DateTime.Now:HH:mm:ss.fff}   cTor {swUnitTest.ElapsedMilliseconds:N0} ms.");

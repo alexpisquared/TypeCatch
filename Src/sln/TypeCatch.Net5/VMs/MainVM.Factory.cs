@@ -10,7 +10,7 @@ public partial class MainVM //: BindableBaseViewModel
 
     Axis? ax = vm._chartUC.AxisX.FirstOrDefault();
     if (ax != null)
-      ax.LabelFormatter = value => DateTime.FromOADate(value).ToString("MMM-dd HH"); //vm.XFormatter_ProperWay = value => DateTime.FromOADate(value).ToString("MMM-dd HH"); //tu: dates with formats
+      ax.LabelFormatter = value => DateTime.FromOADate(value).ToString("MMM-dd HH:mm"); //vm.XFormatter_ProperWay = value => DateTime.FromOADate(value).ToString("MMM-dd HH"); //tu: dates with formats
 
     return vm;
   }

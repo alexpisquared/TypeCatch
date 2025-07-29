@@ -15,26 +15,24 @@ public partial class MainVM //: BindableBaseViewModel
     IsBusy = true;
     try
     {
-      db.SessionResults.Load();
-
-      SessionResultCvs = CollectionViewSource.GetDefaultView(db.SessionResults.Local.ToObservableCollection());
+      _dbx.SessionResults.Load();
+      SessionResultCvs = CollectionViewSource.GetDefaultView(_dbx.SessionResults.Local.ToObservableCollection());
       SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));
       SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null
         || string.IsNullOrEmpty(SearchText) || r.Note.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true;
 
-      LessonText =
       InfoMsg = $"{((ListCollectionView)SessionResultCvs).Count} matches so far.";
 
       SelectUser = tlaFromCurEnvtUser();
-      var appSetngCountBefore = db.AppStngs.Count();
+      var appSetngCountBefore = _dbx.AppStngs.Count();
 
-      //var rmv = db.AppStngs.Find(5); if (rmv != null)  db.AppStngs.Remove(rmv);                    db.TrySave Report();
+      //var rmv = _dbx.AppStngs.Find(5); if (rmv != null)  _dbx.AppStngs.Remove(rmv);                    _dbx.TrySave Report();
 
-      var appStngUsr = await getCurUserSettings(db);
+      var appStngUsr = await getCurUserSettings(_dbx);
 
-      var appSetngCount_After = db.AppStngs.Count();
+      var appSetngCount_After = _dbx.AppStngs.Count();
 
-      foreach (var aps in db.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
+      foreach (var aps in _dbx.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
 
       SubLesnId /**/ = appStngUsr.SubLesnId;
       ProLTgl   /**/ = appStngUsr.ProLtgl;

@@ -2,9 +2,7 @@
 using OneBase.Db.PowerTools.Models;
 using TypeCatch.Net5.AsLink;
 using db_ = TypingWpf.DbMdl;
-
 namespace TypingWpf.VMs;
-
 public partial class MainVM : BindableBaseViewModel
 {
   const int _t333ms = 333;
@@ -14,7 +12,7 @@ public partial class MainVM : BindableBaseViewModel
   readonly Stopwatch _swMain = new Stopwatch();
   DispatcherTimer _dt = null;
   readonly SpeechSynth __speechSynth;
-  OneBaseContext db;
+  OneBaseContext _dbx;
 
   public MainVM()
   {
@@ -22,7 +20,7 @@ public partial class MainVM : BindableBaseViewModel
 
     __speechSynth = new SpeechSynth(key, true, lgr: null);
 
-    db = CreateOneBaseContext();
+    _dbx = CreateOneBaseContext();
 
     if (Debugger.IsAttached) return;
   }
@@ -42,7 +40,7 @@ public partial class MainVM : BindableBaseViewModel
       base.AutoExec();
       VersioInfo = "123233412312"; // VerHelper.CurVerStr(".Net5");
 
-      
+
       {
         await LoadFromDbAsync();
 
@@ -59,9 +57,8 @@ public partial class MainVM : BindableBaseViewModel
         _dt = new DispatcherTimer(TimeSpan.FromMilliseconds(_t333ms), DispatcherPriority.Background, new EventHandler(async (s, e) => await tick333ms()), Dispatcher.CurrentDispatcher); //tu: one-line timer
         _dt.Start();
         MainVis = Visibility.Visible;
-        Opcty = 1;
         //SpeedClr = new SolidColorBrush(Colors.White);
-        await updateDoneTodo(SelectUser, __speechSynth, db);
+        await updateDoneTodo(SelectUser, __speechSynth, _dbx);
       }
 
       CurInfo = $"{(LesnTyp)} - {SubLesnId:N0}  ";// ({DashName})";
@@ -75,6 +72,7 @@ public partial class MainVM : BindableBaseViewModel
     _cancelClosing = IsInSsn;
     if (IsInSsn) // if in session: finish it and cancel closing and show results.
     {
+      LessonText = PupilInput = string.Empty;
       await finishTheSession();
       return;
     }
@@ -82,7 +80,6 @@ public partial class MainVM : BindableBaseViewModel
     _cancelClosing = true; //////////////////////////////////////////////////////////////// May 2025
     return;                //////////////////////////////////////////////////////////////// May 2025
 
-    Opcty = 0;
     MainVis = Visibility.Hidden;
     //refreshUiSynch();
     //await refreshUi();
@@ -90,8 +87,6 @@ public partial class MainVM : BindableBaseViewModel
     await Task.Run(() => SoundPlayer.PlayByeByeSound());
     await base.ClosingVM();
   }
-
-  //async void loadListsFromDB_(string dashName, string selectUser, A0DbMdl db)    {      await loadListsFromDB(dashName, selectUser, db);    }
 
   void loadListsFromDB(string dashName, string selectUser, OneBaseContext db)
   {
@@ -162,7 +157,7 @@ public partial class MainVM : BindableBaseViewModel
     __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Are you sure?");
     if (System.Windows.MessageBox.Show($"{SelectSnRt.DoneAt:MMM-dd HH:mm} \r\n\n{SelectSnRt.CpM} cpm\r\n\n{(SelectSnRt.IsRecord == true ? "It's a Record!!" : "")}", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
     {
-      DeleteSaveSsnRsltToDb(SelectSnRt, db);
+      DeleteSaveSsnRsltToDb(SelectSnRt, _dbx);
     }
   }
   void promptSample()
@@ -235,10 +230,10 @@ public partial class MainVM : BindableBaseViewModel
 
     if (doF1)
     {
-      
+
       {
-        loadListsFromDB(DashName, SelectUser, db);
-        await updateDoneTodo(SelectUser, __speechSynth, db);
+        loadListsFromDB(DashName, SelectUser, _dbx);
+        await updateDoneTodo(SelectUser, __speechSynth, _dbx);
       }
     }
 
@@ -251,7 +246,7 @@ public partial class MainVM : BindableBaseViewModel
     {
       doneToday = db.SessionResults.Count(r => r.UserId.ToLower() == selectUser.ToLower() && r.DoneAt > DateTime.Today);
 
-      //if (!db.SessionResults.Any(r => r.UserId.Equals(selectUser, StringComparison.OrdinalIgnoreCase)))
+      //if (!_dbx.SessionResults.Local.Any(r => r.UserId.Equals(selectUser, StringComparison.OrdinalIgnoreCase)))
       //{
       //  sinceRcrd = 0;
       //  todoToday = _planPerDay - doneToday;
