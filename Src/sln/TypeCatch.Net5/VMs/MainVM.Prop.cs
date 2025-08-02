@@ -41,6 +41,6 @@ public partial class MainVM : BindableBaseViewModel
   public ObservableCollection<VeloMeasure> PrgsChart { get; set; } = [];
   public int LessonLen;// => (LessonText.Length - LessonHelper.PaddingLen) > 8 ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
   public string DashName => $"{LesnTyp.ToString()[0]}-{SubLesnId}";
-  const int _planPerDay = 2;
+  const int _planPerDay = 3;
   public ResourcePlayer SoundPlayer { get; set; } = new ResourcePlayer();
 }
