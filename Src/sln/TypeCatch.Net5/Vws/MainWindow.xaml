@@ -140,7 +140,7 @@
                 <MenuItem Header="_4 Parts of Speech B"       Command="{Binding LTCmd}" CommandParameter="C-3"        />
                 <MenuItem Header="_5 Parts of Speech B"       Command="{Binding LTCmd}" CommandParameter="C-4"        />
               </MenuItem>
-              <MenuItem Header="_NumerSymbols"                FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
+              <MenuItem Header="_NumerSymbols"   FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                 <MenuItem Header="_1   56  78              "  Command="{Binding LTCmd}" CommandParameter="N-0"        />
                 <MenuItem Header="_2   34  90              "  Command="{Binding LTCmd}" CommandParameter="N-1"        />
                 <MenuItem Header="_3   12  -=              "  Command="{Binding LTCmd}" CommandParameter="N-2"        />
@@ -153,7 +153,7 @@
                 <MenuItem Header="_A   \ | &lt; &gt;       "  Command="{Binding LTCmd}" CommandParameter="N-9"        />
                 <MenuItem Header="_B   All symbols         "  Command="{Binding LTCmd}" CommandParameter="N-10"       />
               </MenuItem>
-              <MenuItem Header="_SpecialDrill"                FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
+              <MenuItem Header="_SpecialDrill"   FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                 <MenuItem Header="_1   Smiles :-)          "  Command="{Binding LTCmd}" CommandParameter="S-0"        />
                 <MenuItem Header="_2   HTML                "  Command="{Binding LTCmd}" CommandParameter="S-1"        />
                 <MenuItem Header="_3   NumPad (digits only)"  Command="{Binding LTCmd}" CommandParameter="S-2"        />
@@ -164,7 +164,7 @@
                 <MenuItem Header="_8   XAML                "  Command="{Binding LTCmd}" CommandParameter="S-6"        />
                 <MenuItem Header="_9   Ctrl                "  Command="{Binding LTCmd}" CommandParameter="S-7"        />
               </MenuItem>
-              <MenuItem Header="_Phrases"                     FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
+              <MenuItem Header="_Phrases"        FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                 <MenuItem Header="_100 Characters"            Command="{Binding LTCmd}" CommandParameter="P-1"        />
                 <MenuItem Header="_200 Characters"            Command="{Binding LTCmd}" CommandParameter="P-2"        />
                 <MenuItem Header="_300 Characters"            Command="{Binding LTCmd}" CommandParameter="P-3"        />
@@ -172,7 +172,8 @@
                 <MenuItem Header="_500 Characters"            Command="{Binding LTCmd}" CommandParameter="P-5"        />
                 <MenuItem Header="1_0  Characters"            Command="{Binding LTCmd}" CommandParameter="P-0"        />
               </MenuItem>
-              <MenuItem Header="_Editable Files"              FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
+              <MenuItem Header="_Editable Files" FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
+                <MenuItem Header="_EnPhraze"                  Command="{Binding LTCmd}" CommandParameter="E-EnPhraze"         />
                 <MenuItem Header="_ght"                       Command="{Binding LTCmd}" CommandParameter="E-ght"      />
                 <MenuItem Header="_msa"                       Command="{Binding LTCmd}" CommandParameter="E-msa"      />
                 <MenuItem Header="_nymi"                      Command="{Binding LTCmd}" CommandParameter="E-nymi"     />
@@ -180,7 +181,6 @@
                 <MenuItem Header="t_ion"                      Command="{Binding LTCmd}" CommandParameter="E-tion"     />
                 <MenuItem Header="_was"                       Command="{Binding LTCmd}" CommandParameter="E-was"      />
                 <MenuItem Header="w_he"                       Command="{Binding LTCmd}" CommandParameter="E-whe"      />
-                <MenuItem Header="_6 "                        Command="{Binding LTCmd}" CommandParameter="E-"         />
               </MenuItem>
               <!--<MenuItem Header="_X-perimental "               FontSize="16" FontWeight="SemiBold" BorderThickness="1" >
                             <MenuItem Header="_1 email address"           Command="{Binding LTCmd}" CommandParameter="X-1"        />
@@ -467,11 +467,15 @@
               </EventTrigger>
             </ProgressBar.Triggers>
           </ProgressBar>
-          <TextBlock   Foreground="#00f" Text="{Binding CrntCpm, FallbackValue=123, StringFormat=\{0:N0\}}" FontSize="20" HorizontalAlignment="Center" Margin="0 0 50 0" ToolTip="Your current typing speed" />
-          <TextBlock   Foreground="#f0f" Text="{Binding RcrdCpm, FallbackValue=123, StringFormat=\{0:N0\}}" FontSize="20" HorizontalAlignment="Center" Margin="50 0 0 0" ToolTip="Your record typing speed for this lesson in cpm (characters per minute)" />
-          <Rectangle         Fill="#f0f" Width="1" StrokeThickness="0"  Height="10" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-
-          <TextBlock   Foreground="#ddd" Text="{Binding InfoMsg, FallbackValue='···'}" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center" />
+          <TextBlock HorizontalAlignment="Right" >
+            <Run Foreground="#80f" Text=" "   FontSize="20" />
+            <Run Foreground="#00f" Text="{Binding CrntCpm, FallbackValue=333, StringFormat=\{0:N0\}}" FontSize="20" ToolTip="Your current typing speed" />
+            <Run Foreground="#80f" Text=" / "   FontSize="20" />
+            <Run Foreground="#f0c" Text="{Binding RcrdCpm, FallbackValue=333, StringFormat=\{0:N0\}}" FontSize="20" ToolTip="Your record typing speed for this lesson in cpm (characters per minute)" />
+            <Run Foreground="#ddd" Text=" ··· " FontSize="15" />
+            <Run Foreground="#ddd" Text="{Binding InfoMsg, FallbackValue='555555'}" FontSize="15" />
+            <Run Foreground="#80f" Text=" "   FontSize="20" />
+          </TextBlock>
         </Grid>
       </Border>
 

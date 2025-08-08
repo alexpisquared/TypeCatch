@@ -107,7 +107,7 @@ public partial class MainVM : BindableBaseViewModel
 
       RcrdCpm = dbsrlst?.Count() > 0 ? (int)(dbsrlst?.Max(r => r.PokedIn / r.Duration.ToTimeSpan().TotalMinutes) ?? 110) : 99;
 
-      MaxCpm = 0 + 2 * RcrdCpm;
+      MaxCpm = RcrdCpm;
 
       Debug.WriteLine($"~~~ C: {db.SessionResults.Count()} - {CurUserCurExcrsRsltLst.Count}");
 
@@ -217,7 +217,7 @@ public partial class MainVM : BindableBaseViewModel
       case 'B': LesnTyp = LessonType.BasicLessons; break;
       case 'C': LesnTyp = LessonType.Combinations; break;
       case 'N': LesnTyp = LessonType.NumerSymbols; break;
-      case 'F': LesnTyp = LessonType.EditableFile; break;
+      case 'E': LesnTyp = LessonType.EditableFile; break;
       case 'S': LesnTyp = LessonType.SpecialDrill; break;
       case 'P': LesnTyp = LessonType.PhrasesRandm; break;
       case 'X': LesnTyp = LessonType.Experimental; break;

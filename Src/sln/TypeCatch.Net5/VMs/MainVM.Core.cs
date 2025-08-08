@@ -57,7 +57,7 @@ public partial class MainVM
   double _prevMinutes = 0;
   async Task tick333ms()
   {
-    if (_swMain.Elapsed.TotalMinutes == 0) return;
+    if (_swMain.Elapsed.TotalMinutes == 0 || IsInSsn == false) return;
 
     //autoPause();
 

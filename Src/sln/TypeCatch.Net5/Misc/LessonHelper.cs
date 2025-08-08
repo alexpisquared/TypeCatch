@@ -139,7 +139,7 @@ public static partial class LessonHelper
 
         using (var fs = File.Create(file))
         {
-          var info = new UTF8Encoding(true).GetBytes(dflt ?? $"Feel free to replace this with whatever excercise you deem fit...\r\n...preferably matching the topic of '{sublesson}'.");
+          var info = new UTF8Encoding(true).GetBytes(dflt ?? $"Sharing your accomplishments is essential, but avoid the pitfall of oversharing every minor success.");
           fs.Write(info, 0, info.Length);
           fs.Close();
         }
