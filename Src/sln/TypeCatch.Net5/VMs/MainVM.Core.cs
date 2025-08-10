@@ -1,6 +1,5 @@
 ﻿using TypeCatch.Net5.Mdl;
 using static AmbienceLib.SpeechSynth;
-using dbMdl_ = TypingWpf.DbMdl;
 using dbMdl = OneBase.Db.PowerTools.Models;
 
 namespace TypingWpf.VMs;
@@ -82,7 +81,7 @@ public partial class MainVM
 
   async void sessionLoad_Start_lazy() // timing will start on the first keystroke.
   {
-    (string lessonTxt, int lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
+    (var lessonTxt, var lessonLen) = LessonHelper.GetLesson(LesnTyp, SubLesnId);
     LessonText = lessonTxt;
     LessonLen = lessonLen;
 
@@ -114,11 +113,7 @@ public partial class MainVM
 
       _swMain.Stop();
 
-      if (PupilInput.Trim().Length < LessonLen - 3)
-      {
-        //__speechSynth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4);
-        return;
-      }
+      if (PupilInput.Trim().Length < LessonLen - 3) { __speechSynth.SpeakFAF($"Oops, too short! Let's give it another shot, superstar!", speakingRate: 1.4); return; }
 
       if (!IsCorrect) { __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Almost there! Remember to finish typing till the last letter. Hitting Escape is like ghosting the lesson - not cool!"); return; }
 
@@ -136,6 +131,7 @@ public partial class MainVM
         thisResult.IsRecord = true;
 
       LessonText = PupilInput = "■";
+      Console.Beep(5000, 120);
 
       //using (A0DbMdl _dbx = A0DbMdl.GetA0DbMdl)
       {

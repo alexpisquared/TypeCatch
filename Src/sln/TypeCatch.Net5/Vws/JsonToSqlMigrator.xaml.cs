@@ -33,7 +33,7 @@ public partial class JsonToSqlMigrator : Window
         Debug.WriteLine($"::>{tbInfo.Text}");
 
         await Task.Yield();
-        //Bpr.Click();
+        //_appBpr.Click();
 
         int brandNew = 0, noMatchesInDb = 0, alreadySame = 0, updated = 0;
 

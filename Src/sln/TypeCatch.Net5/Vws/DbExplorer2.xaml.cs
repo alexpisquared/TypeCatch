@@ -9,9 +9,9 @@ using TypeCatch.Net5.DbMdl;
 
 namespace TypingWpf.Vws
 {
-  public partial class DbExplorer2 : WindowBase
+  public partial class DbExplorer2 // : WindowBase
   {
-    Bpr Bpr = new();
+    Bpr _dbeBpr = new();
     readonly A0DbMdl _db = A0DbMdl.GetA0DbMdl;
     public DbExplorer2() => InitializeComponent();
 
@@ -43,7 +43,7 @@ namespace TypingWpf.Vws
 
     void onClose(object sender, RoutedEventArgs e) => Close();
     void onUpdateSsnRsltNotes(object sender, RoutedEventArgs e) => new JsonToSqlMigrator().Show();
-    async void onDbSave(object sender, RoutedEventArgs e) { Bpr.Beep1of2(); tbInfo.Text = (await _db.TrySaveReportAsync()).report; Bpr.Beep2of2(); }
+    async void onDbSave(object sender, RoutedEventArgs e) { _dbeBpr.Beep1of2(); tbInfo.Text = (await _db.TrySaveReportAsync()).report; _dbeBpr.Beep2of2(); }
 
 
     void ExzeFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)

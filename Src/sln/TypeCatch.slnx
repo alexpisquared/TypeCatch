@@ -52,6 +52,7 @@
     <BuildType Solution="DebugUI|*" Project="Debug" />
     <BuildType Solution="RlsDscnctd|*" Project="Release" />
     <Platform Solution="*|x86" Project="x86" />
+    <Platform Solution="Debug|x64" Project="x64" />
     <Platform Solution="Release|x64" Project="x64" />
   </Project>
   <Project Path="OneBase.Db.PowerTools/OneBase.Db.PowerTools.csproj" Id="56211f43-7d05-42f5-87f9-5af41d5d5a2e">
@@ -60,6 +61,7 @@
     <BuildType Solution="DebugUI|*" Project="Debug" />
     <BuildType Solution="ReleaseBeta|*" Project="Release" />
     <BuildType Solution="RlsDscnctd|*" Project="Debug" />
+    <Platform Solution="Debug|x64" Project="x64" />
   </Project>
   <Project Path="TypeCatch.Net5/TypeCatch.Net5.csproj">
     <BuildType Solution="DbgDscnctd|*" Project="Debug" />
@@ -67,6 +69,7 @@
     <BuildType Solution="DebugUI|*" Project="Debug" />
     <BuildType Solution="ReleaseBeta|*" Project="Release" />
     <BuildType Solution="RlsDscnctd|*" Project="Release" />
+    <Platform Solution="Debug|x64" Project="x64" />
     <Platform Solution="Release|x64" Project="x64" />
   </Project>
 </Solution>

@@ -70,7 +70,7 @@
       if (!skipTrace)
         Trace.TraceInformation(rv);
 
-      //Bpr.BeepOk();
+      //_appBpr.BeepOk();
       return rv;
     }
 
