@@ -6,13 +6,15 @@ using TypeCatch.Net5.Mdl;
 namespace TypingWpf.VMs;
 public partial class MainVM : BindableBaseViewModel
 {
-  [ObservableProperty] ObservableCollection<SessionResult> curUserCurExcrsRsltLst = [];
+  [ObservableProperty] ObservableCollection<SessionResult> sessionResultObs = [];
   [ObservableProperty] ICollectionView sessionResultCvs = CollectionViewSource.GetDefaultView(new List<SessionResult>());
-  [ObservableProperty] string searchText = ""; partial void OnSearchTextChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); InfoMsg = $"{((ListCollectionView)SessionResultCvs).Count} matches so far."; }
+  [ObservableProperty] string filterNote = ""; partial void OnFilterNoteChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); NewMethod(); }
+  [ObservableProperty] string filterExrc = ""; partial void OnFilterExrcChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); NewMethod(); }
+
   [ObservableProperty] string _PupilInput = ""; partial void OnPupilInputChanged(string value) => OnUserInput();
   [ObservableProperty] int _RcrdCpm = 100; partial void OnRcrdCpmChanged(int value) { if (value > _MaxCpm) MaxCpm = 2 * value; } //   if (_recordCpm > _MaxCpm) MaxCpm = 2 * RcrdCpm; } } }
   [ObservableProperty] User _SlctUser; partial void OnSlctUserChanged(User value) => SelectUser = value.UserId;
-  [ObservableProperty] string _SelectUser; partial void OnSelectUserChanged(string value) => loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(_dbx), value, _dbx);
+  [ObservableProperty] string _SelectUser; partial void OnSelectUserChanged(string value) => loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(_dbx), value);
   [ObservableProperty] LessonType _LesnTyp; partial void OnLesnTypChanged(LessonType oldValue, LessonType newValue) { if (SubLesnId != null) { sessionLoad_Start_lazy(); } }
   [ObservableProperty] string _LessonText = "Loading...";
   [ObservableProperty] int _ExrzeRuns = 300;
@@ -37,7 +39,7 @@ public partial class MainVM : BindableBaseViewModel
   [ObservableProperty] bool _IsRecord = false;
   [ObservableProperty] bool _IsAdmin = false;
   [ObservableProperty] bool _IsBusy = false;
-  [ObservableProperty] Visibility _MainVis = Visibility.Visible; 
+  [ObservableProperty] Visibility _MainVis = Visibility.Visible;
   public ObservableCollection<VeloMeasure> PrgsChart { get; set; } = [];
   public int LessonLen;// => (LessonText.Length - LessonHelper.PaddingLen) > 8 ? LessonText.Length - LessonHelper.PaddingLen : LessonText.Length;
   public string DashName => $"{LesnTyp.ToString()[0]}-{SubLesnId}";

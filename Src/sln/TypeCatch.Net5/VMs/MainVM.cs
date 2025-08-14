@@ -88,7 +88,7 @@ public partial class MainVM : BindableBaseViewModel
     await base.ClosingVM();
   }
 
-  void loadListsFromDB(string dashName, string selectUser, OneBaseContext db)
+  void loadListsFromDB(string dashName, string selectUser)
   {
     if (string.IsNullOrEmpty(selectUser) || string.IsNullOrEmpty(dashName) /*|| SelectUser.Equals(selectUser)*/)
       return;
@@ -101,7 +101,7 @@ public partial class MainVM : BindableBaseViewModel
 
     try
     {
-      var dbsrlst = db.SessionResults.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName
+      var dbsrlst = _dbx.SessionResults.Local.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName
       //&& r.Duration.ToTimeSpan() > TimeSpan.Zero
       ).OrderByDescending(r => r.DoneAt).ToList();
 
@@ -109,11 +109,11 @@ public partial class MainVM : BindableBaseViewModel
 
       MaxCpm = RcrdCpm;
 
-      Debug.WriteLine($"~~~ C: {db.SessionResults.Count()} - {CurUserCurExcrsRsltLst.Count}");
+      Debug.WriteLine($"~~~ C: {_dbx.SessionResults.Local.Count()} - {SessionResultObs.Count}");
 
-      CurUserCurExcrsRsltLst.ClearAddRangeAuto(dbsrlst);
+      SessionResultObs.ClearAddRangeAuto(dbsrlst);
 
-      Debug.WriteLine($"~~~ D: {db.SessionResults.Count()} - {CurUserCurExcrsRsltLst.Count}");
+      Debug.WriteLine($"~~~ D: {_dbx.SessionResults.Local.Count()} - {SessionResultObs.Count}");
     }
     catch (Exception ex) { ex.Log(); __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Something is not right: {ex.Message}. Talk to you later"); }
   }
@@ -134,15 +134,15 @@ public partial class MainVM : BindableBaseViewModel
     string f;
     switch ((string)mode)
     {
-      case "Full": f = "y-M-d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt)); break;
-      case "Year": f = "MMM d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddYears(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "3Mon": f = "ddd d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-3)).OrderByDescending(r => r.DoneAt)); break;
-      case "Mont": f = "ddd d";    /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "Week": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-7)).OrderByDescending(r => r.DoneAt)); break;
-      case "PreX": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(10)); break;
-      case "Pre5": f = "H:mm";     /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.OrderByDescending(r => r.DoneAt).Take(05)); break;
-      case "24hr": f = "H:mm";     /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Now.AddDays(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "1Day": f = "H:mm";     /**/ _chartUC.LoadDataToChart(CurUserCurExcrsRsltLst.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); break;
+      case "Full": f = "y-M-d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt)); break;
+      case "Year": f = "MMM d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddYears(-1)).OrderByDescending(r => r.DoneAt)); break;
+      case "3Mon": f = "ddd d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddMonths(-3)).OrderByDescending(r => r.DoneAt)); break;
+      case "Mont": f = "ddd d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); break;
+      case "Week": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddDays(-7)).OrderByDescending(r => r.DoneAt)); break;
+      case "PreX": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt).Take(10)); break;
+      case "Pre5": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt).Take(05)); break;
+      case "24hr": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddDays(-1)).OrderByDescending(r => r.DoneAt)); break;
+      case "1Day": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); break;
       case null:
       default: f = "MMM-dd"; break;
     }
@@ -232,7 +232,7 @@ public partial class MainVM : BindableBaseViewModel
     {
 
       {
-        loadListsFromDB(DashName, SelectUser, _dbx);
+        loadListsFromDB(DashName, SelectUser);
         await updateDoneTodo(SelectUser, __speechSynth, _dbx);
       }
     }

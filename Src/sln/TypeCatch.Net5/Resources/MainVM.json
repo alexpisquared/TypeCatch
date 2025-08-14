@@ -7293,7 +7293,7 @@
     "SoundPlayer": { "Volume": 65535 },
     "SubLesnId": "msa",
     "TodoToday": 0,
-    "CurUserCurExcrsRsltLst": [
+    "SessionResultObs": [
         {
             "DoneAt": {
                 "DateTime": "\/Date(1510970247340)\/",

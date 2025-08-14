@@ -393,7 +393,13 @@
                 </DataGrid.Columns>
               </DataGrid>
 
-              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=333}" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="88" />
+              <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="  Exrc" />
+                <TextBox Text="{Binding FilterExrc, UpdateSourceTrigger=PropertyChanged, Delay=333}" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="88" />
+                <Label Content="  Note" />
+                <TextBox Text="{Binding FilterNote, UpdateSourceTrigger=PropertyChanged, Delay=333}" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="88" />
+              </StackPanel>
+
 
               <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="_Full " Command="{Binding ShowChart}" CommandParameter="Full" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>

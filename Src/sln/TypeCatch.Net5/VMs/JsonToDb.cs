@@ -15,30 +15,30 @@ public partial class MainVM //: BindableBaseViewModel
     IsBusy = true;
     try
     {
-      _dbx.SessionResults.Load();
+      SelectUser = tlaFromCurEnvtUser();
+      _dbx.SessionResults.Where(r => r.UserId == SelectUser).Load();
       SessionResultCvs = CollectionViewSource.GetDefaultView(_dbx.SessionResults.Local.ToObservableCollection());
       SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));
-      SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null
-        || string.IsNullOrEmpty(SearchText) || r.Note.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true;
+      SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null || (
+        (string.IsNullOrEmpty(FilterNote) || r.Note.Contains(FilterNote, StringComparison.OrdinalIgnoreCase) == true) &&
+        (string.IsNullOrEmpty(FilterExrc) || r.ExcerciseName.Contains(FilterExrc, StringComparison.OrdinalIgnoreCase) == true));
 
-      InfoMsg = $"{((ListCollectionView)SessionResultCvs).Count} matches so far.";
+      NewMethod();
 
-      SelectUser = tlaFromCurEnvtUser();
       var appSetngCountBefore = _dbx.AppStngs.Count();
 
       //var rmv = _dbx.AppStngs.Find(5); if (rmv != null)  _dbx.AppStngs.Remove(rmv);                    _dbx.TrySave Report();
 
-      var appStngUsr = await getCurUserSettings(_dbx);
+      AppStng appStngUsr = await getCurUserSettings(_dbx);
 
       var appSetngCount_After = _dbx.AppStngs.Count();
 
-      foreach (var aps in _dbx.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
+      foreach (AppStng aps in _dbx.AppStngs) { Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"    {aps.Id,5} {aps.UserId,5} {aps.FullName,-20} {aps.Note}"); }
 
       SubLesnId /**/ = appStngUsr.SubLesnId;
       ProLTgl   /**/ = appStngUsr.ProLtgl;
       Audible   /**/ = appStngUsr.Audible;
       LesnTyp   /**/ = (LessonType)appStngUsr.LesnTyp;
-
 
       __speechSynth.SpeakAsyncCancelAll();
       __speechSynth.SpeakFAF("Ready, player one.", voice: CC.Xiaomo, style: CC.ZhcnXiaomoNeural.Styles[new Random(DateTime.Now.Microsecond).Next(CC.ZhcnXiaomoNeural.Styles.Length)], role: CC.Girl);
@@ -54,12 +54,19 @@ public partial class MainVM //: BindableBaseViewModel
     finally { IsBusy = false; }
   }
 
+  private void NewMethod() => InfoMsg =
+          $"ttl:{_dbx.SessionResults.Local.Count()} " +
+          $"lcl:{_dbx.SessionResults.Local.Count()} " +
+          $"{SelectUser}:{_dbx.SessionResults.Local.Where(r => r.UserId == SelectUser).Count()} " +
+          $"cvs:{SessionResultCvs.SourceCollection.Cast<SessionResult>().Count()} " +
+          $"cvs:{((System.Windows.Data.ListCollectionView)SessionResultCvs).Count} " +
+          $".";
   async Task<AppStng> getCurUserSettings(OneBaseContext db)
   {
-    var appStngUsr = db.AppStngs.FirstOrDefault(r => r.UserId == SelectUser);
+    AppStng? appStngUsr = db.AppStngs.FirstOrDefault(r => r.UserId == SelectUser);
     if (appStngUsr == null)
     {
-      var anybody = await getAnybody_CreateIfnobody(db);
+      AppStng anybody = await getAnybody_CreateIfnobody(db);
       appStngUsr = db.AppStngs.Add(new AppStng { LesnTyp = anybody.LesnTyp, SubLesnId = anybody.SubLesnId, CreatedAt = DateTime.Now, UserId = SelectUser, Note = $"Auto pre-copied from {anybody.UserId}." }).Entity;
 
       _ = await db.SaveChangesAsync(); // .TrySaveReportAsync();
@@ -70,7 +77,7 @@ public partial class MainVM //: BindableBaseViewModel
 
   static async Task<AppStng> getAnybody_CreateIfnobody(OneBaseContext db)
   {
-    var anybody = db.AppStngs.FirstOrDefault();
+    AppStng? anybody = db.AppStngs.FirstOrDefault();
     if (anybody == null)
     {
       anybody = db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Dflt", Note = "Auto pre-loaded [Default]." }).Entity;
@@ -103,7 +110,7 @@ public partial class MainVM //: BindableBaseViewModel
 
   async Task updateSettings(OneBaseContext db)
   {
-    var stg = await getCurUserSettings(db) ?? db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." }).Entity;
+    AppStng stg = await getCurUserSettings(db) ?? db.AppStngs.Add(new AppStng { LesnTyp = (int)LessonType.PhrasesRandm, SubLesnId = "0", CreatedAt = DateTime.Now, Id = 1, UserId = "Plr1", Note = "Auto pre-loaded." }).Entity;
 
     stg.SubLesnId = SubLesnId;
     stg.LesnTyp = (int)LesnTyp;
@@ -122,7 +129,7 @@ public partial class MainVM //: BindableBaseViewModel
       {
         //if (Debugger.IsAttached) Debugger.Break(); // >>> DoneAt = sr.DoneAt.DateTime, //todo: ?? .AddMinutes(sr.DoneAt.OffsetMinutes)
 
-        var srfromdb = db.SessionResults.Find(sr.Id);
+        SessionResult? srfromdb = db.SessionResults.Find(sr.Id);
         _ = db.SessionResults.Remove(srfromdb);
 
         var rv = db.SaveChanges(); //.TrySaveReportAsync(); //Trace.TraceInformation($"{rv}");

@@ -41,7 +41,7 @@ namespace TypingWpf.Resources
         public Soundplayer SoundPlayer { get; set; }
         public string SubLesnId { get; set; }
         public int TodoToday { get; set; }
-        public Userlessonlst[] CurUserCurExcrsRsltLst { get; set; }
+        public Userlessonlst[] SessionResultObs { get; set; }
         public string[] Users { get; set; }
         public string VersioInfo { get; set; }
         public Snrt1[] snrts { get; set; }
