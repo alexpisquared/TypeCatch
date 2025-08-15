@@ -15,15 +15,16 @@ public partial class MainVM //: BindableBaseViewModel
     IsBusy = true;
     try
     {
-      SelectUser = tlaFromCurEnvtUser();
-      _dbx.SessionResults.Where(r => r.UserId == SelectUser).Load();
+      _dbx.SessionResults.Where(r => r.UserId == tlaFromCurEnvtUser()).Load();
       SessionResultCvs = CollectionViewSource.GetDefaultView(_dbx.SessionResults.Local.ToObservableCollection());
       SessionResultCvs.SortDescriptions.Add(new SortDescription(nameof(SessionResult.DoneAt), ListSortDirection.Descending));
       SessionResultCvs.Filter = obj => obj is not SessionResult r || r is null || (
+        (FilterDate <= DateTime.MinValue || r.DoneAt > FilterDate) &&
         (string.IsNullOrEmpty(FilterNote) || r.Note.Contains(FilterNote, StringComparison.OrdinalIgnoreCase) == true) &&
         (string.IsNullOrEmpty(FilterExrc) || r.ExcerciseName.Contains(FilterExrc, StringComparison.OrdinalIgnoreCase) == true));
 
-      NewMethod();
+      SelectUser = tlaFromCurEnvtUser();
+      UpdateCounts();
 
       var appSetngCountBefore = _dbx.AppStngs.Count();
 
@@ -54,12 +55,12 @@ public partial class MainVM //: BindableBaseViewModel
     finally { IsBusy = false; }
   }
 
-  private void NewMethod() => InfoMsg =
-          $"ttl:{_dbx.SessionResults.Local.Count()} " +
+  void UpdateCounts() => InfoMsg =
+          $"ttl:{_dbx.SessionResults.Count()} " +
           $"lcl:{_dbx.SessionResults.Local.Count()} " +
           $"{SelectUser}:{_dbx.SessionResults.Local.Where(r => r.UserId == SelectUser).Count()} " +
           $"cvs:{SessionResultCvs.SourceCollection.Cast<SessionResult>().Count()} " +
-          $"cvs:{((System.Windows.Data.ListCollectionView)SessionResultCvs).Count} " +
+          $"cvs:{((ListCollectionView)SessionResultCvs).Count} " +
           $".";
   async Task<AppStng> getCurUserSettings(OneBaseContext db)
   {

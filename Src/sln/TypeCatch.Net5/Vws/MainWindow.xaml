@@ -365,9 +365,12 @@
                 <lvc:CartesianChart.AxisX>
                   <lvc:Axis LabelFormatter="{Binding XFormatter_ProperWay}" />
                 </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                  <lvc:Axis MinValue="150" MaxValue="350" />
+                </lvc:CartesianChart.AxisY>
               </lvc:CartesianChart>
 
-              <DataGrid Grid.Column="1" ItemsSource="{Binding SessionResultCvs}" SelectedItem="{Binding SelectSnRt}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 3 3 0" Height="360" BorderBrush="Transparent" Width="320" Background="#333" >
+              <DataGrid Grid.Column="1" ItemsSource="{Binding SessionResultCvs}" SelectedItem="{Binding SelectSnRt}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 3 3 0" BorderBrush="Transparent" Width="320" Background="#333" >
                 <DataGrid.Columns>
                   <DataGridTextColumn Binding="{Binding ExcerciseName}"                           Header="Ex-ce"    IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
                   <DataGridTextColumn Binding="{Binding PokedIn, StringFormat=\{0:N0\}}"          Header="In"       IsReadOnly="True" ElementStyle="{StaticResource CenterAlignStyle}"                                  />
@@ -410,7 +413,7 @@
                 <Button Content="Last_X" Command="{Binding ShowChart}" CommandParameter="PreX" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
                 <Button Content="Last_5" Command="{Binding ShowChart}" CommandParameter="Pre5" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
                 <Button Content="_24hr " Command="{Binding ShowChart}" CommandParameter="24hr" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
-                <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="1Day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
+                <Button Content="_Today" Command="{Binding ShowChart}" CommandParameter="2day" Foreground="#08f" ToolTip="Full range view - from the very beginning"/>
               </StackPanel>
             </Grid>
           </Border>

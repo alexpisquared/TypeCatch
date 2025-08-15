@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OneBase.Db.PowerTools.Models;
+using System.Windows.Data;
 using TypeCatch.Net5.AsLink;
 using db_ = TypingWpf.DbMdl;
 namespace TypingWpf.VMs;
@@ -99,27 +100,16 @@ public partial class MainVM : BindableBaseViewModel
     TypeCatch.Net5.Properties.Settings.Default.LastUser = SelectUser;
     TypeCatch.Net5.Properties.Settings.Default.Save();
 
-    try
-    {
-      var dbsrlst = _dbx.SessionResults.Local.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName
-      //&& r.Duration.ToTimeSpan() > TimeSpan.Zero
-      ).OrderByDescending(r => r.DoneAt).ToList();
+    FilterExrc = dashName;
 
-      RcrdCpm = dbsrlst?.Count() > 0 ? (int)(dbsrlst?.Max(r => r.PokedIn / r.Duration.ToTimeSpan().TotalMinutes) ?? 110) : 99;
-
-      MaxCpm = RcrdCpm;
-
-      Debug.WriteLine($"~~~ C: {_dbx.SessionResults.Local.Count()} - {SessionResultObs.Count}");
-
-      SessionResultObs.ClearAddRangeAuto(dbsrlst);
-
-      Debug.WriteLine($"~~~ D: {_dbx.SessionResults.Local.Count()} - {SessionResultObs.Count}");
-    }
-    catch (Exception ex) { ex.Log(); __speechSynth.SpeakAsyncCancelAll(); __speechSynth.SpeakFAF($"Something is not right: {ex.Message}. Talk to you later"); }
+    MaxCpm = RcrdCpm = (int)(_dbx.SessionResults.Local.Where(r => r.UserId == SelectUser && r.ExcerciseName == dashName)?.Max(r => r.PokedIn / r.Duration.ToTimeSpan().TotalMinutes) ?? 99);
   }
-  string getTheLatestLessonTypeTheUserWorksOn(OneBaseContext db)
+  string getTheLatestLessonTypeTheUserWorksOn()
   {
-    var dashName = db.SessionResults.Where(r => r.UserId == SelectUser).OrderByDescending(x => x.DoneAt).FirstOrDefault()?.ExcerciseName;
+    if (_dbx.SessionResults.Local.Count <= 0 || string.IsNullOrEmpty(SelectUser))
+      return "";
+
+    var dashName = _dbx.SessionResults.Local.Where(r => r.UserId == SelectUser).OrderByDescending(x => x.DoneAt).FirstOrDefault()?.ExcerciseName;
 
     if (string.IsNullOrEmpty(dashName))
       dashName = DashName;
@@ -129,25 +119,29 @@ public partial class MainVM : BindableBaseViewModel
     return dashName;
   }
 
-  void onShowChart(object mode)
+  void onShowChart(string mode)
   {
-    string f;
-    switch ((string)mode)
+    string chartDateFormat;
+    switch (mode)
     {
-      case "Full": f = "y-M-d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt)); break;
-      case "Year": f = "MMM d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddYears(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "3Mon": f = "ddd d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddMonths(-3)).OrderByDescending(r => r.DoneAt)); break;
-      case "Mont": f = "ddd d";    /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddMonths(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "Week": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddDays(-7)).OrderByDescending(r => r.DoneAt)); break;
-      case "PreX": f = "ddd H:mm"; /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt).Take(10)); break;
-      case "Pre5": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.OrderByDescending(r => r.DoneAt).Take(05)); break;
-      case "24hr": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Now.AddDays(-1)).OrderByDescending(r => r.DoneAt)); break;
-      case "1Day": f = "H:mm";     /**/ _chartUC.LoadDataToChart(SessionResultObs.Where(r => r.DoneAt > DateTime.Today).OrderByDescending(r => r.DoneAt)); break;
+      case "Full": chartDateFormat = "y-M-d";    /**/ FilterDate = DateTime.MinValue; break;
+      case "Year": chartDateFormat = "MMM d";    /**/ FilterDate = DateTime.Now.AddYears(-1); break;
+      case "3Mon": chartDateFormat = "ddd d";    /**/ FilterDate = DateTime.Now.AddMonths(-3); break;
+      case "Mont": chartDateFormat = "ddd d";    /**/ FilterDate = DateTime.Now.AddMonths(-1); break;
+      case "PreX": chartDateFormat = "ddd H:mm"; /**/ FilterDate = DateTime.Now.AddDays(-10); break;
+      case "Week": chartDateFormat = "ddd H:mm"; /**/ FilterDate = DateTime.Now.AddDays(-7); break;
+      case "Pre5": chartDateFormat = "ddd H:mm"; /**/ FilterDate = DateTime.Now.AddDays(-5); break;
+      case "24hr": chartDateFormat = "H:mm";     /**/ FilterDate = DateTime.Now.AddDays(-1); break;
+      case "2day": chartDateFormat = "H:mm";     /**/ FilterDate = DateTime.Today; break;
       case null:
-      default: f = "MMM-dd"; break;
+      default: chartDateFormat = "MMM-dd"; break;
     }
 
-    _chartUC.AxisX.First().LabelFormatter = value => DateTime.FromOADate(value).ToString(f);
+    SessionResultCvs.Refresh();
+    _chartUC.LoadDataToChart((((ListCollectionView)SessionResultCvs).Cast<SessionResult>()));
+    UpdateCounts();
+
+    _chartUC.AxisX.First().LabelFormatter = value => DateTime.FromOADate(value).ToString(chartDateFormat);
   }
 
   void onDeleteSR(object x)
@@ -244,7 +238,7 @@ public partial class MainVM : BindableBaseViewModel
     int doneToday = -1, sinceRcrd = -1, todoToday = -1;
     try
     {
-      doneToday = db.SessionResults.Count(r => r.UserId.ToLower() == selectUser.ToLower() && r.DoneAt > DateTime.Today);
+      doneToday = db.SessionResults.Local.Count(r => r.UserId.ToLower() == selectUser.ToLower() && r.DoneAt > DateTime.Today);
 
       //if (!_dbx.SessionResults.Local.Any(r => r.UserId.Equals(selectUser, StringComparison.OrdinalIgnoreCase)))
       //{
@@ -255,7 +249,7 @@ public partial class MainVM : BindableBaseViewModel
       {
         var latestGlobalRecordDate = await getLatestGlobalRecordDate(selectUser, db);
 
-        sinceRcrd = db.SessionResults.Count(r => r.UserId == selectUser && r.DoneAt > latestGlobalRecordDate);
+        sinceRcrd = db.SessionResults.Local.Count(r => r.UserId == selectUser && r.DoneAt > latestGlobalRecordDate);
         todoToday =
           ((DateTime.Today < latestGlobalRecordDate)) ? 0 : // if done a record today ==> 0 left
           ((DateTime.Today - latestGlobalRecordDate).Days + 1) * _planPerDay - sinceRcrd;
@@ -276,21 +270,21 @@ public partial class MainVM : BindableBaseViewModel
     var sw = Stopwatch.StartNew();
     var latestGlobalRecord = DateTime.Now.AddYears(-100);
 
-    //await dbdbld.SessionResults.Where(r => r.UserId == selectUser).LoadAsync();
+    //await dbdbld.SessionResults.Local.Where(r => r.UserId == selectUser).LoadAsync();
 
     try
     {
-      var allExrczNames = dbdbld.SessionResults.Where(r => r.UserId == selectUser).GroupBy(r => r.ExcerciseName);
+      var allExrczNames = dbdbld.SessionResults.Local.Where(r => r.UserId == selectUser).GroupBy(r => r.ExcerciseName);
       foreach (var exrsName in allExrczNames)
       {
-        if (dbdbld.SessionResults.Any(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key))
+        if (dbdbld.SessionResults.Local.Any(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key))
         {
-          var record4userAndExrz = dbdbld.SessionResults.Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key).ToList().Max(r => r.CpM);
-          var lastExrzRecordDate = dbdbld.SessionResults.ToList().Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key && r.CpM == record4userAndExrz).Max(r => r.DoneAt);
+          var record4userAndExrz = dbdbld.SessionResults.Local.Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key).ToList().Max(r => r.CpM);
+          var lastExrzRecordDate = dbdbld.SessionResults.Local.ToList().Where(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key && r.CpM == record4userAndExrz).Max(r => r.DoneAt);
           if (latestGlobalRecord < lastExrzRecordDate)
           {
             latestGlobalRecord = lastExrzRecordDate;
-            Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" {exrsName.Key,-8}{dbdbld.SessionResults.Count(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key),5} times    max cpm {record4userAndExrz,3}   {lastExrzRecordDate}  ->  {latestGlobalRecord}");
+            Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $" {exrsName.Key,-8}{dbdbld.SessionResults.Local.Count(r => r.UserId == selectUser && r.ExcerciseName == exrsName.Key),5} times    max cpm {record4userAndExrz,3}   {lastExrzRecordDate}  ->  {latestGlobalRecord}");
           }
         }
       }
@@ -299,7 +293,7 @@ public partial class MainVM : BindableBaseViewModel
 
     Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceVerbose, $"  ... => latestGlobalRecord: {latestGlobalRecord}");
 
-    Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.f} +{(DateTime.Now - App.StartedAt):mm\\:ss\\.ff}    *** getLatestGlobalRecordDate() done in {sw.Elapsed.TotalSeconds:N2} sec");
+    Trace.WriteLineIf(ExnLogr.AppTraceLevelCfg.TraceWarning, $"{DateTime.Now:yy.MM.dd-HH:mm:ss.chartDateFormat} +{(DateTime.Now - App.StartedAt):mm\\:ss\\.ff}    *** getLatestGlobalRecordDate() done in {sw.Elapsed.TotalSeconds:N2} sec");
 
     return latestGlobalRecord;
   }

@@ -6,15 +6,16 @@ using TypeCatch.Net5.Mdl;
 namespace TypingWpf.VMs;
 public partial class MainVM : BindableBaseViewModel
 {
-  [ObservableProperty] ObservableCollection<SessionResult> sessionResultObs = [];
+  //[ObservableProperty] ObservableCollection<SessionResult> sessionResultObs = [];
   [ObservableProperty] ICollectionView sessionResultCvs = CollectionViewSource.GetDefaultView(new List<SessionResult>());
-  [ObservableProperty] string filterNote = ""; partial void OnFilterNoteChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); NewMethod(); }
-  [ObservableProperty] string filterExrc = ""; partial void OnFilterExrcChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); NewMethod(); }
+  [ObservableProperty] string filterNote = ""; partial void OnFilterNoteChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); UpdateCounts(); }
+  [ObservableProperty] string filterExrc = ""; partial void OnFilterExrcChanged(string value) { SessionResultCvs.Refresh(); Console.Beep(222, 222); UpdateCounts(); }
+  [ObservableProperty] DateTime filterDate = DateTime.MinValue; partial void OnFilterDateChanged(DateTime value) { SessionResultCvs.Refresh(); /*Console.Beep(222, 222); */UpdateCounts(); }
 
   [ObservableProperty] string _PupilInput = ""; partial void OnPupilInputChanged(string value) => OnUserInput();
   [ObservableProperty] int _RcrdCpm = 100; partial void OnRcrdCpmChanged(int value) { if (value > _MaxCpm) MaxCpm = 2 * value; } //   if (_recordCpm > _MaxCpm) MaxCpm = 2 * RcrdCpm; } } }
   [ObservableProperty] User _SlctUser; partial void OnSlctUserChanged(User value) => SelectUser = value.UserId;
-  [ObservableProperty] string _SelectUser; partial void OnSelectUserChanged(string value) => loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(_dbx), value);
+  [ObservableProperty] string _SelectUser; partial void OnSelectUserChanged(string value) => loadListsFromDB(getTheLatestLessonTypeTheUserWorksOn(), value);
   [ObservableProperty] LessonType _LesnTyp; partial void OnLesnTypChanged(LessonType oldValue, LessonType newValue) { if (SubLesnId != null) { sessionLoad_Start_lazy(); } }
   [ObservableProperty] string _LessonText = "Loading...";
   [ObservableProperty] int _ExrzeRuns = 300;
