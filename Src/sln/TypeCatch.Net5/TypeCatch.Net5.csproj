@@ -1,34 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows8.0</TargetFramework>
+    <TargetFramework>net10.0-windows8.0</TargetFramework>
     <UseWPF>true</UseWPF>
-	  <Nullable>enable</Nullable>
-	  <LangVersion>latest</LangVersion>
-	  <UseWindowsForms>False</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <UseWindowsForms>False</UseWindowsForms>
     <ApplicationIcon>Keyboard - Aha-Soft-Security-Login.ico</ApplicationIcon>
     <UserSecretsId>f5f00191-14c9-462a-8ec8-fe01fa61930c</UserSecretsId>
     <Platforms>AnyCPU;x64</Platforms>
     <SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;__StillInitializing</DefineConstants>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DefineConstants>TRACE;__StillInitializing</DefineConstants>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;__StillInitializing</DefineConstants>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DefineConstants>TRACE;__StillInitializing</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Assets\FreeTextLesson.txt" />
     <None Remove="Assets\mp3\Bad - B&amp;B suxx.mp3" />
@@ -286,7 +280,6 @@
     <None Remove="Resources\AudioQue.wav" />
     <None Remove="shapes.ico" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Assets\FreeTextLesson.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -298,7 +291,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Assets\mp3\Bad - B&amp;B suxx.mp3" />
     <Content Include="Assets\mp3\Bad - Cry.mp3" />
@@ -548,21 +540,18 @@
     <Content Include="Assets\wav\Start 05.wav" />
     <Content Include="Assets\wav\Start 06.wav" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Themes\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <!--<PackageReference Include="Maikebing.System.Windows.Forms.DataVisualization" Version="5.0.1" />-->
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.2" />
     <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.8.0.csproj" />
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\NetLts\Ambience\AmbienceLib.csproj" />
@@ -571,14 +560,12 @@
     <ProjectReference Include="..\AAV.Common.UI\AAV.Common.UI.csproj" />
     <ProjectReference Include="..\OneBase.Db.PowerTools\OneBase.Db.PowerTools.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Assets\wav\Bye - I'll be back.wav" />
     <Resource Include="Keyboard - Aha-Soft-Security-Login.ico" />
     <Resource Include="Resources\AudioQue.wav" />
     <Resource Include="shapes.ico" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -604,21 +591,18 @@
       <DependentUpon>xChartPoc.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Page Update="Vws\DbExplorer2.xaml">
       <SubType>Designer</SubType>
@@ -633,5 +617,4 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-
 </Project>
