@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net11.0-windows8.0</TargetFramework>
@@ -544,13 +544,13 @@
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-    <PackageReference Include="EntityFramework" Version="6.5.2" />
-    <PackageReference Include="LiveCharts" Version="0.9.7" />
-    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="EntityFramework" />
+    <PackageReference Include="LiveCharts" />
+    <PackageReference Include="LiveCharts.Wpf" />
     <!--<PackageReference Include="Maikebing.System.Windows.Forms.DataVisualization" Version="5.0.1" />-->
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.13" />
-    <PackageReference Include="NAudio" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+    <PackageReference Include="NAudio" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.8.0.csproj" />
